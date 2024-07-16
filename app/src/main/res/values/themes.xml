@@ -3,7 +3,12 @@
     <style name="Base.Theme.MovieApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="backgroundColor">@color/bg_color</item>
     </style>
 
     <style name="Theme.MovieApp" parent="Base.Theme.MovieApp" />
+    <style name="Theme.MovieApp.HeaderTextView">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/header_text_color</item>
+    </style>
 </resources>

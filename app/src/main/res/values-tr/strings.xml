@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MovieApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Merhaba dünya</string>
+    <string name="movie_list_type_upcoming">Yakında Çıkacak</string>
+    <string name="movie_list_type_popular">Popüler</string>
+    <string name="movie_list_type_now_playing">Vizyonda</string>
+    <string name="movie_list_type_top_rated">Çok Puanlı</string>
+
+    <string name="home_screen_title">Anasayfa</string>
+    <string name="profile_screen_title">Profil</string>
+    <string name="search_screen_title">Film Ara</string>
+
+    <string name="no_data_error_message">Görüntülenecek hiç veri yok</string>
+</resources>

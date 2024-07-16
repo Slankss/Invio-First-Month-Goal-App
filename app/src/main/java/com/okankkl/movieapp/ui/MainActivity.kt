@@ -5,8 +5,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.navigation.createGraph
+import androidx.navigation.findNavController
 import com.okankkl.movieapp.R
+import com.okankkl.movieapp.util.Pages
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity()
 {
     override fun onCreate(savedInstanceState: Bundle?)
@@ -24,5 +29,6 @@ class MainActivity : AppCompatActivity()
             )
             insets
         }
+        
     }
 }
