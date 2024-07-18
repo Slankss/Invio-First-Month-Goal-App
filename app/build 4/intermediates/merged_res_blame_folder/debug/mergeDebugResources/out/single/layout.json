@@ -1,0 +1,30 @@
+[
+    {
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-mergeDebugResources-59:/layout/fragment_home.xml",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/layout/fragment_home.xml"
+    },
+    {
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-mergeDebugResources-59:/layout/movie_list_item.xml",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/layout/movie_list_item.xml"
+    },
+    {
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-mergeDebugResources-59:/layout/activity_main.xml",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-mergeDebugResources-59:/layout/fragment_profile.xml",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/layout/fragment_profile.xml"
+    },
+    {
+        "merged": "com.okankkl.movieapp-mergeDebugResources-59:/layout/fragment_home.xml",
+        "source": "com.okankkl.movieapp-main-62:/layout/fragment_home.xml"
+    },
+    {
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-mergeDebugResources-59:/layout/fragment_splash.xml",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/layout/fragment_splash.xml"
+    },
+    {
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-mergeDebugResources-59:/layout/fragment_search.xml",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/layout/fragment_search.xml"
+    }
+]

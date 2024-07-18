@@ -1,11 +1,13 @@
 <resources>
-    <string name="app_name">MovieApp</string>
+    <string name="app_name">Movie App</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello World</string>
     <string name="movie_list_type_upcoming">Up coming</string>
     <string name="movie_list_type_popular">Popular</string>
     <string name="movie_list_type_now_playing">Now Playing</string>
     <string name="movie_list_type_top_rated">Top Rated</string>
+
+    <string name="view_all">View all</string>
 
     <string name="home_screen_title">Home</string>
     <string name="profile_screen_title">Profil</string>

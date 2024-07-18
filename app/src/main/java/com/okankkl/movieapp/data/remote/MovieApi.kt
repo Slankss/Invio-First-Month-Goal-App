@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface MovieApi
 {
-    @GET("movie/{listType}")
+    @GET("/3/movie/{listType}")
     suspend fun getMovies(
             @Path("listType") listType : String,
             @Query("api_key") apiKey : String = Constants.API_KEY,

@@ -1,0 +1,11 @@
+com.okankkl.movieapp.test.app-sqlite-framework-2.4.0-0 /Users/okankukul/.gradle/caches/transforms-4/309e93cc50f2dca2b698ee0e38c29ac4/transformed/sqlite-framework-2.4.0/res
+com.okankkl.movieapp.test.app-room-runtime-2.6.1-1 /Users/okankukul/.gradle/caches/transforms-4/50030808f5bae38c9d38f441bc4c435e/transformed/room-runtime-2.6.1/res
+com.okankkl.movieapp.test.app-room-testing-2.6.1-2 /Users/okankukul/.gradle/caches/transforms-4/6207aa35c4fa71c430ec2b20e8eb482d/transformed/room-testing-2.6.1/res
+com.okankkl.movieapp.test.app-core-runtime-2.2.0-3 /Users/okankukul/.gradle/caches/transforms-4/83d40e459304171d49df6d32a3b67987/transformed/core-runtime-2.2.0/res
+com.okankkl.movieapp.test.app-annotation-experimental-1.4.0-4 /Users/okankukul/.gradle/caches/transforms-4/a6de6ee9a6697745f3e2626926a57aa6/transformed/annotation-experimental-1.4.0/res
+com.okankkl.movieapp.test.app-sqlite-2.4.0-5 /Users/okankukul/.gradle/caches/transforms-4/ea4a18c38d578888489c33c04938475e/transformed/sqlite-2.4.0/res
+com.okankkl.movieapp.test.app-core-1.6.1-6 /Users/okankukul/.gradle/caches/transforms-4/fa642fdb44d0e3bf14cfc7384d5a2329/transformed/core-1.6.1/res
+com.okankkl.movieapp.test.app-androidTest-7 /Users/okankukul/Desktop/Projects/MovieApp/app/build/generated/res/resValues/androidTest/debug
+com.okankkl.movieapp.test.app-mergeDebugAndroidTestResources-8 /Users/okankukul/Desktop/Projects/MovieApp/app/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/merged.dir
+com.okankkl.movieapp.test.app-mergeDebugAndroidTestResources-9 /Users/okankukul/Desktop/Projects/MovieApp/app/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/stripped.dir
+com.okankkl.movieapp.test.app-debugAndroidTest-10 /Users/okankukul/Desktop/Projects/MovieApp/app/build/intermediates/merged_res/debugAndroidTest/mergeDebugAndroidTestResources

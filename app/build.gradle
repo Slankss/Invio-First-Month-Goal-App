@@ -74,5 +74,8 @@ dependencies {
 
     // Datastore
     implementation libs.androidx.dataStore
+
+    // Glide
+    implementation libs.glide
 }
 

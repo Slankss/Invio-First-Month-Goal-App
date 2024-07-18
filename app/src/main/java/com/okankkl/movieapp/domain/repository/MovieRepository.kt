@@ -1,10 +1,17 @@
 package com.okankkl.movieapp.domain.repository
 
-import com.okankkl.movieapp.data.remote.MovieApi
-import com.okankkl.movieapp.data.remote.dto.MovieResponseDto
-import javax.inject.Inject
+import com.okankkl.movieapp.data.local.room.entity.MovieEntity
+import com.okankkl.movieapp.domain.model.Movie
+import com.okankkl.movieapp.util.MovieListType
+import kotlinx.coroutines.flow.Flow
 
 interface MovieRepository
 {
-    suspend fun getMovieList(listType : String, page : Int) : MovieResponseDto
+    suspend fun getMovieListFromApi(movieListType: MovieListType, page : Int) : List<Movie>
+    
+    suspend fun getMovieListFromRoom() : Flow<List<Movie>>
+    
+    suspend fun addMovieListToRoom(movieList: List<Movie>)
+    
+    suspend fun clearMovieListFromRoom()
 }

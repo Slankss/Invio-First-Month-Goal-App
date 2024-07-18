@@ -9,4 +9,9 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/header_text_color_dark</item>
     </style>
+    <style name="Theme.MovieApp.MenuIcon">
+        <item name="itemIconTint">@color/white</item>
+        <item name="itemTextColor">@color/white</item>
+    </style>
+
 </resources>
