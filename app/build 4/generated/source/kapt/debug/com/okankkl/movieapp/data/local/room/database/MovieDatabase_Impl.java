@@ -33,11 +33,11 @@ public final class MovieDatabase_Impl extends MovieDatabase {
       @Override
       public void createAllTables(@NonNull final SupportSQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS `movie` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `movieId` INTEGER NOT NULL, `backdropPath` TEXT NOT NULL, `posterPath` TEXT NOT NULL, `title` TEXT NOT NULL, `movieListType` TEXT NOT NULL)");
-        db.execSQL("CREATE TABLE IF NOT EXISTS `favourite` (`id` TEXT NOT NULL, `backdropPath` TEXT NOT NULL, `posterPath` TEXT NOT NULL, `title` TEXT NOT NULL, PRIMARY KEY(`id`))");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `favourite` (`id` INTEGER NOT NULL, `backdropPath` TEXT NOT NULL, `posterPath` TEXT NOT NULL, `title` TEXT NOT NULL, PRIMARY KEY(`id`))");
         db.execSQL("CREATE TABLE IF NOT EXISTS `watch_list` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS `watch_movie_list` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `movie_id` TEXT NOT NULL, `title` TEXT NOT NULL, `posterPath` TEXT NOT NULL, `backdropPath` TEXT NOT NULL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'ff24fd50f3b6a0d68877ec200e130f90')");
+        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6581be1002bea085761741c433aa49f6')");
       }
 
       @Override
@@ -106,7 +106,7 @@ public final class MovieDatabase_Impl extends MovieDatabase {
                   + " Found:\n" + _existingMovie);
         }
         final HashMap<String, TableInfo.Column> _columnsFavourite = new HashMap<String, TableInfo.Column>(4);
-        _columnsFavourite.put("id", new TableInfo.Column("id", "TEXT", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsFavourite.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsFavourite.put("backdropPath", new TableInfo.Column("backdropPath", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsFavourite.put("posterPath", new TableInfo.Column("posterPath", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsFavourite.put("title", new TableInfo.Column("title", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
@@ -148,7 +148,7 @@ public final class MovieDatabase_Impl extends MovieDatabase {
         }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "ff24fd50f3b6a0d68877ec200e130f90", "9dee878828e1b943efb644fff5c177bc");
+    }, "6581be1002bea085761741c433aa49f6", "d0b5d19ec25701274b8e592ede8289ab");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(config.context).name(config.name).callback(_openCallback).build();
     final SupportSQLiteOpenHelper _helper = config.sqliteOpenHelperFactory.create(_sqliteConfig);
     return _helper;

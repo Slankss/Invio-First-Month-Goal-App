@@ -6,11 +6,11 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.okankkl.movieapp.data.local.room.entity.FavouriteEntity
 import com.okankkl.movieapp.data.local.room.entity.MovieEntity
-import com.okankkl.movieapp.data.local.room.entity.WatchList
-import com.okankkl.movieapp.data.local.room.entity.WatchMovieList
+import com.okankkl.movieapp.data.local.room.entity.WatchListEntity
+import com.okankkl.movieapp.data.local.room.entity.WatchMovieListEntity
 
 @Database(
-    entities = [MovieEntity::class, FavouriteEntity::class, WatchList::class, WatchMovieList::class],
+    entities = [MovieEntity::class, FavouriteEntity::class, WatchListEntity::class, WatchMovieListEntity::class],
     version = 1
 )
 abstract class MovieDatabase : RoomDatabase()

@@ -24,6 +24,9 @@ import com.okankkl.movieapp.ui.MainActivityViewModel_HiltModules_KeyModule_Provi
 import com.okankkl.movieapp.ui.home_screen.HomeFragment;
 import com.okankkl.movieapp.ui.home_screen.HomeFragmentViewModel;
 import com.okankkl.movieapp.ui.home_screen.HomeFragmentViewModel_HiltModules_KeyModule_ProvideFactory;
+import com.okankkl.movieapp.ui.movie_detail_screen.MovieDetailFragment;
+import com.okankkl.movieapp.ui.movie_detail_screen.MovieDetailFragmentViewModel;
+import com.okankkl.movieapp.ui.movie_detail_screen.MovieDetailFragmentViewModel_HiltModules_KeyModule_ProvideFactory;
 import com.okankkl.movieapp.ui.splash_screen.SplashFragment;
 import dagger.hilt.android.ActivityRetainedLifecycle;
 import dagger.hilt.android.ViewModelLifecycle;
@@ -336,6 +339,10 @@ public final class DaggerMovieApplication_HiltComponents_SingletonC {
     }
 
     @Override
+    public void injectMovieDetailFragment(MovieDetailFragment movieDetailFragment) {
+    }
+
+    @Override
     public void injectSplashFragment(SplashFragment splashFragment) {
     }
 
@@ -395,7 +402,7 @@ public final class DaggerMovieApplication_HiltComponents_SingletonC {
 
     @Override
     public Set<String> getViewModelKeys() {
-      return SetBuilder.<String>newSetBuilder(2).add(HomeFragmentViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(MainActivityViewModel_HiltModules_KeyModule_ProvideFactory.provide()).build();
+      return SetBuilder.<String>newSetBuilder(3).add(HomeFragmentViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(MainActivityViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(MovieDetailFragmentViewModel_HiltModules_KeyModule_ProvideFactory.provide()).build();
     }
 
     @Override
@@ -425,6 +432,8 @@ public final class DaggerMovieApplication_HiltComponents_SingletonC {
 
     private Provider<MainActivityViewModel> mainActivityViewModelProvider;
 
+    private Provider<MovieDetailFragmentViewModel> movieDetailFragmentViewModelProvider;
+
     private ViewModelCImpl(SingletonCImpl singletonCImpl,
         ActivityRetainedCImpl activityRetainedCImpl, SavedStateHandle savedStateHandleParam,
         ViewModelLifecycle viewModelLifecycleParam) {
@@ -440,11 +449,12 @@ public final class DaggerMovieApplication_HiltComponents_SingletonC {
         final ViewModelLifecycle viewModelLifecycleParam) {
       this.homeFragmentViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 0);
       this.mainActivityViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 1);
+      this.movieDetailFragmentViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 2);
     }
 
     @Override
     public Map<String, Provider<ViewModel>> getHiltViewModelMap() {
-      return MapBuilder.<String, Provider<ViewModel>>newMapBuilder(2).put("com.okankkl.movieapp.ui.home_screen.HomeFragmentViewModel", ((Provider) homeFragmentViewModelProvider)).put("com.okankkl.movieapp.ui.MainActivityViewModel", ((Provider) mainActivityViewModelProvider)).build();
+      return MapBuilder.<String, Provider<ViewModel>>newMapBuilder(3).put("com.okankkl.movieapp.ui.home_screen.HomeFragmentViewModel", ((Provider) homeFragmentViewModelProvider)).put("com.okankkl.movieapp.ui.MainActivityViewModel", ((Provider) mainActivityViewModelProvider)).put("com.okankkl.movieapp.ui.movie_detail_screen.MovieDetailFragmentViewModel", ((Provider) movieDetailFragmentViewModelProvider)).build();
     }
 
     @Override
@@ -478,6 +488,9 @@ public final class DaggerMovieApplication_HiltComponents_SingletonC {
 
           case 1: // com.okankkl.movieapp.ui.MainActivityViewModel 
           return (T) new MainActivityViewModel(singletonCImpl.providePreferenceRepositoryProvider.get());
+
+          case 2: // com.okankkl.movieapp.ui.movie_detail_screen.MovieDetailFragmentViewModel 
+          return (T) new MovieDetailFragmentViewModel(singletonCImpl.provideMovieRepositoryProvider.get());
 
           default: throw new AssertionError(id);
         }

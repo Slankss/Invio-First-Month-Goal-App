@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.okankkl.movieapp-mergeDebugResources-58:/values-w360dp-port-v13/values-w360dp-port-v13.xml",
+            "outputFile": "com.okankkl.movieapp-mergeDebugResources-67:/values-w360dp-port-v13/values-w360dp-port-v13.xml",
             "map": [
                 {
-                    "source": "/Users/okankukul/.gradle/caches/transforms-4/61b8a4ecb07887d12f95e1dbbab34270/transformed/material-1.12.0/res/values-w360dp-port-v13/values-w360dp-port-v13.xml",
+                    "source": "/Users/okankukul/.gradle/caches/transforms-4/587c72d98cf958600a457783a517e710/transformed/material-1.12.0/res/values-w360dp-port-v13/values-w360dp-port-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",

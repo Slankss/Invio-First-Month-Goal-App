@@ -4,9 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home_screen.HomeFragment">
+    tools:context=".ui.screen.home.HomeFragment">
+
+    <TextView
+        android:id="@+id/errorMessageTxt"
+        style="@style/Theme.MovieApp.HeaderTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="32sp"
+        android:visibility="gone"
+        android:text="@string/no_data_error_message"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <ProgressBar
+        android:id="@+id/loadingProgressBar"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/scrollView3"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
+        android:id="@+id/scrollView3"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -19,8 +42,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
                 android:layout_marginTop="100dp"
+                android:layout_marginEnd="15dp"
                 android:layout_marginBottom="10dp">
 
                 <TextView
@@ -44,6 +67,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/popularMoviesRecyclerView"
                 android:layout_width="match_parent"
@@ -53,8 +77,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
                 android:layout_marginTop="25dp"
+                android:layout_marginEnd="15dp"
                 android:layout_marginBottom="10dp">
 
                 <TextView
@@ -75,6 +99,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/upComingMoviesTxt"
                     app:layout_constraintEnd_toEndOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/upComingMoviesRecyclerView"
                 android:layout_width="match_parent"
@@ -85,8 +110,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
                 android:layout_marginTop="25dp"
+                android:layout_marginEnd="15dp"
                 android:layout_marginBottom="10dp">
 
                 <TextView
@@ -107,6 +132,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/nowPlayingMoviesTxt"
                     app:layout_constraintEnd_toEndOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/nowPlayingMoviesRecyclerView"
                 android:layout_width="match_parent"
@@ -116,8 +142,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
                 android:layout_marginTop="25dp"
+                android:layout_marginEnd="15dp"
                 android:layout_marginBottom="10dp">
 
                 <TextView
@@ -138,6 +164,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/topRatedMoviesTxt"
                     app:layout_constraintEnd_toEndOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/topRatedMoviesRecyclerView"
                 android:layout_width="match_parent"

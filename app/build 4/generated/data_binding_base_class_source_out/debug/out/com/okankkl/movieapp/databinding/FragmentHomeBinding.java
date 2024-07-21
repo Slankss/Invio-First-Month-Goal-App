@@ -4,6 +4,8 @@ package com.okankkl.movieapp.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,6 +23,12 @@ public final class FragmentHomeBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final TextView errorMessageTxt;
+
+  @NonNull
+  public final ProgressBar loadingProgressBar;
+
+  @NonNull
   public final RecyclerView nowPlayingMoviesRecyclerView;
 
   @NonNull
@@ -31,6 +39,9 @@ public final class FragmentHomeBinding implements ViewBinding {
 
   @NonNull
   public final TextView popularMoviesTxt;
+
+  @NonNull
+  public final ScrollView scrollView3;
 
   @NonNull
   public final RecyclerView topRatedMoviesRecyclerView;
@@ -56,18 +67,22 @@ public final class FragmentHomeBinding implements ViewBinding {
   @NonNull
   public final TextView viewAllUpComingMoviesTxt;
 
-  private FragmentHomeBinding(@NonNull ConstraintLayout rootView,
-      @NonNull RecyclerView nowPlayingMoviesRecyclerView, @NonNull TextView nowPlayingMoviesTxt,
-      @NonNull RecyclerView popularMoviesRecyclerView, @NonNull TextView popularMoviesTxt,
+  private FragmentHomeBinding(@NonNull ConstraintLayout rootView, @NonNull TextView errorMessageTxt,
+      @NonNull ProgressBar loadingProgressBar, @NonNull RecyclerView nowPlayingMoviesRecyclerView,
+      @NonNull TextView nowPlayingMoviesTxt, @NonNull RecyclerView popularMoviesRecyclerView,
+      @NonNull TextView popularMoviesTxt, @NonNull ScrollView scrollView3,
       @NonNull RecyclerView topRatedMoviesRecyclerView, @NonNull TextView topRatedMoviesTxt,
       @NonNull RecyclerView upComingMoviesRecyclerView, @NonNull TextView upComingMoviesTxt,
       @NonNull TextView viewAllNowPlayingMoviesTxt, @NonNull TextView viewAllPopularMoviesTxt,
       @NonNull TextView viewAllTopRatedMoviesTxt, @NonNull TextView viewAllUpComingMoviesTxt) {
     this.rootView = rootView;
+    this.errorMessageTxt = errorMessageTxt;
+    this.loadingProgressBar = loadingProgressBar;
     this.nowPlayingMoviesRecyclerView = nowPlayingMoviesRecyclerView;
     this.nowPlayingMoviesTxt = nowPlayingMoviesTxt;
     this.popularMoviesRecyclerView = popularMoviesRecyclerView;
     this.popularMoviesTxt = popularMoviesTxt;
+    this.scrollView3 = scrollView3;
     this.topRatedMoviesRecyclerView = topRatedMoviesRecyclerView;
     this.topRatedMoviesTxt = topRatedMoviesTxt;
     this.upComingMoviesRecyclerView = upComingMoviesRecyclerView;
@@ -105,6 +120,18 @@ public final class FragmentHomeBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.errorMessageTxt;
+      TextView errorMessageTxt = ViewBindings.findChildViewById(rootView, id);
+      if (errorMessageTxt == null) {
+        break missingId;
+      }
+
+      id = R.id.loadingProgressBar;
+      ProgressBar loadingProgressBar = ViewBindings.findChildViewById(rootView, id);
+      if (loadingProgressBar == null) {
+        break missingId;
+      }
+
       id = R.id.nowPlayingMoviesRecyclerView;
       RecyclerView nowPlayingMoviesRecyclerView = ViewBindings.findChildViewById(rootView, id);
       if (nowPlayingMoviesRecyclerView == null) {
@@ -126,6 +153,12 @@ public final class FragmentHomeBinding implements ViewBinding {
       id = R.id.popularMoviesTxt;
       TextView popularMoviesTxt = ViewBindings.findChildViewById(rootView, id);
       if (popularMoviesTxt == null) {
+        break missingId;
+      }
+
+      id = R.id.scrollView3;
+      ScrollView scrollView3 = ViewBindings.findChildViewById(rootView, id);
+      if (scrollView3 == null) {
         break missingId;
       }
 
@@ -177,11 +210,12 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentHomeBinding((ConstraintLayout) rootView, nowPlayingMoviesRecyclerView,
-          nowPlayingMoviesTxt, popularMoviesRecyclerView, popularMoviesTxt,
-          topRatedMoviesRecyclerView, topRatedMoviesTxt, upComingMoviesRecyclerView,
-          upComingMoviesTxt, viewAllNowPlayingMoviesTxt, viewAllPopularMoviesTxt,
-          viewAllTopRatedMoviesTxt, viewAllUpComingMoviesTxt);
+      return new FragmentHomeBinding((ConstraintLayout) rootView, errorMessageTxt,
+          loadingProgressBar, nowPlayingMoviesRecyclerView, nowPlayingMoviesTxt,
+          popularMoviesRecyclerView, popularMoviesTxt, scrollView3, topRatedMoviesRecyclerView,
+          topRatedMoviesTxt, upComingMoviesRecyclerView, upComingMoviesTxt,
+          viewAllNowPlayingMoviesTxt, viewAllPopularMoviesTxt, viewAllTopRatedMoviesTxt,
+          viewAllUpComingMoviesTxt);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

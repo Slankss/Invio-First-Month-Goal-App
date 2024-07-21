@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="add_watch_list_button_text">İzleme listesine kaydet</string>
     <string name="app_name">Movie App</string>
+    <string name="genres_subtitle">Türü</string>
     <string name="hello_blank_fragment">Merhaba dünya</string>
     <string name="home_screen_title">Anasayfa</string>
+    <string name="hour">saat</string>
+    <string name="minute">dakika</string>
     <string name="movie_list_type_now_playing">Vizyonda</string>
     <string name="movie_list_type_popular">Popüler</string>
     <string name="movie_list_type_top_rated">Çok Puanlı</string>
     <string name="movie_list_type_upcoming">Yakında Çıkacak</string>
     <string name="no_data_error_message">Görüntülenecek hiç veri yok</string>
+    <string name="overview_subtitle">Genel Özet</string>
     <string name="profile_screen_title">Profil</string>
     <string name="search_screen_title">Film Ara</string>
+    <string name="share_button_text">Paylaş</string>
+    <string name="similar_contents_subtitle">Benzer Filmler</string>
     <string name="view_all">Tümünü göster</string>
 </resources>

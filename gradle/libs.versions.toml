@@ -16,6 +16,8 @@ retrofitVersion = "2.11.0"
 hiltVersion = "2.49"
 datastoreVersion = "1.1.1"
 glideVersion = "4.16.0"
+flexBoxVersion = "3.0.0"
+youtubeVideoPlayer = "0.28"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -55,6 +57,12 @@ androidx-navigation-safe-args = { group = "androidx.navigation", name = "navigat
 
 # Glide
 glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glideVersion"}
+
+# Flexbox
+flexbox = { group = "com.google.android.flexbox", name = "flexbox", version.ref = "flexBoxVersion"}
+
+# YouteVideoPlayer
+android-youtube-player = { group = "com.pierfrancescosoffritti.androidyoutubeplayer", name = "chromecast-sender", version.ref = "youtubeVideoPlayer"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -1,126 +1,194 @@
 [
     {
-        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-60:/layout_fragment_splash.xml.flat",
-        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/layout/fragment_splash.xml"
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/drawable_ic_time.xml.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/drawable/ic_time.xml"
     },
     {
-        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-60:/mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/mipmap-xhdpi/ic_launcher_round.webp"
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/drawable_favourite_checkbox.xml.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/drawable/favourite_checkbox.xml"
     },
     {
-        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-60:/xml_backup_rules.xml.flat",
-        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/xml/backup_rules.xml"
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/mipmap-hdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-60:/mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/mipmap-hdpi/ic_launcher_round.webp"
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/mipmap-xhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-60:/layout_activity_main.xml.flat",
-        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/layout/activity_main.xml"
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/drawable_ic_add.xml.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/drawable/ic_add.xml"
     },
     {
-        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-60:/mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/mipmap-xxxhdpi/ic_launcher.webp"
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/mipmap-xxxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-60:/mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/mipmap-mdpi/ic_launcher_round.webp"
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/layout_activity_main.xml.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/layout/activity_main.xml"
     },
     {
-        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-60:/drawable_ic_search.xml.flat",
-        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/drawable/ic_search.xml"
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/mipmap-anydpi_ic_launcher_round.xml.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/mipmap-anydpi/ic_launcher_round.xml"
     },
     {
-        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-60:/mipmap-anydpi_ic_launcher.xml.flat",
-        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/mipmap-anydpi/ic_launcher.xml"
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/navigation_app_navigation.xml.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/navigation/app_navigation.xml"
     },
     {
-        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-60:/mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/mipmap-xxhdpi/ic_launcher.webp"
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/drawable_ic_search.xml.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/drawable/ic_search.xml"
     },
     {
-        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-60:/animator_splash_animation.xml.flat",
-        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/animator/splash_animation.xml"
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/layout_fragment_search.xml.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/layout/fragment_search.xml"
     },
     {
-        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-60:/drawable_movie_logo.xml.flat",
-        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/drawable/movie_logo.xml"
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/xml_data_extraction_rules.xml.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/xml/data_extraction_rules.xml"
     },
     {
-        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-60:/xml_data_extraction_rules.xml.flat",
-        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/xml/data_extraction_rules.xml"
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/font_inter_thin.ttf.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/font/inter_thin.ttf"
     },
     {
-        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-60:/mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/mipmap-xhdpi/ic_launcher.webp"
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/font_inter_bold.ttf.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/font/inter_bold.ttf"
     },
     {
-        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-60:/drawable_ic_home.xml.flat",
-        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/drawable/ic_home.xml"
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/drawable_ic_profile.xml.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/drawable/ic_profile.xml"
     },
     {
-        "merged": "com.okankkl.movieapp-debug-60:/layout_fragment_home.xml.flat",
-        "source": "com.okankkl.movieapp-main-62:/layout/fragment_home.xml"
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/animator_splash_animation.xml.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/animator/splash_animation.xml"
     },
     {
-        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-60:/mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/mipmap-mdpi/ic_launcher.webp"
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/font_inter_medium.ttf.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/font/inter_medium.ttf"
     },
     {
-        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-60:/layout_fragment_profile.xml.flat",
-        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/layout/fragment_profile.xml"
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/drawable_circle_button_background.xml.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/drawable/circle_button_background.xml"
     },
     {
-        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-60:/navigation_app_navigation.xml.flat",
-        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/navigation/app_navigation.xml"
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/layout_fragment_home.xml.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/layout/fragment_home.xml"
     },
     {
-        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-60:/layout_fragment_search.xml.flat",
-        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/layout/fragment_search.xml"
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/font_inter_light.ttf.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/font/inter_light.ttf"
     },
     {
-        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-60:/layout_fragment_home.xml.flat",
-        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/layout/fragment_home.xml"
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/mipmap-hdpi/ic_launcher.webp"
     },
     {
-        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-60:/mipmap-anydpi_ic_launcher_round.xml.flat",
-        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/mipmap-anydpi/ic_launcher_round.xml"
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/layout_fragment_splash.xml.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/layout/fragment_splash.xml"
     },
     {
-        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-60:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/mipmap-xxxhdpi/ic_launcher_round.webp"
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/mipmap-xxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-60:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/mipmap-xxhdpi/ic_launcher_round.webp"
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/drawable_movie_logo.xml.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/drawable/movie_logo.xml"
     },
     {
-        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-60:/drawable_ic_launcher_background.xml.flat",
-        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/drawable/ic_launcher_background.xml"
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/xml_locales_config.xml.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/xml/locales_config.xml"
     },
     {
-        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-60:/mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/mipmap-hdpi/ic_launcher.webp"
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/drawable_ic_home.xml.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/drawable/ic_home.xml"
     },
     {
-        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-60:/menu_bottom_menu.xml.flat",
-        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/menu/bottom_menu.xml"
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/drawable/ic_launcher_foreground.xml"
     },
     {
-        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-60:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/drawable/ic_launcher_foreground.xml"
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/mipmap-xhdpi/ic_launcher.webp"
     },
     {
-        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-60:/layout_movie_list_item.xml.flat",
-        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/layout/movie_list_item.xml"
+        "merged": "com.okankkl.movieapp-debug-69:/layout_fragment_movie_detail.xml.flat",
+        "source": "com.okankkl.movieapp-main-71:/layout/fragment_movie_detail.xml"
     },
     {
-        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-60:/drawable_ic_profile.xml.flat",
-        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/drawable/ic_profile.xml"
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/mipmap-mdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-60:/xml_locales_config.xml.flat",
-        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-62:/xml/locales_config.xml"
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/font_inter_regular.ttf.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/font/inter_regular.ttf"
+    },
+    {
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/drawable_ic_star.xml.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/drawable/ic_star.xml"
+    },
+    {
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/xml_backup_rules.xml.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/mipmap-anydpi_ic_launcher.xml.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/mipmap-anydpi/ic_launcher.xml"
+    },
+    {
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/drawable_poster_placeholder.xml.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/drawable/poster_placeholder.xml"
+    },
+    {
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/drawable_ic_share.xml.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/drawable/ic_share.xml"
+    },
+    {
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/drawable_ic_launcher_background.xml.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/drawable_ic_calendar.xml.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/drawable/ic_calendar.xml"
+    },
+    {
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/drawable_ic_fav_selected.xml.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/drawable/ic_fav_selected.xml"
+    },
+    {
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/drawable_ic_fav_unselected.xml.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/drawable/ic_fav_unselected.xml"
+    },
+    {
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/menu_bottom_menu.xml.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/menu/bottom_menu.xml"
+    },
+    {
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/layout_movie_list_item.xml.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/layout/movie_list_item.xml"
+    },
+    {
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/layout_fragment_movie_detail.xml.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/layout/fragment_movie_detail.xml"
+    },
+    {
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/layout_fragment_profile.xml.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/layout/fragment_profile.xml"
+    },
+    {
+        "merged": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-debug-69:/font_inter_font_family.xml.flat",
+        "source": "/Users/okankukul/.gradle/daemon/8.7/com.okankkl.movieapp-main-71:/font/inter_font_family.xml"
     }
 ]

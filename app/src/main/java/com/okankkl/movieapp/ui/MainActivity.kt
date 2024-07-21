@@ -3,6 +3,7 @@ package com.okankkl.movieapp.ui
 import android.content.Context
 import android.os.Bundle
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -22,6 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity()
 {
+    val viewModel : MainActivityViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
@@ -32,14 +34,16 @@ class MainActivity : AppCompatActivity()
         
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         val navController = navHostFragment.navController
-        binding.bottomNavigationView.setupWithNavController(navController)
-    }
-    
-    
-    override fun onDestroy()
-    {
-        val viewModel : MainActivityViewModel by viewModels()
+        val bottomNavitionView =binding.bottomNavigationView
+        
+        bottomNavitionView.setupWithNavController(navController)
+        
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when(destination.id){
+                R.id.splashFragment -> bottomNavitionView.visibility = View.GONE
+                else -> bottomNavitionView.visibility = View.VISIBLE
+            }
+        }
         viewModel.clearUpdateTime()
-        super.onDestroy()
     }
 }

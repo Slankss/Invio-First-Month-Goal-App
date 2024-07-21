@@ -12,6 +12,7 @@ import androidx.room.SharedSQLiteStatement;
 import androidx.room.util.CursorUtil;
 import androidx.room.util.DBUtil;
 import androidx.sqlite.db.SupportSQLiteStatement;
+import com.okankkl.movieapp.data.local.room.entity.FavouriteEntity;
 import com.okankkl.movieapp.data.local.room.entity.MovieEntity;
 import java.lang.Class;
 import java.lang.Exception;
@@ -31,17 +32,57 @@ import kotlinx.coroutines.flow.Flow;
 public final class MovieDao_Impl implements MovieDao {
   private final RoomDatabase __db;
 
+  private final EntityInsertionAdapter<FavouriteEntity> __insertionAdapterOfFavouriteEntity;
+
   private final SharedSQLiteStatement __preparedStmtOfClearMovies;
+
+  private final SharedSQLiteStatement __preparedStmtOfDeleteFavourite;
 
   private final EntityUpsertionAdapter<MovieEntity> __upsertionAdapterOfMovieEntity;
 
   public MovieDao_Impl(@NonNull final RoomDatabase __db) {
     this.__db = __db;
+    this.__insertionAdapterOfFavouriteEntity = new EntityInsertionAdapter<FavouriteEntity>(__db) {
+      @Override
+      @NonNull
+      protected String createQuery() {
+        return "INSERT OR ABORT INTO `favourite` (`id`,`backdropPath`,`posterPath`,`title`) VALUES (?,?,?,?)";
+      }
+
+      @Override
+      protected void bind(@NonNull final SupportSQLiteStatement statement,
+          @NonNull final FavouriteEntity entity) {
+        statement.bindLong(1, entity.getId());
+        if (entity.getBackdropPath() == null) {
+          statement.bindNull(2);
+        } else {
+          statement.bindString(2, entity.getBackdropPath());
+        }
+        if (entity.getPosterPath() == null) {
+          statement.bindNull(3);
+        } else {
+          statement.bindString(3, entity.getPosterPath());
+        }
+        if (entity.getTitle() == null) {
+          statement.bindNull(4);
+        } else {
+          statement.bindString(4, entity.getTitle());
+        }
+      }
+    };
     this.__preparedStmtOfClearMovies = new SharedSQLiteStatement(__db) {
       @Override
       @NonNull
       public String createQuery() {
         final String _query = "DELETE FROM movie";
+        return _query;
+      }
+    };
+    this.__preparedStmtOfDeleteFavourite = new SharedSQLiteStatement(__db) {
+      @Override
+      @NonNull
+      public String createQuery() {
+        final String _query = "DELETE FROM favourite WHERE id = ?";
         return _query;
       }
     };
@@ -116,6 +157,25 @@ public final class MovieDao_Impl implements MovieDao {
   }
 
   @Override
+  public Object addFavourite(final FavouriteEntity favouriteEntity,
+      final Continuation<? super Unit> $completion) {
+    return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
+      @Override
+      @NonNull
+      public Unit call() throws Exception {
+        __db.beginTransaction();
+        try {
+          __insertionAdapterOfFavouriteEntity.insert(favouriteEntity);
+          __db.setTransactionSuccessful();
+          return Unit.INSTANCE;
+        } finally {
+          __db.endTransaction();
+        }
+      }
+    }, $completion);
+  }
+
+  @Override
   public Object clearMovies(final Continuation<? super Unit> $completion) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
@@ -133,6 +193,31 @@ public final class MovieDao_Impl implements MovieDao {
           }
         } finally {
           __preparedStmtOfClearMovies.release(_stmt);
+        }
+      }
+    }, $completion);
+  }
+
+  @Override
+  public Object deleteFavourite(final int movieId, final Continuation<? super Unit> $completion) {
+    return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
+      @Override
+      @NonNull
+      public Unit call() throws Exception {
+        final SupportSQLiteStatement _stmt = __preparedStmtOfDeleteFavourite.acquire();
+        int _argIndex = 1;
+        _stmt.bindLong(_argIndex, movieId);
+        try {
+          __db.beginTransaction();
+          try {
+            _stmt.executeUpdateDelete();
+            __db.setTransactionSuccessful();
+            return Unit.INSTANCE;
+          } finally {
+            __db.endTransaction();
+          }
+        } finally {
+          __preparedStmtOfDeleteFavourite.release(_stmt);
         }
       }
     }, $completion);

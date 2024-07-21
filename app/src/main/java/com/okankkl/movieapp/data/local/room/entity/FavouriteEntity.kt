@@ -7,7 +7,7 @@ import retrofit2.http.Path
 @Entity(tableName = "favourite")
 class FavouriteEntity(
     @PrimaryKey
-    val id : String,
+    val id : Int,
     val backdropPath: String,
     val posterPath: String,
     val title: String,

@@ -12,147 +12,230 @@
 11-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:5:5-66
 11-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:5:22-64
 12
-13    <permission
-13-->[androidx.core:core:1.13.1] /Users/okankukul/.gradle/caches/transforms-4/df7ca8ab2b9e6058150b8d2577d5906e/transformed/core-1.13.1/AndroidManifest.xml:22:5-24:47
-14        android:name="com.okankkl.movieapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-14-->[androidx.core:core:1.13.1] /Users/okankukul/.gradle/caches/transforms-4/df7ca8ab2b9e6058150b8d2577d5906e/transformed/core-1.13.1/AndroidManifest.xml:23:9-81
-15        android:protectionLevel="signature" />
-15-->[androidx.core:core:1.13.1] /Users/okankukul/.gradle/caches/transforms-4/df7ca8ab2b9e6058150b8d2577d5906e/transformed/core-1.13.1/AndroidManifest.xml:24:9-44
-16
-17    <uses-permission android:name="com.okankkl.movieapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-17-->[androidx.core:core:1.13.1] /Users/okankukul/.gradle/caches/transforms-4/df7ca8ab2b9e6058150b8d2577d5906e/transformed/core-1.13.1/AndroidManifest.xml:26:5-97
-17-->[androidx.core:core:1.13.1] /Users/okankukul/.gradle/caches/transforms-4/df7ca8ab2b9e6058150b8d2577d5906e/transformed/core-1.13.1/AndroidManifest.xml:26:22-94
-18
-19    <application
-19-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:6:5-26:19
-20        android:name="com.okankkl.movieapp.MovieApplication"
-20-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:8:9-41
-21        android:allowBackup="true"
-21-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:7:9-35
-22        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-22-->[androidx.core:core:1.13.1] /Users/okankukul/.gradle/caches/transforms-4/df7ca8ab2b9e6058150b8d2577d5906e/transformed/core-1.13.1/AndroidManifest.xml:28:18-86
-23        android:dataExtractionRules="@xml/data_extraction_rules"
-23-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:9:9-65
-24        android:debuggable="true"
-25        android:extractNativeLibs="false"
-26        android:fullBackupContent="@xml/backup_rules"
-26-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:10:9-54
-27        android:icon="@mipmap/ic_launcher"
-27-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:11:9-43
-28        android:label="@string/app_name"
-28-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:12:9-41
-29        android:roundIcon="@mipmap/ic_launcher_round"
-29-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:13:9-54
-30        android:supportsRtl="true"
-30-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:14:9-35
-31        android:testOnly="true"
-32        android:theme="@style/Theme.MovieApp" >
-32-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:15:9-46
-33        <activity
-33-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:17:9-25:20
-34            android:name="com.okankkl.movieapp.ui.MainActivity"
-34-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:18:13-44
-35            android:exported="true" >
-35-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:19:13-36
-36            <intent-filter>
-36-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:20:13-24:29
-37                <action android:name="android.intent.action.MAIN" />
-37-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:21:17-69
-37-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:21:25-66
-38
-39                <category android:name="android.intent.category.LAUNCHER" />
-39-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:23:17-77
-39-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:23:27-74
-40            </intent-filter>
-41        </activity>
-42
-43        <provider
-43-->[androidx.emoji2:emoji2:1.3.0] /Users/okankukul/.gradle/caches/transforms-4/c24bc9b38ecc283e4a6ed7ccde49e7d2/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
-44            android:name="androidx.startup.InitializationProvider"
-44-->[androidx.emoji2:emoji2:1.3.0] /Users/okankukul/.gradle/caches/transforms-4/c24bc9b38ecc283e4a6ed7ccde49e7d2/transformed/emoji2-1.3.0/AndroidManifest.xml:25:13-67
-45            android:authorities="com.okankkl.movieapp.androidx-startup"
-45-->[androidx.emoji2:emoji2:1.3.0] /Users/okankukul/.gradle/caches/transforms-4/c24bc9b38ecc283e4a6ed7ccde49e7d2/transformed/emoji2-1.3.0/AndroidManifest.xml:26:13-68
-46            android:exported="false" >
-46-->[androidx.emoji2:emoji2:1.3.0] /Users/okankukul/.gradle/caches/transforms-4/c24bc9b38ecc283e4a6ed7ccde49e7d2/transformed/emoji2-1.3.0/AndroidManifest.xml:27:13-37
-47            <meta-data
-47-->[androidx.emoji2:emoji2:1.3.0] /Users/okankukul/.gradle/caches/transforms-4/c24bc9b38ecc283e4a6ed7ccde49e7d2/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
-48                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-48-->[androidx.emoji2:emoji2:1.3.0] /Users/okankukul/.gradle/caches/transforms-4/c24bc9b38ecc283e4a6ed7ccde49e7d2/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
-49                android:value="androidx.startup" />
-49-->[androidx.emoji2:emoji2:1.3.0] /Users/okankukul/.gradle/caches/transforms-4/c24bc9b38ecc283e4a6ed7ccde49e7d2/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
-50            <meta-data
-50-->[androidx.lifecycle:lifecycle-process:2.8.3] /Users/okankukul/.gradle/caches/transforms-4/71b664762f5e3870d9b199bba9269c92/transformed/lifecycle-process-2.8.3/AndroidManifest.xml:29:13-31:52
-51                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-51-->[androidx.lifecycle:lifecycle-process:2.8.3] /Users/okankukul/.gradle/caches/transforms-4/71b664762f5e3870d9b199bba9269c92/transformed/lifecycle-process-2.8.3/AndroidManifest.xml:30:17-78
-52                android:value="androidx.startup" />
-52-->[androidx.lifecycle:lifecycle-process:2.8.3] /Users/okankukul/.gradle/caches/transforms-4/71b664762f5e3870d9b199bba9269c92/transformed/lifecycle-process-2.8.3/AndroidManifest.xml:31:17-49
-53            <meta-data
-53-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/a022b35cf4af6f0fa7262eeb0b78bb70/transformed/profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
-54                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-54-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/a022b35cf4af6f0fa7262eeb0b78bb70/transformed/profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
-55                android:value="androidx.startup" />
-55-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/a022b35cf4af6f0fa7262eeb0b78bb70/transformed/profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
-56        </provider>
-57
-58        <uses-library
-58-->[androidx.window:window:1.0.0] /Users/okankukul/.gradle/caches/transforms-4/979d58ba26ca50980badd07545f27cc4/transformed/window-1.0.0/AndroidManifest.xml:25:9-27:40
-59            android:name="androidx.window.extensions"
-59-->[androidx.window:window:1.0.0] /Users/okankukul/.gradle/caches/transforms-4/979d58ba26ca50980badd07545f27cc4/transformed/window-1.0.0/AndroidManifest.xml:26:13-54
-60            android:required="false" />
-60-->[androidx.window:window:1.0.0] /Users/okankukul/.gradle/caches/transforms-4/979d58ba26ca50980badd07545f27cc4/transformed/window-1.0.0/AndroidManifest.xml:27:13-37
-61        <uses-library
-61-->[androidx.window:window:1.0.0] /Users/okankukul/.gradle/caches/transforms-4/979d58ba26ca50980badd07545f27cc4/transformed/window-1.0.0/AndroidManifest.xml:28:9-30:40
-62            android:name="androidx.window.sidecar"
-62-->[androidx.window:window:1.0.0] /Users/okankukul/.gradle/caches/transforms-4/979d58ba26ca50980badd07545f27cc4/transformed/window-1.0.0/AndroidManifest.xml:29:13-51
-63            android:required="false" />
-63-->[androidx.window:window:1.0.0] /Users/okankukul/.gradle/caches/transforms-4/979d58ba26ca50980badd07545f27cc4/transformed/window-1.0.0/AndroidManifest.xml:30:13-37
-64
-65        <service
-65-->[androidx.room:room-runtime:2.6.1] /Users/okankukul/.gradle/caches/transforms-4/50030808f5bae38c9d38f441bc4c435e/transformed/room-runtime-2.6.1/AndroidManifest.xml:24:9-28:63
-66            android:name="androidx.room.MultiInstanceInvalidationService"
-66-->[androidx.room:room-runtime:2.6.1] /Users/okankukul/.gradle/caches/transforms-4/50030808f5bae38c9d38f441bc4c435e/transformed/room-runtime-2.6.1/AndroidManifest.xml:25:13-74
-67            android:directBootAware="true"
-67-->[androidx.room:room-runtime:2.6.1] /Users/okankukul/.gradle/caches/transforms-4/50030808f5bae38c9d38f441bc4c435e/transformed/room-runtime-2.6.1/AndroidManifest.xml:26:13-43
-68            android:exported="false" />
-68-->[androidx.room:room-runtime:2.6.1] /Users/okankukul/.gradle/caches/transforms-4/50030808f5bae38c9d38f441bc4c435e/transformed/room-runtime-2.6.1/AndroidManifest.xml:27:13-37
-69
-70        <receiver
-70-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/a022b35cf4af6f0fa7262eeb0b78bb70/transformed/profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
-71            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-71-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/a022b35cf4af6f0fa7262eeb0b78bb70/transformed/profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
-72            android:directBootAware="false"
-72-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/a022b35cf4af6f0fa7262eeb0b78bb70/transformed/profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
-73            android:enabled="true"
-73-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/a022b35cf4af6f0fa7262eeb0b78bb70/transformed/profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
-74            android:exported="true"
-74-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/a022b35cf4af6f0fa7262eeb0b78bb70/transformed/profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
-75            android:permission="android.permission.DUMP" >
-75-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/a022b35cf4af6f0fa7262eeb0b78bb70/transformed/profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
-76            <intent-filter>
-76-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/a022b35cf4af6f0fa7262eeb0b78bb70/transformed/profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
-77                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-77-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/a022b35cf4af6f0fa7262eeb0b78bb70/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
-77-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/a022b35cf4af6f0fa7262eeb0b78bb70/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
-78            </intent-filter>
-79            <intent-filter>
-79-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/a022b35cf4af6f0fa7262eeb0b78bb70/transformed/profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
-80                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-80-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/a022b35cf4af6f0fa7262eeb0b78bb70/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
-80-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/a022b35cf4af6f0fa7262eeb0b78bb70/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
-81            </intent-filter>
-82            <intent-filter>
-82-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/a022b35cf4af6f0fa7262eeb0b78bb70/transformed/profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
-83                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-83-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/a022b35cf4af6f0fa7262eeb0b78bb70/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
-83-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/a022b35cf4af6f0fa7262eeb0b78bb70/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
-84            </intent-filter>
-85            <intent-filter>
-85-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/a022b35cf4af6f0fa7262eeb0b78bb70/transformed/profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
-86                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-86-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/a022b35cf4af6f0fa7262eeb0b78bb70/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
-86-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/a022b35cf4af6f0fa7262eeb0b78bb70/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
-87            </intent-filter>
-88        </receiver>
-89    </application>
-90
-91</manifest>
+13    <!-- This permission is required to start foreground services in Android P. -->
+14    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+14-->[com.google.android.gms:play-services-cast-framework:21.2.0] /Users/okankukul/.gradle/caches/transforms-4/7075e5b4f7140088d7d11a4be406c909/transformed/play-services-cast-framework-21.2.0/AndroidManifest.xml:10:5-77
+14-->[com.google.android.gms:play-services-cast-framework:21.2.0] /Users/okankukul/.gradle/caches/transforms-4/7075e5b4f7140088d7d11a4be406c909/transformed/play-services-cast-framework-21.2.0/AndroidManifest.xml:10:22-74
+15
+16    <queries>
+16-->[com.google.android.gms:play-services-cast-framework:21.2.0] /Users/okankukul/.gradle/caches/transforms-4/7075e5b4f7140088d7d11a4be406c909/transformed/play-services-cast-framework-21.2.0/AndroidManifest.xml:12:5-14:15
+17        <package android:name="com.google.android.gms.policy_cast_dynamite" />
+17-->[com.google.android.gms:play-services-cast-framework:21.2.0] /Users/okankukul/.gradle/caches/transforms-4/7075e5b4f7140088d7d11a4be406c909/transformed/play-services-cast-framework-21.2.0/AndroidManifest.xml:13:9-79
+17-->[com.google.android.gms:play-services-cast-framework:21.2.0] /Users/okankukul/.gradle/caches/transforms-4/7075e5b4f7140088d7d11a4be406c909/transformed/play-services-cast-framework-21.2.0/AndroidManifest.xml:13:18-76
+18    </queries>
+19
+20    <permission
+20-->[androidx.core:core:1.13.1] /Users/okankukul/.gradle/caches/transforms-4/77dd093d9313acb116cc861ae543a461/transformed/core-1.13.1/AndroidManifest.xml:22:5-24:47
+21        android:name="com.okankkl.movieapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+21-->[androidx.core:core:1.13.1] /Users/okankukul/.gradle/caches/transforms-4/77dd093d9313acb116cc861ae543a461/transformed/core-1.13.1/AndroidManifest.xml:23:9-81
+22        android:protectionLevel="signature" />
+22-->[androidx.core:core:1.13.1] /Users/okankukul/.gradle/caches/transforms-4/77dd093d9313acb116cc861ae543a461/transformed/core-1.13.1/AndroidManifest.xml:24:9-44
+23
+24    <uses-permission android:name="com.okankkl.movieapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+24-->[androidx.core:core:1.13.1] /Users/okankukul/.gradle/caches/transforms-4/77dd093d9313acb116cc861ae543a461/transformed/core-1.13.1/AndroidManifest.xml:26:5-97
+24-->[androidx.core:core:1.13.1] /Users/okankukul/.gradle/caches/transforms-4/77dd093d9313acb116cc861ae543a461/transformed/core-1.13.1/AndroidManifest.xml:26:22-94
+25    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+25-->[com.pierfrancescosoffritti.androidyoutubeplayer:core:12.0.0] /Users/okankukul/.gradle/caches/transforms-4/2bce399c1a8dd05d754cc18b7df5ab32/transformed/core-12.0.0/AndroidManifest.xml:8:5-79
+25-->[com.pierfrancescosoffritti.androidyoutubeplayer:core:12.0.0] /Users/okankukul/.gradle/caches/transforms-4/2bce399c1a8dd05d754cc18b7df5ab32/transformed/core-12.0.0/AndroidManifest.xml:8:22-76
+26
+27    <application
+27-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:6:5-26:19
+28        android:name="com.okankkl.movieapp.MovieApplication"
+28-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:8:9-41
+29        android:allowBackup="true"
+29-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:7:9-35
+30        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+30-->[androidx.core:core:1.13.1] /Users/okankukul/.gradle/caches/transforms-4/77dd093d9313acb116cc861ae543a461/transformed/core-1.13.1/AndroidManifest.xml:28:18-86
+31        android:dataExtractionRules="@xml/data_extraction_rules"
+31-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:9:9-65
+32        android:debuggable="true"
+33        android:extractNativeLibs="false"
+34        android:fullBackupContent="@xml/backup_rules"
+34-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:10:9-54
+35        android:icon="@mipmap/ic_launcher"
+35-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:11:9-43
+36        android:label="@string/app_name"
+36-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:12:9-41
+37        android:roundIcon="@mipmap/ic_launcher_round"
+37-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:13:9-54
+38        android:supportsRtl="true"
+38-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:14:9-35
+39        android:testOnly="true"
+40        android:theme="@style/Theme.MovieApp" >
+40-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:15:9-46
+41        <activity
+41-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:17:9-25:20
+42            android:name="com.okankkl.movieapp.ui.MainActivity"
+42-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:18:13-44
+43            android:exported="true" >
+43-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:19:13-36
+44            <intent-filter>
+44-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:20:13-24:29
+45                <action android:name="android.intent.action.MAIN" />
+45-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:21:17-69
+45-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:21:25-66
+46
+47                <category android:name="android.intent.category.LAUNCHER" />
+47-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:23:17-77
+47-->/Users/okankukul/Desktop/Projects/MovieApp/app/src/main/AndroidManifest.xml:23:27-74
+48            </intent-filter>
+49        </activity>
+50
+51        <receiver
+51-->[com.google.android.gms:play-services-cast-framework:21.2.0] /Users/okankukul/.gradle/caches/transforms-4/7075e5b4f7140088d7d11a4be406c909/transformed/play-services-cast-framework-21.2.0/AndroidManifest.xml:17:9-19:40
+52            android:name="com.google.android.gms.cast.framework.media.MediaIntentReceiver"
+52-->[com.google.android.gms:play-services-cast-framework:21.2.0] /Users/okankukul/.gradle/caches/transforms-4/7075e5b4f7140088d7d11a4be406c909/transformed/play-services-cast-framework-21.2.0/AndroidManifest.xml:18:13-91
+53            android:exported="false" />
+53-->[com.google.android.gms:play-services-cast-framework:21.2.0] /Users/okankukul/.gradle/caches/transforms-4/7075e5b4f7140088d7d11a4be406c909/transformed/play-services-cast-framework-21.2.0/AndroidManifest.xml:19:13-37
+54
+55        <service
+55-->[com.google.android.gms:play-services-cast-framework:21.2.0] /Users/okankukul/.gradle/caches/transforms-4/7075e5b4f7140088d7d11a4be406c909/transformed/play-services-cast-framework-21.2.0/AndroidManifest.xml:21:9-24:61
+56            android:name="com.google.android.gms.cast.framework.media.MediaNotificationService"
+56-->[com.google.android.gms:play-services-cast-framework:21.2.0] /Users/okankukul/.gradle/caches/transforms-4/7075e5b4f7140088d7d11a4be406c909/transformed/play-services-cast-framework-21.2.0/AndroidManifest.xml:22:13-96
+57            android:exported="false"
+57-->[com.google.android.gms:play-services-cast-framework:21.2.0] /Users/okankukul/.gradle/caches/transforms-4/7075e5b4f7140088d7d11a4be406c909/transformed/play-services-cast-framework-21.2.0/AndroidManifest.xml:23:13-37
+58            android:foregroundServiceType="mediaPlayback" />
+58-->[com.google.android.gms:play-services-cast-framework:21.2.0] /Users/okankukul/.gradle/caches/transforms-4/7075e5b4f7140088d7d11a4be406c909/transformed/play-services-cast-framework-21.2.0/AndroidManifest.xml:24:13-58
+59        <service
+59-->[com.google.android.gms:play-services-cast-framework:21.2.0] /Users/okankukul/.gradle/caches/transforms-4/7075e5b4f7140088d7d11a4be406c909/transformed/play-services-cast-framework-21.2.0/AndroidManifest.xml:25:9-27:40
+60            android:name="com.google.android.gms.cast.framework.ReconnectionService"
+60-->[com.google.android.gms:play-services-cast-framework:21.2.0] /Users/okankukul/.gradle/caches/transforms-4/7075e5b4f7140088d7d11a4be406c909/transformed/play-services-cast-framework-21.2.0/AndroidManifest.xml:26:13-85
+61            android:exported="false" />
+61-->[com.google.android.gms:play-services-cast-framework:21.2.0] /Users/okankukul/.gradle/caches/transforms-4/7075e5b4f7140088d7d11a4be406c909/transformed/play-services-cast-framework-21.2.0/AndroidManifest.xml:27:13-37
+62
+63        <provider
+63-->[androidx.emoji2:emoji2:1.3.0] /Users/okankukul/.gradle/caches/transforms-4/158f30951ece76cc87e4ae1b93a0ebde/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
+64            android:name="androidx.startup.InitializationProvider"
+64-->[androidx.emoji2:emoji2:1.3.0] /Users/okankukul/.gradle/caches/transforms-4/158f30951ece76cc87e4ae1b93a0ebde/transformed/emoji2-1.3.0/AndroidManifest.xml:25:13-67
+65            android:authorities="com.okankkl.movieapp.androidx-startup"
+65-->[androidx.emoji2:emoji2:1.3.0] /Users/okankukul/.gradle/caches/transforms-4/158f30951ece76cc87e4ae1b93a0ebde/transformed/emoji2-1.3.0/AndroidManifest.xml:26:13-68
+66            android:exported="false" >
+66-->[androidx.emoji2:emoji2:1.3.0] /Users/okankukul/.gradle/caches/transforms-4/158f30951ece76cc87e4ae1b93a0ebde/transformed/emoji2-1.3.0/AndroidManifest.xml:27:13-37
+67            <meta-data
+67-->[androidx.emoji2:emoji2:1.3.0] /Users/okankukul/.gradle/caches/transforms-4/158f30951ece76cc87e4ae1b93a0ebde/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+68                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+68-->[androidx.emoji2:emoji2:1.3.0] /Users/okankukul/.gradle/caches/transforms-4/158f30951ece76cc87e4ae1b93a0ebde/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
+69                android:value="androidx.startup" />
+69-->[androidx.emoji2:emoji2:1.3.0] /Users/okankukul/.gradle/caches/transforms-4/158f30951ece76cc87e4ae1b93a0ebde/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
+70            <meta-data
+70-->[androidx.lifecycle:lifecycle-process:2.8.3] /Users/okankukul/.gradle/caches/transforms-4/48cdb705788c3e9aa593fca7f19ca96d/transformed/lifecycle-process-2.8.3/AndroidManifest.xml:29:13-31:52
+71                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+71-->[androidx.lifecycle:lifecycle-process:2.8.3] /Users/okankukul/.gradle/caches/transforms-4/48cdb705788c3e9aa593fca7f19ca96d/transformed/lifecycle-process-2.8.3/AndroidManifest.xml:30:17-78
+72                android:value="androidx.startup" />
+72-->[androidx.lifecycle:lifecycle-process:2.8.3] /Users/okankukul/.gradle/caches/transforms-4/48cdb705788c3e9aa593fca7f19ca96d/transformed/lifecycle-process-2.8.3/AndroidManifest.xml:31:17-49
+73            <meta-data
+73-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/23fbf5ae6f61900ec38e4ba9a614814e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
+74                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+74-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/23fbf5ae6f61900ec38e4ba9a614814e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
+75                android:value="androidx.startup" />
+75-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/23fbf5ae6f61900ec38e4ba9a614814e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
+76        </provider>
+77
+78        <activity
+78-->[com.google.android.gms:play-services-base:18.0.1] /Users/okankukul/.gradle/caches/transforms-4/10d547eafc0b2f7a9f5bd1ea31418310/transformed/play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
+79            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+79-->[com.google.android.gms:play-services-base:18.0.1] /Users/okankukul/.gradle/caches/transforms-4/10d547eafc0b2f7a9f5bd1ea31418310/transformed/play-services-base-18.0.1/AndroidManifest.xml:20:19-85
+80            android:exported="false"
+80-->[com.google.android.gms:play-services-base:18.0.1] /Users/okankukul/.gradle/caches/transforms-4/10d547eafc0b2f7a9f5bd1ea31418310/transformed/play-services-base-18.0.1/AndroidManifest.xml:22:19-43
+81            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+81-->[com.google.android.gms:play-services-base:18.0.1] /Users/okankukul/.gradle/caches/transforms-4/10d547eafc0b2f7a9f5bd1ea31418310/transformed/play-services-base-18.0.1/AndroidManifest.xml:21:19-78
+82
+83        <meta-data
+83-->[com.google.android.gms:play-services-basement:18.0.0] /Users/okankukul/.gradle/caches/transforms-4/331510b5d9dcbc06a1795e7c71da0b4e/transformed/play-services-basement-18.0.0/AndroidManifest.xml:21:9-23:69
+84            android:name="com.google.android.gms.version"
+84-->[com.google.android.gms:play-services-basement:18.0.0] /Users/okankukul/.gradle/caches/transforms-4/331510b5d9dcbc06a1795e7c71da0b4e/transformed/play-services-basement-18.0.0/AndroidManifest.xml:22:13-58
+85            android:value="@integer/google_play_services_version" />
+85-->[com.google.android.gms:play-services-basement:18.0.0] /Users/okankukul/.gradle/caches/transforms-4/331510b5d9dcbc06a1795e7c71da0b4e/transformed/play-services-basement-18.0.0/AndroidManifest.xml:23:13-66
+86
+87        <uses-library
+87-->[androidx.window:window:1.0.0] /Users/okankukul/.gradle/caches/transforms-4/135ad80eaad3a5e1b5858ec34292a288/transformed/window-1.0.0/AndroidManifest.xml:25:9-27:40
+88            android:name="androidx.window.extensions"
+88-->[androidx.window:window:1.0.0] /Users/okankukul/.gradle/caches/transforms-4/135ad80eaad3a5e1b5858ec34292a288/transformed/window-1.0.0/AndroidManifest.xml:26:13-54
+89            android:required="false" />
+89-->[androidx.window:window:1.0.0] /Users/okankukul/.gradle/caches/transforms-4/135ad80eaad3a5e1b5858ec34292a288/transformed/window-1.0.0/AndroidManifest.xml:27:13-37
+90        <uses-library
+90-->[androidx.window:window:1.0.0] /Users/okankukul/.gradle/caches/transforms-4/135ad80eaad3a5e1b5858ec34292a288/transformed/window-1.0.0/AndroidManifest.xml:28:9-30:40
+91            android:name="androidx.window.sidecar"
+91-->[androidx.window:window:1.0.0] /Users/okankukul/.gradle/caches/transforms-4/135ad80eaad3a5e1b5858ec34292a288/transformed/window-1.0.0/AndroidManifest.xml:29:13-51
+92            android:required="false" />
+92-->[androidx.window:window:1.0.0] /Users/okankukul/.gradle/caches/transforms-4/135ad80eaad3a5e1b5858ec34292a288/transformed/window-1.0.0/AndroidManifest.xml:30:13-37
+93
+94        <service
+94-->[androidx.room:room-runtime:2.6.1] /Users/okankukul/.gradle/caches/transforms-4/17a4c4c9611f9811659e07dfa0080970/transformed/room-runtime-2.6.1/AndroidManifest.xml:24:9-28:63
+95            android:name="androidx.room.MultiInstanceInvalidationService"
+95-->[androidx.room:room-runtime:2.6.1] /Users/okankukul/.gradle/caches/transforms-4/17a4c4c9611f9811659e07dfa0080970/transformed/room-runtime-2.6.1/AndroidManifest.xml:25:13-74
+96            android:directBootAware="true"
+96-->[androidx.room:room-runtime:2.6.1] /Users/okankukul/.gradle/caches/transforms-4/17a4c4c9611f9811659e07dfa0080970/transformed/room-runtime-2.6.1/AndroidManifest.xml:26:13-43
+97            android:exported="false" />
+97-->[androidx.room:room-runtime:2.6.1] /Users/okankukul/.gradle/caches/transforms-4/17a4c4c9611f9811659e07dfa0080970/transformed/room-runtime-2.6.1/AndroidManifest.xml:27:13-37
+98
+99        <receiver
+99-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/23fbf5ae6f61900ec38e4ba9a614814e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
+100            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+100-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/23fbf5ae6f61900ec38e4ba9a614814e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
+101            android:directBootAware="false"
+101-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/23fbf5ae6f61900ec38e4ba9a614814e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
+102            android:enabled="true"
+102-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/23fbf5ae6f61900ec38e4ba9a614814e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
+103            android:exported="true"
+103-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/23fbf5ae6f61900ec38e4ba9a614814e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
+104            android:permission="android.permission.DUMP" >
+104-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/23fbf5ae6f61900ec38e4ba9a614814e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
+105            <intent-filter>
+105-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/23fbf5ae6f61900ec38e4ba9a614814e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
+106                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+106-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/23fbf5ae6f61900ec38e4ba9a614814e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
+106-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/23fbf5ae6f61900ec38e4ba9a614814e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
+107            </intent-filter>
+108            <intent-filter>
+108-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/23fbf5ae6f61900ec38e4ba9a614814e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
+109                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+109-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/23fbf5ae6f61900ec38e4ba9a614814e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
+109-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/23fbf5ae6f61900ec38e4ba9a614814e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
+110            </intent-filter>
+111            <intent-filter>
+111-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/23fbf5ae6f61900ec38e4ba9a614814e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
+112                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+112-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/23fbf5ae6f61900ec38e4ba9a614814e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
+112-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/23fbf5ae6f61900ec38e4ba9a614814e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
+113            </intent-filter>
+114            <intent-filter>
+114-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/23fbf5ae6f61900ec38e4ba9a614814e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
+115                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+115-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/23fbf5ae6f61900ec38e4ba9a614814e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
+115-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/okankukul/.gradle/caches/transforms-4/23fbf5ae6f61900ec38e4ba9a614814e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
+116            </intent-filter>
+117        </receiver>
+118
+119        <service
+119-->[com.google.android.datatransport:transport-backend-cct:3.1.3] /Users/okankukul/.gradle/caches/transforms-4/93136f40042c91a09c53562765bdb2e6/transformed/transport-backend-cct-3.1.3/AndroidManifest.xml:29:9-35:19
+120            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+120-->[com.google.android.datatransport:transport-backend-cct:3.1.3] /Users/okankukul/.gradle/caches/transforms-4/93136f40042c91a09c53562765bdb2e6/transformed/transport-backend-cct-3.1.3/AndroidManifest.xml:30:13-103
+121            android:exported="false" >
+121-->[com.google.android.datatransport:transport-backend-cct:3.1.3] /Users/okankukul/.gradle/caches/transforms-4/93136f40042c91a09c53562765bdb2e6/transformed/transport-backend-cct-3.1.3/AndroidManifest.xml:31:13-37
+122            <meta-data
+122-->[com.google.android.datatransport:transport-backend-cct:3.1.3] /Users/okankukul/.gradle/caches/transforms-4/93136f40042c91a09c53562765bdb2e6/transformed/transport-backend-cct-3.1.3/AndroidManifest.xml:32:13-34:39
+123                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+123-->[com.google.android.datatransport:transport-backend-cct:3.1.3] /Users/okankukul/.gradle/caches/transforms-4/93136f40042c91a09c53562765bdb2e6/transformed/transport-backend-cct-3.1.3/AndroidManifest.xml:33:17-94
+124                android:value="cct" />
+124-->[com.google.android.datatransport:transport-backend-cct:3.1.3] /Users/okankukul/.gradle/caches/transforms-4/93136f40042c91a09c53562765bdb2e6/transformed/transport-backend-cct-3.1.3/AndroidManifest.xml:34:17-36
+125        </service>
+126        <service
+126-->[com.google.android.datatransport:transport-runtime:3.1.3] /Users/okankukul/.gradle/caches/transforms-4/c39e5e488bc8d445a45c0bf1737f74ab/transformed/transport-runtime-3.1.3/AndroidManifest.xml:26:9-30:19
+127            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+127-->[com.google.android.datatransport:transport-runtime:3.1.3] /Users/okankukul/.gradle/caches/transforms-4/c39e5e488bc8d445a45c0bf1737f74ab/transformed/transport-runtime-3.1.3/AndroidManifest.xml:27:13-117
+128            android:exported="false"
+128-->[com.google.android.datatransport:transport-runtime:3.1.3] /Users/okankukul/.gradle/caches/transforms-4/c39e5e488bc8d445a45c0bf1737f74ab/transformed/transport-runtime-3.1.3/AndroidManifest.xml:28:13-37
+129            android:permission="android.permission.BIND_JOB_SERVICE" >
+129-->[com.google.android.datatransport:transport-runtime:3.1.3] /Users/okankukul/.gradle/caches/transforms-4/c39e5e488bc8d445a45c0bf1737f74ab/transformed/transport-runtime-3.1.3/AndroidManifest.xml:29:13-69
+130        </service>
+131
+132        <receiver
+132-->[com.google.android.datatransport:transport-runtime:3.1.3] /Users/okankukul/.gradle/caches/transforms-4/c39e5e488bc8d445a45c0bf1737f74ab/transformed/transport-runtime-3.1.3/AndroidManifest.xml:32:9-34:40
+133            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+133-->[com.google.android.datatransport:transport-runtime:3.1.3] /Users/okankukul/.gradle/caches/transforms-4/c39e5e488bc8d445a45c0bf1737f74ab/transformed/transport-runtime-3.1.3/AndroidManifest.xml:33:13-132
+134            android:exported="false" />
+134-->[com.google.android.datatransport:transport-runtime:3.1.3] /Users/okankukul/.gradle/caches/transforms-4/c39e5e488bc8d445a45c0bf1737f74ab/transformed/transport-runtime-3.1.3/AndroidManifest.xml:34:13-37
+135    </application>
+136
+137</manifest>

@@ -5,6 +5,8 @@ import com.okankkl.movieapp.ui.MainActivityViewModel_HiltModules;
 import com.okankkl.movieapp.ui.MainActivity_GeneratedInjector;
 import com.okankkl.movieapp.ui.home_screen.HomeFragmentViewModel_HiltModules;
 import com.okankkl.movieapp.ui.home_screen.HomeFragment_GeneratedInjector;
+import com.okankkl.movieapp.ui.movie_detail_screen.MovieDetailFragmentViewModel_HiltModules;
+import com.okankkl.movieapp.ui.movie_detail_screen.MovieDetailFragment_GeneratedInjector;
 import com.okankkl.movieapp.ui.splash_screen.SplashFragment_GeneratedInjector;
 import dagger.Binds;
 import dagger.Component;
@@ -153,7 +155,8 @@ public final class MovieApplication_HiltComponents {
           HomeFragmentViewModel_HiltModules.KeyModule.class,
           MainActivityViewModel_HiltModules.KeyModule.class,
           ActivityCBuilderModule.class,
-          ViewModelCBuilderModule.class
+          ViewModelCBuilderModule.class,
+          MovieDetailFragmentViewModel_HiltModules.KeyModule.class
       }
   )
   @ActivityRetainedScoped
@@ -191,7 +194,8 @@ public final class MovieApplication_HiltComponents {
       modules = {
           HiltWrapper_HiltViewModelFactory_ViewModelModule.class,
           HomeFragmentViewModel_HiltModules.BindsModule.class,
-          MainActivityViewModel_HiltModules.BindsModule.class
+          MainActivityViewModel_HiltModules.BindsModule.class,
+          MovieDetailFragmentViewModel_HiltModules.BindsModule.class
       }
   )
   @ViewModelScoped
@@ -217,6 +221,7 @@ public final class MovieApplication_HiltComponents {
   )
   @FragmentScoped
   public abstract static class FragmentC implements HomeFragment_GeneratedInjector,
+      MovieDetailFragment_GeneratedInjector,
       SplashFragment_GeneratedInjector,
       FragmentComponent,
       DefaultViewModelFactories.FragmentEntryPoint,

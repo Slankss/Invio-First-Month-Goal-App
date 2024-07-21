@@ -42,10 +42,12 @@ public final class MovieListAdapter extends androidx.recyclerview.widget.Recycle
     java.util.List<com.okankkl.movieapp.domain.model.Movie> movies) {
     }
     
-    @kotlin.Metadata(mv = {1, 9, 0}, k = 1, xi = 48, d1 = {"\u0000\u001a\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0003\u0018\u00002\u00020\u0001B\r\u0012\u0006\u0010\u0002\u001a\u00020\u0003\u00a2\u0006\u0002\u0010\u0004R\u0011\u0010\u0005\u001a\u00020\u0006\u00a2\u0006\b\n\u0000\u001a\u0004\b\u0007\u0010\b\u00a8\u0006\t"}, d2 = {"Lcom/okankkl/movieapp/ui/home_screen/MovieListAdapter$ViewHolder;", "Landroidx/recyclerview/widget/RecyclerView$ViewHolder;", "itemView", "Landroid/view/View;", "(Landroid/view/View;)V", "moviePosterImage", "Landroid/widget/ImageView;", "getMoviePosterImage", "()Landroid/widget/ImageView;", "app_debug"})
+    @kotlin.Metadata(mv = {1, 9, 0}, k = 1, xi = 48, d1 = {"\u0000\"\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\b\u0003\u0018\u00002\u00020\u0001B\r\u0012\u0006\u0010\u0002\u001a\u00020\u0003\u00a2\u0006\u0002\u0010\u0004R\u0011\u0010\u0005\u001a\u00020\u0006\u00a2\u0006\b\n\u0000\u001a\u0004\b\u0007\u0010\bR\u0011\u0010\t\u001a\u00020\n\u00a2\u0006\b\n\u0000\u001a\u0004\b\u000b\u0010\f\u00a8\u0006\r"}, d2 = {"Lcom/okankkl/movieapp/ui/home_screen/MovieListAdapter$ViewHolder;", "Landroidx/recyclerview/widget/RecyclerView$ViewHolder;", "itemView", "Landroid/view/View;", "(Landroid/view/View;)V", "moviePosterCardView", "Landroidx/cardview/widget/CardView;", "getMoviePosterCardView", "()Landroidx/cardview/widget/CardView;", "moviePosterImage", "Landroid/widget/ImageView;", "getMoviePosterImage", "()Landroid/widget/ImageView;", "app_debug"})
     public static final class ViewHolder extends androidx.recyclerview.widget.RecyclerView.ViewHolder {
         @org.jetbrains.annotations.NotNull
         private final android.widget.ImageView moviePosterImage = null;
+        @org.jetbrains.annotations.NotNull
+        private final androidx.cardview.widget.CardView moviePosterCardView = null;
         
         public ViewHolder(@org.jetbrains.annotations.NotNull
         android.view.View itemView) {
@@ -54,6 +56,11 @@ public final class MovieListAdapter extends androidx.recyclerview.widget.Recycle
         
         @org.jetbrains.annotations.NotNull
         public final android.widget.ImageView getMoviePosterImage() {
+            return null;
+        }
+        
+        @org.jetbrains.annotations.NotNull
+        public final androidx.cardview.widget.CardView getMoviePosterCardView() {
             return null;
         }
     }

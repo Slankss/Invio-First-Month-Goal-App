@@ -1,1 +1,1 @@
-[{"navFile":"src/main/res/navigation/app_navigation.xml","javaFiles":["com.okankkl.movieapp.ui.splash_screen.SplashFragmentDirections"]}]
+[{"navFile":"src/main/res/navigation/app_navigation.xml","javaFiles":["com.okankkl.movieapp.ui.splash_screen.SplashFragmentDirections","com.okankkl.movieapp.ui.home_screen.HomeFragmentDirections","com.okankkl.movieapp.ui.movie_detail_screen.MovieDetailFragmentDirections","com.okankkl.movieapp.ui.movie_detail_screen.MovieDetailFragmentArgs"]}]
