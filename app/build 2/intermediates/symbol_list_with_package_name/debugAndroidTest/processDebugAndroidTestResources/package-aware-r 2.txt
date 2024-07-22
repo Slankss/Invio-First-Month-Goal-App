@@ -1,3 +1,0 @@
-com.okankkl.movieapp.test
-style WhiteBackgroundDialogTheme
-style WhiteBackgroundTheme
