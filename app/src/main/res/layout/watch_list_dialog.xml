@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp"
+    android:minWidth="300dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxHeight="300dp"
+        style="@style/Theme.MovieApp.HeaderTextView"
+        android:text="@string/add_watch_list_header" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/watchListReyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_marginVertical="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxHeight="300dp"
+        style="@style/Theme.MovieApp.HeaderTextView"
+        android:text="@string/create_watch_list_header" />
+    <EditText
+        android:id="@+id/addWatchListEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        />
+    <Button
+        android:id="@+id/createWatchListBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="10dp"
+        android:text="@string/add_watch_list_button_text"
+        />
+
+</LinearLayout>

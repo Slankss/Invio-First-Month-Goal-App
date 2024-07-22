@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/moviePosterCardView"
+        android:layout_width="125dp"
+        android:layout_height="175dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp">
+        <ImageView
+            android:id="@+id/moviePosterImg"
+            android:layout_width="125dp"
+            android:layout_height="175dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_launcher_background" />
+</androidx.cardview.widget.CardView>
+
+
+
