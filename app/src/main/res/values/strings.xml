@@ -25,8 +25,8 @@
     <string name="add_watch_list_button_text">create watch list</string>
     <string name="share_modal_sheet_dialog_header">Share movie trailer link</string>
     <string name="share_bottom_sheet_dialog_copy_link_text">Copy link</string>
-    <string name="share_bottom_sheet_dialog_send_link_with_whatsapp_text">Send with whatsapp</string>
-    <string name="share_bottom_sheet_dialog_send_link_with_android_text">Send with android</string>
+    <string name="share_bottom_sheet_dialog_send_link_with_whatsapp_text" translatable="false">Whatsapp</string>
+    <string name="share_bottom_sheet_dialog_send_with_other_apps">Other apps</string>
     <string name="copy_link_toast_message">Movie trailer link copied to clipboard</string>
     <string name="whatsapp_not_installed">Whatsapp not installed</string>
     <string name="add_favourites_toast_message">Movie added favourites</string>

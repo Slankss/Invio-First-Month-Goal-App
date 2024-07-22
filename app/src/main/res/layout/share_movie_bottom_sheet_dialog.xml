@@ -7,7 +7,6 @@
     android:orientation="vertical"
     android:background="@color/add_watch_list_button_bg_color"
     style="@style/Theme.MovieApp.ShareBottomSheetDialogStyle">
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,10 +52,8 @@
                 android:textColor="@color/black"
                 app:backgroundTint="@color/white"
                 android:textSize="12sp"
-                android:drawableEnd="@drawable/ic_instagram"
                 android:background="@drawable/outlined_button_background"
-                android:text="@string/share_bottom_sheet_dialog_send_link_with_android_text"/>
-
+                android:text="@string/share_bottom_sheet_dialog_send_with_other_apps"/>
         </LinearLayout>
     </HorizontalScrollView>
 

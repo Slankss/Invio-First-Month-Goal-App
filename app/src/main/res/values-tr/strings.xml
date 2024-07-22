@@ -26,8 +26,7 @@
     <string name="add_watch_list_button_text">izleme listesi oluştur</string>
     <string name="share_modal_sheet_dialog_header">Filmin fragman bağlantısını paylaş</string>
     <string name="share_bottom_sheet_dialog_copy_link_text">Bağlantıyı kopyala</string>
-    <string name="share_bottom_sheet_dialog_send_link_with_whatsapp_text">Whatsapp ile gönder</string>
-    <string name="share_bottom_sheet_dialog_send_link_with_android_text">Instagram ile gönder</string>
+    <string name="share_bottom_sheet_dialog_send_with_other_apps">Diğer uygulamalar</string>
     <string name="copy_link_toast_message">Film fragman bağlantısı kopyalandı</string>
     <string name="whatsapp_not_installed">Whatsapp yüklü değil</string>
     <string name="delete_favourites_toast_message">Film favorilerden kaldırıldı</string>

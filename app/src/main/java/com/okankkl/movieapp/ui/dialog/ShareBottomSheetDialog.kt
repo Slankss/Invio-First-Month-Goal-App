@@ -46,10 +46,24 @@ class ShareBottomSheetDialog(val movieTrailerUrl : String) : BottomSheetDialogFr
     {
         super.onViewCreated(view, savedInstanceState)
         binding.sendLinkWithWhatsappBtn.setOnClickListener {
-            sendMessage(OtherApplication.Whatsapp)
+            // Explicit Intent
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.putExtra(Intent.EXTRA_TEXT, movieTrailerUrl)
+            intent.setType("text/plain")
+            intent.setPackage("com.whatsapp")
+            startActivity(intent)
         }
         binding.sendLinkWithInstragramBtn.setOnClickListener {
-            sendMessage(OtherApplication.Instagram)
+            // Implicit Intent
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.putExtra(Intent.EXTRA_TEXT, movieTrailerUrl)
+            intent.setType("text/plain")
+            try {
+                startActivity(intent)
+            } catch(exception : android.content.ActivityNotFoundException){
+                val errorMessage = getString(R.string.whatsapp_not_installed)
+                Toast.makeText(context,errorMessage,Toast.LENGTH_SHORT).show()
+            }
         }
         binding.copyLinkBtn.setOnClickListener {
             context?.let {
@@ -62,18 +76,5 @@ class ShareBottomSheetDialog(val movieTrailerUrl : String) : BottomSheetDialogFr
     
     companion object {
         const val TAG = "ShareBottomSheetDialog"
-    }
-    
-    private fun sendMessage(otherApplication: OtherApplication){
-        val intent = Intent(Intent.ACTION_SEND)
-        intent.putExtra(Intent.EXTRA_TEXT, movieTrailerUrl)
-        intent.setType("text/plain")
-        intent.setPackage(otherApplication.packageName)
-        try {
-            startActivity(intent)
-        } catch(exception : android.content.ActivityNotFoundException){
-            val errorMessage = getString(R.string.whatsapp_not_installed)
-            Toast.makeText(context,errorMessage,Toast.LENGTH_SHORT).show()
-        }
     }
 }
