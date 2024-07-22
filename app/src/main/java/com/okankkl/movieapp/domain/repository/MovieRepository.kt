@@ -1,10 +1,8 @@
 package com.okankkl.movieapp.domain.repository
 
 import com.okankkl.movieapp.data.local.room.entity.FavouriteEntity
-import com.okankkl.movieapp.data.local.room.entity.MovieEntity
 import com.okankkl.movieapp.domain.model.Movie
 import com.okankkl.movieapp.util.MovieListType
-import com.okankkl.movieapp.util.Resources
 import kotlinx.coroutines.flow.Flow
 
 interface MovieRepository
@@ -26,4 +24,6 @@ interface MovieRepository
     suspend fun deleteFavourite(movieId: Int)
     
     suspend fun isMovieInFavourites(movieId: Int) : Boolean
+    
+    suspend fun searchMovies(searchQuery: String,page: Int) : List<Movie>
 }

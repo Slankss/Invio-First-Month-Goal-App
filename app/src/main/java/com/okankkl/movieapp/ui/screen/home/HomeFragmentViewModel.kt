@@ -5,7 +5,7 @@ import com.okankkl.movieapp.domain.model.Movie
 import com.okankkl.movieapp.domain.repository.MovieRepository
 import com.okankkl.movieapp.domain.repository.PreferenceRepository
 import com.okankkl.movieapp.util.MovieListType
-import com.okankkl.movieapp.util.Resources
+import com.okankkl.movieapp.util.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -24,7 +24,7 @@ class HomeFragmentViewModel @Inject constructor(
         private val preferenceRepository: PreferenceRepository
 ) : ViewModel()
 {
-    private var _state = MutableStateFlow<Resources<List<Movie>>>(Resources.Loading())
+    private var _state = MutableStateFlow<Result<List<Movie>>>(Result.Loading())
     var state = _state.asStateFlow()
     
     fun loadMovies(){
@@ -49,7 +49,7 @@ class HomeFragmentViewModel @Inject constructor(
     
     private suspend fun getMoviesFromApi() {
         viewModelScope.launch {
-            _state.update { Resources.Loading(isLoading = true) }
+            _state.update { Result.Loading(isLoading = true) }
             try {
                 val popularMovies = async { movieRepository.getMovieListFromApi(MovieListType.Popular,1) }
                 val nowPlayingMovies = async { movieRepository.getMovieListFromApi(MovieListType.NowPlaying,1) }
@@ -58,9 +58,9 @@ class HomeFragmentViewModel @Inject constructor(
                 
                 val mergedList = popularMovies.await() + nowPlayingMovies.await() + upcomingMovies.await() +
                         topRatedMovies.await()
-                _state.update { Resources.Success(data = mergedList) }
+                _state.update { Result.Success(data = mergedList) }
             } catch(e: Exception){
-                _state.update { Resources.Error(message = e.localizedMessage ?: "Unknown Error") }
+                _state.update { Result.Error(message = e.localizedMessage ?: "Unknown Error") }
             }
             
         }
@@ -72,18 +72,18 @@ class HomeFragmentViewModel @Inject constructor(
     
     suspend fun addMoviesToRoom(){
         try {
-            val movieList = (_state.value as Resources.Success).data
+            val movieList = (_state.value as Result.Success).data
             movieRepository.addMovieListToRoom(movieList)
         } catch(_ : Exception){}
     }
     
     private suspend fun getMoviesFromRoom(){
-        _state.update { Resources.Loading() }
+        _state.update { Result.Loading() }
         try {
             val mappedList = movieRepository.getMovieListFromRoom().first()
-            _state.update { Resources.Success(data = mappedList) }
+            _state.update { Result.Success(data = mappedList) }
         } catch(e: Exception){
-            _state.update { Resources.Error(message = e.localizedMessage ?: "Unknown Error") }
+            _state.update { Result.Error(message = e.localizedMessage ?: "Unknown Error") }
         }
        
     }

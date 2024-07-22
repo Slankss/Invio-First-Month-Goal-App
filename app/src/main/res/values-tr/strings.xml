@@ -36,5 +36,6 @@
     <string name="create_watch_list_dialog_hint">İzleme listesi adı</string>
     <string name="new_watch_list">Yeni</string>
     <string name="create_watch_list_header">İzleme Listesi Oluştur</string>
+    <string name="search_movie_hint">Hangi filmi aramak istiyorsunuz?</string>
 
 </resources>

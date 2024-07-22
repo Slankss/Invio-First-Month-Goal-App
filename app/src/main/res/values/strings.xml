@@ -35,4 +35,5 @@
     <string name="create_watch_list_dialog_hint">Watch list name</string>
     <string name="new_watch_list">New</string>
     <string name="create_watch_list_header">Create Watch List</string>
+    <string name="search_movie_hint">Which movie would you like to search?</string>
 </resources>

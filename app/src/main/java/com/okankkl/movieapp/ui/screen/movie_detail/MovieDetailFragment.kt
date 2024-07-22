@@ -1,5 +1,4 @@
 package com.okankkl.movieapp.ui.screen.movie_detail
-
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,7 +16,7 @@ import com.okankkl.movieapp.ui.adapter.MovieListAdapter
 import com.okankkl.movieapp.ui.dialog.ShareBottomSheetDialog
 import com.okankkl.movieapp.ui.dialog.WatchListDialog
 import com.okankkl.movieapp.util.Constants
-import com.okankkl.movieapp.util.Resources
+import com.okankkl.movieapp.util.Result
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -60,7 +59,7 @@ class MovieDetailFragment : Fragment()
         scope.launch {
             state.collect{ movieDetailState ->
                 when(movieDetailState){
-                    is Resources.Success -> {
+                    is Result.Success -> {
                         val movie = movieDetailState.data
                         binding.loadingProgressBar.visibility = View.GONE
                         fillData(movie)
@@ -68,10 +67,10 @@ class MovieDetailFragment : Fragment()
                         createWatchListDialog(movie)
                         createShareBottomSheetDialog(movie)
                     }
-                    is Resources.Loading -> {
+                    is Result.Loading -> {
                         binding.loadingProgressBar.visibility = View.VISIBLE
                     }
-                    is Resources.Error-> {
+                    is Result.Error-> {
                         binding.loadingProgressBar.visibility = View.GONE
                         binding.errorMessageTxt.text = movieDetailState.message
                     }
@@ -86,10 +85,12 @@ class MovieDetailFragment : Fragment()
             if(similarMovies.isNotEmpty()){
                 binding.similarMoviesTxt.visibility = View.VISIBLE
             }
-            val similarContentsAdapter = MovieListAdapter{ movieId ->
-                val action = MovieDetailFragmentDirections.actionMovieDetailFragmentSelf(movieId)
-                findNavController().navigate(action)
-            }
+            val similarContentsAdapter = MovieListAdapter(
+                onClick = { movieId ->
+                    val action = MovieDetailFragmentDirections.actionMovieDetailFragmentSelf(movieId)
+                    findNavController().navigate(action)
+                }
+            )
             val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             val similarContentsRecyclerView = binding.similarContentsRecyclerView
             similarContentsRecyclerView.layoutManager = linearLayoutManager

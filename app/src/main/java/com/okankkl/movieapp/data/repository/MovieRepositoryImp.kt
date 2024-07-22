@@ -1,17 +1,13 @@
 package com.okankkl.movieapp.data.repository
-import android.util.Log
 import com.okankkl.movieapp.data.local.room.database.MovieDao
 import com.okankkl.movieapp.data.local.room.entity.FavouriteEntity
-import com.okankkl.movieapp.data.local.room.entity.MovieEntity
 import com.okankkl.movieapp.data.mappers.toMovie
 import com.okankkl.movieapp.data.mappers.toMovieEntity
 import com.okankkl.movieapp.data.remote.MovieApi
 import com.okankkl.movieapp.domain.model.Movie
 import com.okankkl.movieapp.domain.repository.MovieRepository
 import com.okankkl.movieapp.util.MovieListType
-import com.okankkl.movieapp.util.Resources
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
@@ -20,7 +16,7 @@ class MovieRepositoryImp @Inject constructor(
     : MovieRepository
 {
     override suspend fun getMovieListFromApi(movieListType: MovieListType, page: Int): List<Movie> {
-        return movieApi.getMovies(movieListType.routeName,page = page).results.map { movieDto ->
+        return movieApi.getMovies(movieListType.routeName,page).results.map { movieDto ->
             movieDto.toMovie(movieListType)
         }
     }
@@ -62,5 +58,12 @@ class MovieRepositoryImp @Inject constructor(
     
     override suspend fun isMovieInFavourites(movieId: Int): Boolean {
         return movieDao.isMovieInFavourites(movieId) == 1
+    }
+    
+    override suspend fun searchMovies(searchQuery: String,page: Int) : List<Movie>
+    {
+        return movieApi.searchMovie(searchQuery,page).results
+            .map { it.toMovie() }
+            .filter { it.posterPath.isNotEmpty() }
     }
 }

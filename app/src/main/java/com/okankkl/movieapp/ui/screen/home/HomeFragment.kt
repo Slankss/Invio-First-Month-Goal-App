@@ -13,7 +13,7 @@ import com.okankkl.movieapp.databinding.FragmentHomeBinding
 import com.okankkl.movieapp.domain.model.Movie
 import com.okankkl.movieapp.ui.adapter.MovieListAdapter
 import com.okankkl.movieapp.util.MovieListType
-import com.okankkl.movieapp.util.Resources
+import com.okankkl.movieapp.util.Result
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -46,18 +46,26 @@ class HomeFragment : Fragment()
         val state = viewModel.state
         
         val navController = findNavController()
-        val popularMoviesAdapter = MovieListAdapter{ movieId ->
-            navigateMovieDetail(navController,movieId)
-        }
-        val nowPlayingMoviesAdapter = MovieListAdapter{ movieId ->
-            navigateMovieDetail(navController,movieId)
-        }
-        val upComingMoviesAdapter = MovieListAdapter{ movieId ->
-            navigateMovieDetail(navController,movieId)
-        }
-        val topRatedMoviesAdapter = MovieListAdapter{ movieId ->
-            navigateMovieDetail(navController,movieId)
-        }
+        val popularMoviesAdapter = MovieListAdapter(
+            onClick = { movieId ->
+                navigateMovieDetail(navController,movieId)
+            }
+        )
+        val nowPlayingMoviesAdapter = MovieListAdapter(
+            onClick = { movieId ->
+                navigateMovieDetail(navController,movieId)
+            }
+        )
+        val upComingMoviesAdapter = MovieListAdapter(
+            onClick = { movieId ->
+                navigateMovieDetail(navController,movieId)
+            }
+        )
+        val topRatedMoviesAdapter = MovieListAdapter(
+            onClick = { movieId ->
+                navigateMovieDetail(navController,movieId)
+            }
+        )
         
         binding?.apply {
             popularMoviesRecyclerView.layoutManager = LinearLayoutManager(view.context,LinearLayoutManager.HORIZONTAL,false)
@@ -86,7 +94,7 @@ class HomeFragment : Fragment()
         scope.launch(Dispatchers.Main) {
             state.collect { movieListState ->
               when(movieListState){
-                  is Resources.Success -> {
+                  is Result.Success -> {
                       binding?.loadingProgressBar?.visibility = View.GONE
                       binding?.errorMessageTxt?.visibility = View.GONE
                       fillAdapter(movieListState.data,popularMoviesAdapter,MovieListType.Popular)
@@ -94,11 +102,11 @@ class HomeFragment : Fragment()
                       fillAdapter(movieListState.data,topRatedMoviesAdapter,MovieListType.TopRated)
                       fillAdapter(movieListState.data,upComingMoviesAdapter,MovieListType.Upcoming)
                   }
-                  is Resources.Loading -> {
+                  is Result.Loading -> {
                       binding?.loadingProgressBar?.visibility = View.VISIBLE
                       binding?.errorMessageTxt?.visibility = View.GONE
                   }
-                  is Resources.Error -> {
+                  is Result.Error -> {
                       binding?.loadingProgressBar?.visibility = View.GONE
                       binding?.errorMessageTxt?.text = movieListState.message
                       binding?.errorMessageTxt?.visibility = View.VISIBLE

@@ -6,14 +6,12 @@
         android:layout_width="125dp"
         android:layout_height="175dp"
         app:cardCornerRadius="16dp"
-        android:layout_marginStart="10dp"
         app:cardElevation="4dp">
         <ImageView
             android:id="@+id/moviePosterImg"
             android:layout_width="125dp"
             android:layout_height="175dp"
             android:scaleType="centerCrop"
-
             android:src="@drawable/ic_launcher_background" />
 </androidx.cardview.widget.CardView>
 

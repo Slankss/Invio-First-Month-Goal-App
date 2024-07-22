@@ -1,5 +1,6 @@
 package com.okankkl.movieapp.ui.adapter
 
+import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +11,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.okankkl.movieapp.R
 import com.okankkl.movieapp.domain.model.Movie
+import com.okankkl.movieapp.util.LayoutType
 
-class MovieListAdapter(var onClick: (Int) -> Unit) : RecyclerView.Adapter<MovieListAdapter.ViewHolder>()
+class MovieListAdapter(var onClick: (Int) -> Unit,var layoutType: LayoutType = LayoutType.HorizontalLinear)
+    : RecyclerView.Adapter<MovieListAdapter.ViewHolder>()
 {
     private var movieList = listOf<Movie>()
     
@@ -30,16 +33,27 @@ class MovieListAdapter(var onClick: (Int) -> Unit) : RecyclerView.Adapter<MovieL
     override fun onBindViewHolder(holder: ViewHolder, position: Int)
     {
         val movie = movieList[position]
-        
-        if(position == 0){
-            (holder.moviePosterCardView.layoutParams as MarginLayoutParams).marginStart = 25
+        // get moviePosterCardView margin params to change items attributes
+        val moviePosterParams = holder.moviePosterCardView.layoutParams as MarginLayoutParams
+       
+        // change items attributes for different layout types
+        if(layoutType == LayoutType.Grid){
+            moviePosterParams.topMargin = dpToPx(5)
+            moviePosterParams.bottomMargin = dpToPx(5)
+            moviePosterParams.marginEnd= dpToPx(5)
+        } else {
+            when(position){
+                0 -> moviePosterParams.marginStart= dpToPx(20)
+                movieList.size -1 -> moviePosterParams.marginEnd= dpToPx(20)
+                else -> moviePosterParams.marginStart= dpToPx(10)
+            }
         }
-        
+        // if poster path is empty, use backdrop path
         val movieImage = when(movie.posterPath.isNotEmpty()){
             true -> movie.posterPath
             false -> movie.backdropPath
         }
-        
+        // Load poster image
         Glide
             .with(holder.itemView)
             .load(movieImage)
@@ -57,5 +71,10 @@ class MovieListAdapter(var onClick: (Int) -> Unit) : RecyclerView.Adapter<MovieL
     }
     fun setMovieList(movies: List<Movie>){
         movieList = movies
+    }
+    
+    private fun dpToPx(dp: Int) : Int {
+        val density = Resources.getSystem().displayMetrics.density
+        return (dp * density).toInt()
     }
 }

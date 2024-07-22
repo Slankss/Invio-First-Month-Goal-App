@@ -32,6 +32,12 @@ class MainActivity : AppCompatActivity()
         val view = binding.root
         setContentView(view)
         
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(0, systemBars.top, 0,0)
+            insets
+        }
+        
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         val navController = navHostFragment.navController
         val bottomNavitionView =binding.bottomNavigationView

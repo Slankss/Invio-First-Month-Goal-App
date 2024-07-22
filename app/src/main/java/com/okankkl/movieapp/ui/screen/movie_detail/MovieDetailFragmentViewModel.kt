@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.okankkl.movieapp.data.local.room.entity.FavouriteEntity
 import com.okankkl.movieapp.domain.model.Movie
 import com.okankkl.movieapp.domain.repository.MovieRepository
-import com.okankkl.movieapp.util.Resources
+import com.okankkl.movieapp.util.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,7 +19,7 @@ class MovieDetailFragmentViewModel @Inject constructor(
     private val movieRepository: MovieRepository
 ) : ViewModel()
 {
-    private var _state = MutableStateFlow<Resources<Movie>>(Resources.Loading())
+    private var _state = MutableStateFlow<Result<Movie>>(Result.Loading())
     var state = _state.asStateFlow()
     
     private var _similarMovies = MutableStateFlow<List<Movie>>(emptyList())
@@ -27,13 +27,13 @@ class MovieDetailFragmentViewModel @Inject constructor(
     
     fun getMovieDetail(movieId: Int){
         viewModelScope.launch(Dispatchers.IO) {
-            _state.update { Resources.Loading(isLoading = true) }
+            _state.update { Result.Loading(isLoading = true) }
             try{
                 val data = movieRepository.getMovieDetail(movieId)
                 data.isMovieInFavourite = movieRepository.isMovieInFavourites(movieId)
-                _state.update { Resources.Success(data) }
+                _state.update { Result.Success(data) }
             } catch(e: Exception){
-                _state.update { Resources.Error(message = e.localizedMessage ?: "Unknown Error!") }
+                _state.update { Result.Error(message = e.localizedMessage ?: "Unknown Error!") }
             }
         }
     }

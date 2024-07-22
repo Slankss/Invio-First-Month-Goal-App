@@ -12,21 +12,28 @@ interface MovieApi
     @GET("/3/movie/{listType}")
     suspend fun getMovies(
             @Path("listType") listType : String,
-            @Query("api_key") apiKey : String = Constants.API_KEY,
-            @Query("page") page: Int
+            @Query("page") page: Int,
+            @Query("api_key") apiKey : String = Constants.API_KEY
     ) : MovieResponseDto
     
     @GET("/3/movie/{movieId}")
     suspend fun getMovieDetail(
             @Path("movieId") movieId : Int,
-            @Query("api_key") apiKey : String = Constants.API_KEY,
-            @Query("append_to_response") appendToResponse : String = "videos"
+            @Query("append_to_response") appendToResponse : String = "videos",
+            @Query("api_key") apiKey : String = Constants.API_KEY
     ) : MovieDetailDto
     
     @GET("/3/movie/{movieId}/similar")
     suspend fun getSimilarMovies(
             @Path("movieId")movieId: Int,
             @Query("api_key") apiKey: String = Constants.API_KEY
-    )
-    : MovieResponseDto
+    ) : MovieResponseDto
+    
+    @GET("/3/search/movie")
+    suspend fun searchMovie(
+            @Query("query") searchQuery : String,
+            @Query("page") page: Int,
+            @Query("api_key") apiKey : String = Constants.API_KEY
+    ) : MovieResponseDto
+    
 }
