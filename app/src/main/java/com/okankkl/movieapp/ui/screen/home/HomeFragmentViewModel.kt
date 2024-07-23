@@ -64,7 +64,6 @@ class HomeFragmentViewModel @Inject constructor(
             } catch(e: Exception){
                 _state.update { Result.Error(message = e.localizedMessage ?: "Unknown Error") }
             }
-            
         }
     }
     
@@ -82,8 +81,7 @@ class HomeFragmentViewModel @Inject constructor(
     private suspend fun getMoviesFromRoom(){
         _state.update { Result.Loading() }
         try {
-            val mappedList = movieRepository.getMovieListFromRoom().first()
-            _state.update { Result.Success(data = mappedList) }
+            _state.update { Result.Success(data = movieRepository.getMovieListFromRoom()) }
         } catch(e: Exception){
             _state.update { Result.Error(message = e.localizedMessage ?: "Unknown Error") }
         }

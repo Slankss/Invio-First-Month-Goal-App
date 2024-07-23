@@ -7,16 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavArgument
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.okankkl.movieapp.R
-import com.okankkl.movieapp.databinding.FragmentHomeBinding
 import com.okankkl.movieapp.databinding.FragmentViewAllBinding
 import com.okankkl.movieapp.ui.adapter.MovieListAdapter
-import com.okankkl.movieapp.util.Constants
 import com.okankkl.movieapp.util.LayoutType
-import com.okankkl.movieapp.util.MovieListType
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -65,7 +60,7 @@ class ViewAllFragment : Fragment()
         var lastMovieId = 0
         val adapter = MovieListAdapter(
             layoutType = LayoutType.Grid,
-            onClick = { movieId ->
+            onPosterClick = { movieId ->
                 val action = ViewAllFragmentDirections.actionViewAllFragmentToMovieDetailFragment(movieId)
                 findNavController().navigate(action)
             },

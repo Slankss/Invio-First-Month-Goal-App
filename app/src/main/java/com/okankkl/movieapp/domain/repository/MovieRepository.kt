@@ -10,7 +10,7 @@ interface MovieRepository
 {
     suspend fun getMovieListFromApi(movieListType: MovieListType, page : Int) : List<Movie>
     
-    suspend fun getMovieListFromRoom() : Flow<List<Movie>>
+    suspend fun getMovieListFromRoom() : List<Movie>
     
     suspend fun addMovieListToRoom(movieList: List<Movie>)
     
@@ -19,6 +19,8 @@ interface MovieRepository
     suspend fun getMovieDetail(movieId: Int) : Movie
     
     suspend fun getSimilarMovies(movieId: Int) : List<Movie>
+    
+    suspend fun getFavouritesList() : List<FavouriteEntity>
     
     suspend fun addFavourite(favouriteEntity: FavouriteEntity)
     
@@ -29,4 +31,6 @@ interface MovieRepository
     suspend fun searchMovies(searchQuery: String,page: Int) : MovieResponseDto
     
     suspend fun loadMovies(movieListType: String, page: Int) : MovieResponseDto
+    
+    
 }

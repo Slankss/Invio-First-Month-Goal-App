@@ -22,11 +22,8 @@ class MovieRepositoryImp @Inject constructor(
         }
     }
     
-    override suspend fun getMovieListFromRoom(): Flow<List<Movie>> {
-        return movieDao.getMovies().map { movieList ->
-                movieList.map { movieEntity ->
-                    movieEntity.toMovie() }
-        }
+    override suspend fun getMovieListFromRoom(): List<Movie> {
+       return movieDao.getMovies().map { it.toMovie() }
     }
     
     override suspend fun addMovieListToRoom(movieList: List<Movie>) {
@@ -47,6 +44,11 @@ class MovieRepositoryImp @Inject constructor(
         return movieApi.getSimilarMovies(movieId).results
             .map { it.toMovie() }
             .filter { it.posterPath.isNotEmpty() || it.backdropPath.isNotEmpty() }
+    }
+    
+    override suspend fun getFavouritesList(): List<FavouriteEntity>
+    {
+        return movieDao.getFavourites()
     }
     
     override suspend fun addFavourite(favouriteEntity: FavouriteEntity) {

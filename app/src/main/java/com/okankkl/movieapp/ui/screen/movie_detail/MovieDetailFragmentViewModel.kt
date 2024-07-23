@@ -40,15 +40,14 @@ class MovieDetailFragmentViewModel @Inject constructor(
     
     fun getSimilarMovies(movieId: Int){
         viewModelScope.launch(Dispatchers.IO) {
-            try
-            {
+            try {
                 _similarMovies.update { movieRepository.getSimilarMovies(movieId) }
             } catch(_ : Exception){}
         }
     }
     
     fun addFavorite(movieId: Int,title: String,posterPath:String,backdropPath: String){
-        val favourite = FavouriteEntity(movieId,title,posterPath,backdropPath)
+        val favourite = FavouriteEntity(movieId,backdropPath,posterPath,title)
         viewModelScope.launch(Dispatchers.IO) {
             movieRepository.addFavourite(favourite)
         }

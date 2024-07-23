@@ -56,8 +56,7 @@
                     android:orientation="vertical">
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        >
+                        android:layout_height="wrap_content">
                         <TextView
                             android:id="@+id/movieTitleTxt"
                             style="@style/Theme.MovieApp.HeaderTextView"
@@ -74,7 +73,7 @@
                             android:id="@+id/favouriteCheckbox"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:button="@drawable/favourite_checkbox"
+                            android:button="@drawable/favourite_checkbox_selector"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -156,37 +155,17 @@
                         android:layout_height="wrap_content"
                         style="@style/Theme.MovieApp.ThinContentStyle"
                         android:textSize="14sp"/>
-                    <LinearLayout
+                    <ImageButton
+                        android:id="@+id/shareBtn"
                         android:layout_marginTop="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_gravity="end">
-                        <ImageButton
-                            android:id="@+id/addWatchListBtn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_add"
-                            android:background="@drawable/circle_button_background"
-                            android:backgroundTint="@color/add_watch_list_button_bg_color"
-                            android:text="@string/add_watch_list_button_text"
-                            android:padding="5dp"
-                            android:layout_marginEnd="20dp"
-                            android:contentDescription="Add watch list"
-                            />
-
-                        <ImageButton
-                            android:id="@+id/shareBtn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_share"
-                            android:text="@string/share_button_text"
-                            android:background="@drawable/circle_button_background"
-                            android:backgroundTint="@color/share_button_bg_color"
-                            android:contentDescription="share trailer url"
-                            android:padding="5dp"
-                            />
-                    </LinearLayout>
+                        android:layout_gravity="end"
+                        android:src="@drawable/ic_share"
+                        android:text="@string/share_button_text"
+                        android:background="@drawable/circle_button_background"
+                        android:backgroundTint="@color/share_button_bg_color"
+                        android:padding="5dp" />
                     <TextView
                         android:id="@+id/similarMoviesTxt"
                         android:layout_marginTop="20dp"

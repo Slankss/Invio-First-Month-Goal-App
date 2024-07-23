@@ -11,7 +11,7 @@
     <string name="view_all">Tümünü göster</string>
 
     <string name="home_screen_title">Anasayfa</string>
-    <string name="profile_screen_title">Profil</string>
+    <string name="favourites_screen_title">Favoriler</string>
     <string name="search_screen_title">Film Ara</string>
 
     <string name="no_data_error_message">Görüntülenecek hiç veri yok</string>
@@ -31,10 +31,17 @@
     <string name="whatsapp_not_installed">Whatsapp yüklü değil</string>
     <string name="delete_favourites_toast_message">Film favorilerden kaldırıldı</string>
     <string name="add_favourites_toast_message">Film favorilere eklendi</string>
-    <string name="add_watch_list_header">İzleme Listesine Ekle</string>
+    <string name="add_watch_list_header">İzleme listesine ekle</string>
     <string name="create_watch_list_dialog_hint">İzleme listesi adı</string>
     <string name="new_watch_list">Yeni</string>
-    <string name="create_watch_list_header">İzleme Listesi Oluştur</string>
+    <string name="create_watch_list_header">İzleme listesi oluştur</string>
     <string name="search_movie_hint">Hangi filmi aramak istiyorsunuz?</string>
+    <string name="favourites_header">Favoriler</string>
+    <string name="watch_list_header">İzleme Listesi</string>
+    <string name="yes">Evet</string>
+    <string name="no">Hayır</string>
+    <string name="delete_alert_dialog_title">İçeriği silmek istediğinize emin misiniz?</string>
+    <string name="current_watch_list">Yer aldığı izleme listeleri</string>
+    <string name="there_is_no_movie">Gösterilecek hiç film yok</string>
 
 </resources>

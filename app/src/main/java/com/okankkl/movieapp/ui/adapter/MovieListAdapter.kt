@@ -1,7 +1,6 @@
 package com.okankkl.movieapp.ui.adapter
 
 import android.content.res.Resources
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +15,7 @@ import com.okankkl.movieapp.util.LayoutType
 
 class MovieListAdapter(
         var layoutType: LayoutType = LayoutType.HorizontalLinear,
-        var onClick: (Int) -> Unit,
+        var onPosterClick: (Int) -> Unit,
         var onLoad: ((Int) -> Unit)? = null
         )
     : RecyclerView.Adapter<MovieListAdapter.ViewHolder>()
@@ -68,7 +67,7 @@ class MovieListAdapter(
             .into(holder.moviePosterImage)
         
         holder.moviePosterImage.setOnClickListener {
-            onClick(movie.id)
+            onPosterClick(movie.id)
         }
         
         // if use reach the last item load movies (just viewAll page)

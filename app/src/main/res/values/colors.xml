@@ -20,4 +20,6 @@
     <color name="share_button_bg_color">#999AC6</color>
     <color name="share_bottom_sheet_dialog_bg_color">#999AC6</color>
     <color name="share_bottom_sheet_dialog_bg_color_dark">#999AC6</color>
+    <color name="favourites_card_bg_color">#2F2D2E</color>
+    <color name="favourites_card_bg_color_dark">#FFFFFF</color>
 </resources>

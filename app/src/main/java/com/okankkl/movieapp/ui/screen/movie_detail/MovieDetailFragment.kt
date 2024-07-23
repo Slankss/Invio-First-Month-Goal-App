@@ -14,7 +14,6 @@ import com.okankkl.movieapp.databinding.FragmentMovieDetailBinding
 import com.okankkl.movieapp.domain.model.Movie
 import com.okankkl.movieapp.ui.adapter.MovieListAdapter
 import com.okankkl.movieapp.ui.dialog.ShareBottomSheetDialog
-import com.okankkl.movieapp.ui.dialog.WatchListDialog
 import com.okankkl.movieapp.util.Constants
 import com.okankkl.movieapp.util.Result
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
@@ -64,7 +63,6 @@ class MovieDetailFragment : Fragment()
                         binding.loadingProgressBar.visibility = View.GONE
                         fillData(movie)
                         getSimilarMoviesData()
-                        createWatchListDialog(movie)
                         createShareBottomSheetDialog(movie)
                     }
                     is Result.Loading -> {
@@ -86,7 +84,7 @@ class MovieDetailFragment : Fragment()
                 binding.similarMoviesTxt.visibility = View.VISIBLE
             }
             val similarContentsAdapter = MovieListAdapter(
-                onClick = { movieId ->
+                onPosterClick = { movieId ->
                     val action = MovieDetailFragmentDirections.actionMovieDetailFragmentSelf(movieId)
                     findNavController().navigate(action)
                 }
@@ -134,7 +132,7 @@ class MovieDetailFragment : Fragment()
         }
     }
     
-    private fun createWatchListDialog(movie: Movie){
+    private fun createShareBottomSheetDialog(movie: Movie){
         binding.shareBtn.setOnClickListener {
         val movieTrailerUrl = "${Constants.YOUTUBE_VIDEO_URL}${movie.getTrailerVideoKey()}"
         val shareBottomSheetDialog = ShareBottomSheetDialog(movieTrailerUrl)
@@ -142,23 +140,6 @@ class MovieDetailFragment : Fragment()
             shareBottomSheetDialog.show(view, ShareBottomSheetDialog.TAG)
         }
     }
-    }
-    
-    private fun createShareBottomSheetDialog(movie: Movie){
-        val watchListDialog = WatchListDialog(
-            createWatchListClick = {
-            
-            },
-            addOrRemoveWatchListClick = {
-            
-            },
-            deleteWatchListClick = {
-            }
-        )
-        
-        binding.addWatchListBtn.setOnClickListener {
-            watchListDialog.show(childFragmentManager,WatchListDialog.TAG)
-        }
     }
     
     private fun loadMovieTrailer(videoKey: String){

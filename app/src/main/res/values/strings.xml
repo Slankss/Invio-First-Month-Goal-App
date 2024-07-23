@@ -10,7 +10,7 @@
     <string name="view_all">View all</string>
 
     <string name="home_screen_title">Home</string>
-    <string name="profile_screen_title">Profile</string>
+    <string name="favourites_screen_title">Favourites</string>
     <string name="search_screen_title">Search Movie</string>
 
     <string name="no_data_error_message">No data</string>
@@ -36,4 +36,11 @@
     <string name="new_watch_list">New</string>
     <string name="create_watch_list_header">Create Watch List</string>
     <string name="search_movie_hint">Which movie would you like to search?</string>
+    <string name="favourites_header">Favourites</string>
+    <string name="watch_list_header">Watch List</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="delete_alert_dialog_title">Are you sure delete content?</string>
+    <string name="current_watch_list">Watchlists that include</string>
+    <string name="there_is_no_movie">There is no movie</string>
 </resources>

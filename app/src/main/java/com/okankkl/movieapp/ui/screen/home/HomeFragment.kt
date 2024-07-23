@@ -1,7 +1,6 @@
 package com.okankkl.movieapp.ui.screen.home
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -24,51 +23,46 @@ import kotlinx.coroutines.launch
 class HomeFragment : Fragment()
 {
     private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding
+    private val binding get() = _binding!!
     private val scope = CoroutineScope(Dispatchers.Main)
     private val viewModel: HomeFragmentViewModel by viewModels()
-    
     
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View?
-    {
+    ): View {
         _binding = FragmentHomeBinding.inflate(inflater)
-        val view = binding?.root
-        
+        val view = binding.root
         return view
     }
     
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
-    {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val state = viewModel.state
         
         val navController = findNavController()
         val popularMoviesAdapter = MovieListAdapter(
-            onClick = { movieId ->
+            onPosterClick = { movieId ->
                 navigateMovieDetail(navController,movieId)
             }
         )
         val nowPlayingMoviesAdapter = MovieListAdapter(
-            onClick = { movieId ->
+            onPosterClick = { movieId ->
                 navigateMovieDetail(navController,movieId)
             }
         )
         val upComingMoviesAdapter = MovieListAdapter(
-            onClick = { movieId ->
+            onPosterClick = { movieId ->
                 navigateMovieDetail(navController,movieId)
             }
         )
         val topRatedMoviesAdapter = MovieListAdapter(
-            onClick = { movieId ->
+            onPosterClick = { movieId ->
                 navigateMovieDetail(navController,movieId)
             }
         )
-        
-        binding?.apply {
+        binding.apply {
             popularMoviesRecyclerView.layoutManager = LinearLayoutManager(view.context,LinearLayoutManager.HORIZONTAL,false)
             nowPlayingMoviesRecyclerView.layoutManager = LinearLayoutManager(view.context,LinearLayoutManager.HORIZONTAL,false)
             upComingMoviesRecyclerView.layoutManager =  LinearLayoutManager(view.context,LinearLayoutManager.HORIZONTAL,false)
@@ -97,37 +91,34 @@ class HomeFragment : Fragment()
             state.collect { movieListState ->
               when(movieListState){
                   is Result.Success -> {
-                      binding?.loadingProgressBar?.visibility = View.GONE
-                      binding?.errorMessageTxt?.visibility = View.GONE
+                      binding.loadingProgressBar.visibility = View.GONE
+                      binding.errorMessageTxt.visibility = View.GONE
                       fillAdapter(movieListState.data,popularMoviesAdapter,MovieListType.Popular)
                       fillAdapter(movieListState.data,nowPlayingMoviesAdapter,MovieListType.NowPlaying)
                       fillAdapter(movieListState.data,topRatedMoviesAdapter,MovieListType.TopRated)
                       fillAdapter(movieListState.data,upComingMoviesAdapter,MovieListType.Upcoming)
                   }
                   is Result.Loading -> {
-                      binding?.loadingProgressBar?.visibility = View.VISIBLE
-                      binding?.errorMessageTxt?.visibility = View.GONE
+                      binding.loadingProgressBar.visibility = View.VISIBLE
+                      binding.errorMessageTxt.visibility = View.GONE
                   }
                   is Result.Error -> {
-                      binding?.loadingProgressBar?.visibility = View.GONE
-                      binding?.errorMessageTxt?.text = movieListState.message
-                      binding?.errorMessageTxt?.visibility = View.VISIBLE
+                      binding.loadingProgressBar.visibility = View.GONE
+                      binding.errorMessageTxt.text = movieListState.message
+                      binding.errorMessageTxt.visibility = View.VISIBLE
                   }
               }
             }
         }
-        
     }
     
-    override fun onResume()
-    {
+    override fun onResume() {
         super.onResume()
         val viewModel: HomeFragmentViewModel by viewModels()
         viewModel.loadMovies()
     }
     
-    override fun onPause()
-    {
+    override fun onPause() {
         super.onPause()
         scope.launch(Dispatchers.IO) {
             viewModel.clearMoviesFromRoom()
@@ -135,8 +126,7 @@ class HomeFragment : Fragment()
         }
     }
     
-    override fun onDestroy()
-    {
+    override fun onDestroy() {
         super.onDestroy()
         _binding = null
     }
