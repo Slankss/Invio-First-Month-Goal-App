@@ -52,6 +52,7 @@ dependencies {
     testImplementation libs.truth
     implementation libs.androidx.lifecycle.viewmodel
     implementation libs.androidx.lifecycle.runtime
+    implementation libs.android.arch.core
 
     // Navigation
     implementation libs.androidx.navigation.fragment
