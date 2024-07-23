@@ -6,7 +6,7 @@ import com.okankkl.movieapp.data.remote.dto.Video
 import com.okankkl.movieapp.data.remote.dto.Videos
 import com.okankkl.movieapp.util.Constants
 import com.okankkl.movieapp.util.MovieListType
-import com.okankkl.movieapp.util.TrailerType
+import java.util.Locale
 
 class Movie(
     val id: Int,
@@ -40,7 +40,7 @@ class Movie(
              return null
         
          var trailer : Video? = null
-         trailer = videos!!.results.find { it.type == TrailerType.OfficailTrailer.name }
+         trailer = videos!!.results.find { it.type.lowercase(Locale.ROOT).contains("official") }
          
          if(trailer != null)
              return trailer.key

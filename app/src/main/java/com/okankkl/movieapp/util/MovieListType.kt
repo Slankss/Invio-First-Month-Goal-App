@@ -2,10 +2,24 @@ package com.okankkl.movieapp.util
 
 import com.okankkl.movieapp.R
 
-sealed class MovieListType(val routeName : String,val titleTextId: Int){
-    object Popular : MovieListType(routeName = "popular", titleTextId = R.string.movie_list_type_popular)
-    object Upcoming : MovieListType(routeName = "upcoming", titleTextId = R.string.movie_list_type_upcoming)
-    object NowPlaying : MovieListType(routeName = "now_playing", titleTextId = R.string.movie_list_type_now_playing)
-    object TopRated : MovieListType(routeName = "top_rated", titleTextId = R.string.movie_list_type_top_rated)
+enum class MovieListType(
+    var routeName: String,
+    val titleTextResourceId: Int
+){
+    Popular(
+        routeName = "popular",
+        titleTextResourceId = R.string.movie_list_type_popular
+    ),
+    Upcoming(
+        routeName = "upcoming",
+        titleTextResourceId = R.string.movie_list_type_upcoming
+    ),
+    NowPlaying(
+        routeName = "now_playing",
+        titleTextResourceId = R.string.movie_list_type_now_playing
+    ),
+    TopRated(
+        routeName = "top_rated",
+        titleTextResourceId = R.string.movie_list_type_top_rated
+    )
 }
-

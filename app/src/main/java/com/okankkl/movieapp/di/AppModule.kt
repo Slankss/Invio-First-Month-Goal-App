@@ -2,8 +2,8 @@ package com.okankkl.movieapp.di
 
 import android.content.Context
 import com.okankkl.movieapp.data.local.dataStore.AppPreference
-import com.okankkl.movieapp.data.local.room.database.MovieDao
-import com.okankkl.movieapp.data.local.room.database.MovieDatabase
+import com.okankkl.movieapp.data.local.room.MovieDao
+import com.okankkl.movieapp.data.local.room.MovieDatabase
 import com.okankkl.movieapp.data.remote.MovieApi
 import com.okankkl.movieapp.data.repository.MovieRepositoryImp
 import com.okankkl.movieapp.data.repository.PreferenceRepositoryImp
@@ -34,7 +34,8 @@ class AppModule
     }
     @Singleton
     @Provides
-    fun provideMovieDao(@ApplicationContext context : Context) : MovieDao {
+    fun provideMovieDao(@ApplicationContext context : Context) : MovieDao
+    {
         return MovieDatabase
             .getDatabase(context)
             .dao()

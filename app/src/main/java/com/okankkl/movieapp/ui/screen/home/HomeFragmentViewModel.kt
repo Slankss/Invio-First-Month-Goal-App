@@ -68,7 +68,9 @@ class HomeFragmentViewModel @Inject constructor(
     }
     
     suspend fun clearMoviesFromRoom(){
-        movieRepository.clearMovieListFromRoom()
+        try {
+            movieRepository.clearMovieListFromRoom()
+        } catch(_ : Exception){}
     }
     
     suspend fun addMoviesToRoom(){

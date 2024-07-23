@@ -86,6 +86,8 @@ class FavouritesFragment : Fragment()
                     }
                     is Result.Error -> {
                         binding.apply {
+                            favouritesAdapter.setData(emptyList())
+                            favouritesAdapter.notifyDataSetChanged()
                             loadingProgressBar.visibility = View.GONE
                             errorMessageTxt.text = it.message
                             errorMessageTxt.visibility = View.VISIBLE
@@ -106,4 +108,9 @@ class FavouritesFragment : Fragment()
         }
         .create()
         .show()
+    
+    private fun changeViewVisibility()
+    {
+    
+    }
 }

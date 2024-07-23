@@ -17,8 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity()
 {
     private val viewModel : MainActivityViewModel by viewModels()
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         val binding = ActivityMainBinding.inflate(layoutInflater)
@@ -40,6 +39,8 @@ class MainActivity : AppCompatActivity()
         navController.addOnDestinationChangedListener { _, destination, _ ->
             bottomNavigationView.visibility = when(destination.id){
                 R.id.splashFragment -> View.GONE
+                R.id.movieDetailFragment -> View.GONE
+                R.id.viewAllFragment -> View.GONE
                 else -> View.VISIBLE
             }
         }

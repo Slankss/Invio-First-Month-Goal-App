@@ -11,6 +11,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.okankkl.movieapp.databinding.FragmentViewAllBinding
 import com.okankkl.movieapp.ui.adapter.MovieListAdapter
+import com.okankkl.movieapp.util.Constants.MOVIE_TYPE_ARG
+import com.okankkl.movieapp.util.Constants.MOVIE_TYPE_STRING_ID_ARG
 import com.okankkl.movieapp.util.LayoutType
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -27,34 +29,39 @@ class ViewAllFragment : Fragment()
     private val viewModel: ViewAllFragmentViewModel by viewModels()
     private val scope = CoroutineScope(Dispatchers.Main)
     
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // get arguments
+        arguments?.let {
+            movieTypeRouteName = it.getString(MOVIE_TYPE_ARG)
+            movieTypeNameStringId = it.getInt(MOVIE_TYPE_STRING_ID_ARG)
+        }
+        // if movie type is not null then load movies
+        if(movieTypeRouteName != null){
+            viewModel.loadMovies(movieTypeRouteName!!)
+        }
+    }
+    
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View
-    {
+    ): View {
         _binding= FragmentViewAllBinding.inflate(inflater,container,false)
         val view = binding.root
         return view
     }
     
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
-    {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
         val state = viewModel.state
-        
-        arguments?.let {
-            movieTypeRouteName = it.getString("movieTypeRouteName")
-            movieTypeNameStringId = it.getInt("movieTypeNameStringId")
+        val navController = findNavController()
+        binding.backBtn.setOnClickListener {
+            navController.popBackStack()
         }
-        
+
         if(movieTypeNameStringId != 0){
             val text = getString(movieTypeNameStringId)
-            binding.movieTypeTxt.setText(text)
-        }
-        
-        if(movieTypeRouteName != null){
-            viewModel.loadMovies(movieTypeRouteName!!)
+            binding.movieTypeTxt.text = text
         }
         
         var lastMovieId = 0
@@ -62,7 +69,7 @@ class ViewAllFragment : Fragment()
             layoutType = LayoutType.Grid,
             onPosterClick = { movieId ->
                 val action = ViewAllFragmentDirections.actionViewAllFragmentToMovieDetailFragment(movieId)
-                findNavController().navigate(action)
+                navController.navigate(action)
             },
             onLoad = { id ->
                 movieTypeRouteName?.let {
@@ -87,8 +94,7 @@ class ViewAllFragment : Fragment()
         }
     }
     
-    override fun onDestroy()
-    {
+    override fun onDestroy() {
         _binding = null
         super.onDestroy()
     }

@@ -21,9 +21,9 @@ class ViewAllFragmentViewModel @Inject constructor(
 {
     private var _state = MutableStateFlow<List<Movie>>(emptyList())
     var state = _state.asStateFlow()
-    var currentPage = 1
-    var totalPage = 0
-    var moviePageSize = 20
+    var currentPage = 1 // pagination starts 1
+    var totalPage = 0 // get first page data and set totalPage
+    var moviePageSize = 20 // get each page data size and set moviePageSize
     
     fun loadMovies(movieListTypeRouteName : String){
         viewModelScope.launch(Dispatchers.IO) {

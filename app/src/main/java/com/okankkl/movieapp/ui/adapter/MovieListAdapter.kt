@@ -37,22 +37,9 @@ class MovieListAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int)
     {
         val movie = movieList[position]
-        // get moviePosterCardView margin params to change items attributes
-        val moviePosterParams = holder.moviePosterCardView.layoutParams as MarginLayoutParams
-       
-        // change items attributes for different layout types
-        if(layoutType == LayoutType.Grid){
-            moviePosterParams.marginStart = dpToPx(5)
-            moviePosterParams.topMargin = dpToPx(5)
-            moviePosterParams.bottomMargin = dpToPx(5)
-            moviePosterParams.marginEnd= dpToPx(5)
-        } else {
-            when(position){
-                0 -> moviePosterParams.marginStart= dpToPx(20)
-                movieList.size -1 -> moviePosterParams.marginEnd= dpToPx(20)
-                else -> moviePosterParams.marginStart= dpToPx(10)
-            }
-        }
+     
+        changeMarginAttributes(holder,position)
+        
         // if poster path is empty, use backdrop path
         val movieImage = when(movie.posterPath.isNotEmpty()){
             true -> movie.posterPath
@@ -82,6 +69,25 @@ class MovieListAdapter(
     }
     fun setMovieList(movies: List<Movie>){
         movieList = movies
+    }
+    
+    private fun changeMarginAttributes(holder: ViewHolder, position: Int){
+        // get moviePosterCardView margin params to change items attributes
+        val moviePosterParams = holder.moviePosterCardView.layoutParams as MarginLayoutParams
+        
+        // change items attributes for different layout types
+        if(layoutType == LayoutType.Grid){
+            moviePosterParams.marginStart = dpToPx(5)
+            moviePosterParams.topMargin = dpToPx(5)
+            moviePosterParams.bottomMargin = dpToPx(5)
+            moviePosterParams.marginEnd= dpToPx(5)
+        } else {
+            when(position){
+                0 -> moviePosterParams.marginStart= dpToPx(20)
+                movieList.size -1 -> moviePosterParams.marginEnd= dpToPx(20)
+                else -> moviePosterParams.marginStart= dpToPx(10)
+            }
+        }
     }
     
     private fun dpToPx(dp: Int) : Int {

@@ -14,7 +14,6 @@
     <item
         android:id="@+id/favouritesFragment"
         android:title="@string/favourites_screen_title"
-        android:icon="@drawable/ic_profile"
+        android:icon="@drawable/ic_fav_unselected"
         />
-
 </menu>

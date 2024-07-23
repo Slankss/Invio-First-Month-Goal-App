@@ -62,6 +62,8 @@ class HomeFragment : Fragment()
                 navigateMovieDetail(navController,movieId)
             }
         )
+        // Create layout managers for each recycler view
+        // And set adapter to each recycler view
         binding.apply {
             popularMoviesRecyclerView.layoutManager = LinearLayoutManager(view.context,LinearLayoutManager.HORIZONTAL,false)
             nowPlayingMoviesRecyclerView.layoutManager = LinearLayoutManager(view.context,LinearLayoutManager.HORIZONTAL,false)
@@ -73,6 +75,7 @@ class HomeFragment : Fragment()
             upComingMoviesRecyclerView.adapter = upComingMoviesAdapter
             topRatedMoviesRecyclerView.adapter = topRatedMoviesAdapter
             
+            // Navigate view all page
             viewAllPopularMoviesTxt.setOnClickListener {
                 navigateViewAll(navController,MovieListType.Popular)
             }
@@ -87,6 +90,7 @@ class HomeFragment : Fragment()
             }
         }
         
+        // observe state
         scope.launch(Dispatchers.Main) {
             state.collect { movieListState ->
               when(movieListState){
@@ -129,6 +133,9 @@ class HomeFragment : Fragment()
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+        scope.launch(Dispatchers.IO) {
+            viewModel.clearMoviesFromRoom()
+        }
     }
     
     private fun fillAdapter(movieList: List<Movie>, adapter: MovieListAdapter, movieListType: MovieListType){
@@ -144,7 +151,7 @@ class HomeFragment : Fragment()
     
     private fun navigateViewAll(navController: NavController,movieListType: MovieListType){
         val action = HomeFragmentDirections.actionHomeFragmentToViewAllFragment(movieListType.routeName,
-            movieListType.titleTextId)
+            movieListType.titleTextResourceId)
         navController.navigate(action)
     }
     

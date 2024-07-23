@@ -14,7 +14,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.okankkl.movieapp.R
 import com.okankkl.movieapp.databinding.ShareMovieBottomSheetDialogBinding
-import com.okankkl.movieapp.util.OtherApplication
 
 class ShareBottomSheetDialog(val movieTrailerUrl : String) : BottomSheetDialogFragment()
 {

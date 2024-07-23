@@ -39,7 +39,7 @@ class FavouritesFragmentViewModel @Inject constructor(
     }
     
     fun deleteFavourite(movieId: Int){
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO){
             movieRepository.deleteFavourite(movieId)
             getFavouritesList()
         }

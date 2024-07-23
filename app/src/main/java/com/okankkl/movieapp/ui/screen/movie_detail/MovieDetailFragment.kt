@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.okankkl.movieapp.R
@@ -33,6 +34,18 @@ class MovieDetailFragment : Fragment()
     private val viewModel : MovieDetailFragmentViewModel by viewModels()
     private val scope = CoroutineScope(Dispatchers.Main)
     
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // When fragment created then get movie details if movieId is not wrong
+        arguments?.let {
+            movieId = it.getInt(Constants.MOVIE_ID_ARG)
+            if(movieId != -1){
+                viewModel.getMovieDetail(movieId!!)
+                viewModel.getSimilarMovies(movieId!!)
+            }
+        }
+    }
+    
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -46,15 +59,13 @@ class MovieDetailFragment : Fragment()
     {
         super.onViewCreated(view, savedInstanceState)
         val state = viewModel.state
+        val navController = findNavController()
         
-        arguments?.let {
-            movieId = it.getInt(Constants.HOME_DETAIL_MOVIE_ID_ARG)
-            if(movieId != -1){
-                viewModel.getMovieDetail(movieId!!)
-                viewModel.getSimilarMovies(movieId!!)
-            }
+        binding.backBtn.setOnClickListener {
+            navController.popBackStack(R.id.homeFragment,false)
         }
         
+        // Observe state
         scope.launch {
             state.collect{ movieDetailState ->
                 when(movieDetailState){
@@ -100,6 +111,7 @@ class MovieDetailFragment : Fragment()
     
     private fun fillData(movie: Movie){
         binding.apply {
+            // fill data to the FlexBoxLayout
             movie.genres.forEach { genre ->
                 val genreTextView = TextView(context)
                 genreTextView.text = genre.name
@@ -115,10 +127,12 @@ class MovieDetailFragment : Fragment()
             val runtimeString = "$hours ${getString(R.string.hour)} $minutes ${getString(R.string.minute)}"
             movieRuntimeTxt.text = runtimeString
             
+            // If trailer video key(youtube video key) is not null load trailer video
             val trailerVideoKey = movie.getTrailerVideoKey()
             if(trailerVideoKey != null){
                 loadMovieTrailer(trailerVideoKey)
             }
+            // If movie is already in favourites then set favourite checkbox to checked
             favouriteCheckbox.isChecked = movie.isMovieInFavourite
             favouriteCheckbox.setOnCheckedChangeListener { _, isChecked ->
                 if(isChecked){
