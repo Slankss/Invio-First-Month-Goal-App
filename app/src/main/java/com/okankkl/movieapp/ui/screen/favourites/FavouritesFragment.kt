@@ -26,15 +26,6 @@ class FavouritesFragment : Fragment()
     private val viewModel: FavouritesFragmentViewModel by viewModels()
     private val scope = CoroutineScope(Dispatchers.Main)
     
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
-        super.onCreate(savedInstanceState)
-        // When fragment created then get favourites list
-        scope.launch {
-            viewModel.getFavouritesList()
-        }
-    }
-    
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -44,8 +35,7 @@ class FavouritesFragment : Fragment()
         return view
     }
     
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
-    {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val navController = findNavController()
         val state = viewModel.state
@@ -79,17 +69,17 @@ class FavouritesFragment : Fragment()
                         favouritesAdapter.notifyDataSetChanged()
                     }
                     is Result.Initial -> {
-                        binding.apply {
-                            if(it.isLoading){
+                        if(it.isLoading){
+                            binding.apply {
                                 loadingProgressBar.visibility = View.VISIBLE
                                 errorMessageTxt.visibility = View.GONE
                             }
                         }
                     }
                     is Result.Error -> {
+                        favouritesAdapter.setData(emptyList())
+                        favouritesAdapter.notifyDataSetChanged()
                         binding.apply {
-                            favouritesAdapter.setData(emptyList())
-                            favouritesAdapter.notifyDataSetChanged()
                             loadingProgressBar.visibility = View.GONE
                             errorMessageTxt.text = it.message
                             errorMessageTxt.visibility = View.VISIBLE
@@ -99,7 +89,6 @@ class FavouritesFragment : Fragment()
             }
         }
     }
-    
     
    private fun alertDialog(onPositiveButtonClick:()-> Unit) = AlertDialog.Builder(requireContext())
         .setMessage(getString(R.string.delete_alert_dialog_title))
@@ -112,8 +101,13 @@ class FavouritesFragment : Fragment()
         .create()
         .show()
     
-    private fun changeViewVisibility()
-    {
+    override fun onPause() {
+        super.onPause()
+        viewModel.clearState()
+    }
     
+    override fun onResume() {
+        super.onResume()
+        viewModel.getFavouritesList()
     }
 }

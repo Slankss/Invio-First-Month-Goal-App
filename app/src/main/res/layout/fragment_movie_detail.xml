@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@color/movie_detail_icons_color"
+        android:background="@color/top_bar_bg_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -34,6 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginHorizontal="10dp"
+            android:textColor="@color/white"
             android:text="Lord of the rings"
             app:layout_constraintStart_toEndOf="@+id/backBtn"
             app:layout_constraintBottom_toBottomOf="parent"

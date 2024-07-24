@@ -19,7 +19,7 @@
         <EditText
             android:id="@+id/movieSearchEditText"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginEnd="10dp"
             android:background="@drawable/outlined_edit_text"
             android:hint="@string/search_movie_hint"
@@ -27,12 +27,15 @@
             android:singleLine="true"
             app:layout_constraintEnd_toStartOf="@id/movieSearchBtn"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
 
         <ImageButton
             android:id="@+id/movieSearchBtn"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:padding="10dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/circle_button_background"
             android:backgroundTint="@color/share_bottom_sheet_dialog_bg_color"
             android:src="@drawable/ic_search"

@@ -14,7 +14,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/share_bottom_sheet_dialog_bg_color"
+        android:background="@color/top_bar_bg_color"
         android:padding="15dp">
         <TextView
             android:id="@+id/favouritesCheckbox"
@@ -24,6 +24,7 @@
             android:layout_gravity="center"
             android:checked="true"
             android:textSize="24sp"
+            android:textColor="@color/white"
             style="@style/Theme.MovieApp.HeaderTextView"
             android:layout_marginStart="20dp" />
     </FrameLayout>

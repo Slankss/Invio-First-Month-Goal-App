@@ -25,37 +25,30 @@ class MovieDetailFragmentViewModel @Inject constructor(
     private var _similarMovies = MutableStateFlow<List<Movie>>(emptyList())
     var similarMovies = _similarMovies.asStateFlow()
     
-    fun getMovieDetail(movieId: Int){
-        viewModelScope.launch(Dispatchers.IO) {
-            _state.update { Result.Initial(isLoading = true) }
-            try{
-                val data = movieRepository.getMovieDetail(movieId)
-                data.isMovieInFavourite = movieRepository.isMovieInFavourites(movieId)
-                _state.update { Result.Success(data) }
-            } catch(e: Exception){
-                _state.update { Result.Error(message = e.localizedMessage ?: "Unknown Error!") }
-            }
+    fun getMovieDetail(movieId: Int) = viewModelScope.launch(Dispatchers.IO) {
+        _state.update { Result.Initial(isLoading = true) }
+        try{
+            val data = movieRepository.getMovieDetail(movieId)
+            data.isMovieInFavourite = movieRepository.isMovieInFavourites(movieId)
+            _state.update { Result.Success(data) }
+        } catch(e: Exception){
+            _state.update { Result.Error(message = e.localizedMessage ?: "Unknown Error!") }
         }
     }
     
-    fun getSimilarMovies(movieId: Int){
-        viewModelScope.launch(Dispatchers.IO) {
-            try {
-                _similarMovies.update { movieRepository.getSimilarMovies(movieId) }
-            } catch(_ : Exception){}
-        }
+    fun getSimilarMovies(movieId: Int) = viewModelScope.launch(Dispatchers.IO) {
+        try {
+            _similarMovies.update { movieRepository.getSimilarMovies(movieId) }
+        } catch(_ : Exception){}
     }
     
-    fun addFavorite(movieId: Int,title: String,posterPath:String,backdropPath: String){
+    fun addFavorite(movieId: Int,title: String,posterPath:String,backdropPath: String
+    ) = viewModelScope.launch(Dispatchers.IO) {
         val favourite = FavouriteEntity(movieId,backdropPath,posterPath,title)
-        viewModelScope.launch(Dispatchers.IO) {
-            movieRepository.addFavourite(favourite)
-        }
+        movieRepository.addFavourite(favourite)
     }
-    fun deleteFavourite(movieId: Int){
-        viewModelScope.launch(Dispatchers.IO) {
-            movieRepository.deleteFavourite(movieId)
-        }
+    fun deleteFavourite(movieId: Int) = viewModelScope.launch(Dispatchers.IO) {
+        movieRepository.deleteFavourite(movieId)
     }
     fun clearState() {
         _state.update { Result.Initial() }

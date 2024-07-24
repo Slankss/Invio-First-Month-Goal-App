@@ -5,12 +5,13 @@
     android:layout_height="match_parent"
     android:paddingTop="20dp"
     android:orientation="vertical"
-    android:background="@color/add_watch_list_button_bg_color"
+    android:background="@color/share_bottom_sheet_dialog_bg_color"
     style="@style/Theme.MovieApp.ShareBottomSheetDialogStyle">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:textColor="@color/white"
         style="@style/Theme.MovieApp.HeaderTextView"
         android:text="@string/share_modal_sheet_dialog_header" />
     <HorizontalScrollView

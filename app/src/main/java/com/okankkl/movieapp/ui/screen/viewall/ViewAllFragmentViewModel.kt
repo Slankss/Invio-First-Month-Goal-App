@@ -25,29 +25,29 @@ class ViewAllFragmentViewModel @Inject constructor(
     var totalPage = 0 // get first page data and set totalPage
     var moviePageSize = 20 // get each page data size and set moviePageSize
     
-    fun loadMovies(movieListTypeRouteName : String){
-        viewModelScope.launch(Dispatchers.IO) {
-            try
-            {
-                if(currentPage == 1){
-                    val data = movieRepository.loadMovies(movieListTypeRouteName,currentPage)
-                    val movies = data.results
-                        .map { it.toMovie() }
-                        .filter { it.backdropPath.isNotEmpty() || it.posterPath.isNotEmpty() }
-                    moviePageSize = movies.size
-                    totalPage = data.total_pages
-                    _state.update { movies }
-                    
-                }
-                else if(currentPage < totalPage){
-                    val movies = movieRepository.loadMovies(movieListTypeRouteName,currentPage).results
-                        .map { it.toMovie() }
-                        .filter { it.posterPath.isNotEmpty() || it.backdropPath.isNotEmpty() }
-                    moviePageSize = movies.size
-                    _state.update { _state.value + movies }
-                }
-                currentPage++
-            } catch(_ : Exception){}
-        }
+    fun loadMovies(movieListTypeRouteName : String) = viewModelScope.launch(Dispatchers.IO) {
+        try {
+            if(currentPage == 1){
+                val data = movieRepository.loadMovies(movieListTypeRouteName,currentPage)
+                val movies = data.results
+                    .map { it.toMovie() }
+                    .filter { it.backdropPath.isNotEmpty() || it.posterPath.isNotEmpty() }
+                moviePageSize = movies.size
+                totalPage = data.total_pages
+                _state.update { movies }
+            }
+            else if(currentPage < totalPage){
+                val movies = movieRepository.loadMovies(movieListTypeRouteName,currentPage).results
+                    .map { it.toMovie() }
+                    .filter { it.posterPath.isNotEmpty() || it.backdropPath.isNotEmpty() }
+                moviePageSize = movies.size
+                _state.update { _state.value + movies }
+            }
+            currentPage++
+        } catch(_ : Exception){}
+    }
+    
+    fun clearState(){
+        _state.update { emptyList() }
     }
 }

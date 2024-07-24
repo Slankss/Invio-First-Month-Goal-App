@@ -47,5 +47,11 @@
     <style name="Theme.MovieApp.FavouritesCardStyle">
         <item name="background">@color/favourites_card_bg_color</item>
     </style>
+    <style name="Theme.MovieApp.FavouritesCardHeaderStyle">
+        <item name="color">@color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="fontFamily">@font/inter_bold</item>
+    </style>
 
 </resources>

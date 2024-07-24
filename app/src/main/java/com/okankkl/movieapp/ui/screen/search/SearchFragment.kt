@@ -16,8 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class SearchFragment : Fragment()
-{
+class SearchFragment : Fragment() {
     private var _binding : FragmentSearchBinding? = null
     val binding get() = _binding!!
     private val viewModel : SearchFragmentViewModel by viewModels()
@@ -26,19 +25,17 @@ class SearchFragment : Fragment()
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View
-    {
+    ): View {
         _binding = FragmentSearchBinding.inflate(inflater,container,false)
         val view = binding.root
         return view
     }
     
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
-    {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
         val state = viewModel.state
         var searchQuery  = ""
+        
         var lastMovieId = 0
         val adapter = MovieListAdapter(
             layoutType = LayoutType.Grid,
@@ -47,8 +44,9 @@ class SearchFragment : Fragment()
                 findNavController().navigate(action)
             },
             onLoad = { id ->
-                viewModel.loadMovies(searchQuery)
+                // if total page size is not end,load more movies about search query
                 lastMovieId = id
+                viewModel.searchMovies(searchQuery)
             }
         )
         val recyclerView = binding.searchingMoviesRecyclerview
@@ -59,7 +57,8 @@ class SearchFragment : Fragment()
         binding.movieSearchBtn.setOnClickListener{
             searchQuery = binding.movieSearchEditText.text.toString()
             if(searchQuery.isNotEmpty()){
-                lastMovieId = 0
+                // User search new movie, so set current page to 1
+                viewModel.setCurrentPage(1)
                 viewModel.searchMovies(searchQuery)
                 binding.movieSearchEditText.setText("")
             }
@@ -68,13 +67,12 @@ class SearchFragment : Fragment()
         scope.launch {
             state.collect { movies ->
                 adapter.setMovieList(movies)
-                adapter.notifyDataSetChanged()
+                adapter.notifyItemRangeChanged(lastMovieId,viewModel.moviePageSize)
             }
         }
     }
     
-    override fun onDestroy()
-    {
+    override fun onDestroy() {
         _binding = null
         super.onDestroy()
     }

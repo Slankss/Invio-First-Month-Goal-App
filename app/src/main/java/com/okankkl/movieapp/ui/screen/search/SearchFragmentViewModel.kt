@@ -19,40 +19,24 @@ class SearchFragmentViewModel @Inject constructor(
 {
     private var _state = MutableStateFlow<List<Movie>>(emptyList())
     val state = _state.asStateFlow()
-    var currentPage = 1
-    var totalPage = 0
+    private var currentPage = 1
+    private var totalPage = 0
     var moviePageSize = 20
     
-    fun searchMovies(searchQuery: String){
-        viewModelScope.launch(Dispatchers.IO) {
-            try
-            {
-                val data = movieRepository.searchMovies(searchQuery,1)
-                val movies = data.results
-                    .map { it.toMovie() }
-                    .filter { it.posterPath.isNotEmpty() || it.backdropPath.isNotEmpty() }
-                totalPage = data.total_pages
-                moviePageSize = movies.size
-                _state.update { movies }
-                currentPage++
-            } catch(_ : Exception){}
-            
-        }
+    fun searchMovies(searchQuery: String) = viewModelScope.launch(Dispatchers.IO) {
+        try {
+            val data = movieRepository.searchMovies(searchQuery,currentPage)
+            val movies = data.results
+                .map { it.toMovie() }
+                .filter { it.posterPath.isNotEmpty() || it.backdropPath.isNotEmpty() }
+            totalPage = data.total_pages
+            moviePageSize = movies.size
+            _state.update { movies }
+            currentPage++
+        } catch(_ : Exception){}
     }
-    fun loadMovies(searchQuery: String){
-        viewModelScope.launch(Dispatchers.IO) {
-            try
-            {
-                if(currentPage < totalPage){
-                    val data = movieRepository.searchMovies(searchQuery,currentPage)
-                    val movies = data.results
-                        .map { it.toMovie() }
-                        .filter { it.posterPath.isNotEmpty() || it.backdropPath.isNotEmpty() }
-                    moviePageSize = movies.size
-                    _state.update { _state.value + movies }
-                    currentPage++
-                }
-            } catch(_ : Exception){}
-        }
+    
+    fun setCurrentPage(pageNumber: Int){
+        currentPage = pageNumber
     }
 }

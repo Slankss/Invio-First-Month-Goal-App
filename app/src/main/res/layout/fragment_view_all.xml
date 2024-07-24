@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@color/movie_detail_icons_color"
+        android:background="@color/top_bar_bg_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -28,6 +28,7 @@
             style="@style/Theme.MovieApp.HeaderTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:paddingStart="20dp"
             android:layout_gravity="center"
             android:text="Popular"/>

@@ -61,7 +61,7 @@ class MovieDetailFragment : Fragment()
         val navController = findNavController()
         
         binding.backBtn.setOnClickListener {
-            navController.popBackStack(R.id.homeFragment,false)
+            navController.popBackStack()
         }
         
         // Observe state

@@ -36,10 +36,6 @@ class ViewAllFragment : Fragment()
             movieTypeRouteName = it.getString(MOVIE_TYPE_ARG)
             movieTypeNameStringId = it.getInt(MOVIE_TYPE_STRING_ID_ARG)
         }
-        // if movie type is not null then load movies
-        if(movieTypeRouteName != null){
-            viewModel.loadMovies(movieTypeRouteName!!)
-        }
     }
     
     override fun onCreateView(
@@ -91,6 +87,21 @@ class ViewAllFragment : Fragment()
                     adapter.notifyItemRangeChanged(lastMovieId,viewModel.moviePageSize)
                 }
             }
+        }
+    }
+    
+    override fun onPause()
+    {
+        super.onPause()
+        viewModel.clearState()
+    }
+    
+    override fun onResume()
+    {
+        super.onResume()
+        // if movie type is not null then load movies
+        if(movieTypeRouteName != null){
+            viewModel.loadMovies(movieTypeRouteName!!)
         }
     }
     

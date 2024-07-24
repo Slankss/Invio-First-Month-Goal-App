@@ -10,6 +10,7 @@
     app:cardCornerRadius="14dp"
     android:elevation="@dimen/cardview_default_elevation"
     style="@style/Theme.MovieApp.FavouritesCardStyle"
+    android:backgroundTint="@color/favourites_card_bg_color_dark"
     android:id="@+id/favouritesCardView">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -27,7 +28,7 @@
 
         <TextView
             android:id="@+id/movieTitleTxt"
-            style="@style/Theme.MovieApp.HeaderTextView"
+            style="@style/Theme.MovieApp.FavouritesCardHeaderStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Lord of The Rings : The Return of The King"
