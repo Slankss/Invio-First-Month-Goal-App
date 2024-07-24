@@ -1,6 +1,7 @@
 package com.okankkl.movieapp.ui.screen.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.okankkl.movieapp.domain.model.Category
 import com.okankkl.movieapp.domain.model.Movie
 import com.okankkl.movieapp.domain.repository.MovieRepository
 import com.okankkl.movieapp.domain.repository.PreferenceRepository
@@ -23,7 +24,7 @@ class HomeFragmentViewModel @Inject constructor(
         private val preferenceRepository: PreferenceRepository
 ) : ViewModel()
 {
-    private var _state = MutableStateFlow<Result<List<Movie>>>(Result.Initial())
+    private var _state = MutableStateFlow<Result<List<Category>>>(Result.Initial())
     var state = _state.asStateFlow()
     
     fun loadMovies() = viewModelScope.launch{
@@ -37,26 +38,32 @@ class HomeFragmentViewModel @Inject constructor(
             if(updateTimeStr.isNullOrEmpty()){
                 // First time application is started
                 // get data from api
+                val movieList = getMoviesFromApi()
+                val categoryList = convertMovieListToCategoryList(movieList.await())
+                _state.update { Result.Success(categoryList.await()) }
+                
                 // then add data to room database
-                val movies = getMoviesFromApi()
-                _state.update { Result.Success(movies.await()) }
                 movieRepository.clearMovieListFromRoom()
-                movieRepository.addMovieListToRoom(movies.await())
+                movieRepository.addMovieListToRoom(movieList.await())
                 preferenceRepository.saveMovieUpdateTime(currentDate.toString())
             } else {
                 val updateTime = LocalDateTime.parse(updateTimeStr)
                 val difference = updateTime.until(currentDate, ChronoUnit.MINUTES)
                 if(difference >= 10){
                     // The difference is more than 10 minutes then get data from api
+                    val movieList = getMoviesFromApi()
+                    val categoryList = convertMovieListToCategoryList(movieList.await())
+                    _state.update { Result.Success(categoryList.await()) }
+                    
                     // then clear room database and add data to room database
-                    val movies = getMoviesFromApi()
-                    _state.update { Result.Success(movies.await()) }
-                    //movieRepository.clearMovieListFromRoom()
-                    //movieRepository.addMovieListToRoom(movies.await())
+                    movieRepository.clearMovieListFromRoom()
+                    movieRepository.addMovieListToRoom(movieList.await())
                     preferenceRepository.saveMovieUpdateTime(currentDate.toString())
                 } else {
                     // The difference is less than 10 minutes then get data from room database
-                    _state.update { Result.Success(getMoviesFromRoom().await()) }
+                    val movieList = getMoviesFromRoom()
+                    val categoryList = convertMovieListToCategoryList(movieList.await())
+                    _state.update { Result.Success(categoryList.await()) }
                 }
             }
         } catch(e : Exception){
@@ -81,5 +88,22 @@ class HomeFragmentViewModel @Inject constructor(
     
     fun clearState(){
         _state.update { Result.Initial() }
+    }
+    
+    private fun convertMovieListToCategoryList(movieList: List<Movie>) : Deferred<List<Category>>
+        = viewModelScope.async{
+        val popularMovies = movieList.filter { it.movieListType?.routeName == MovieListType.Popular.routeName}
+        val nowPlayingMovies = movieList.filter { it.movieListType?.routeName == MovieListType.NowPlaying.routeName}
+        val upcomingMovies = movieList.filter { it.movieListType?.routeName == MovieListType.Upcoming.routeName}
+        val topRatedMovies = movieList.filter { it.movieListType?.routeName == MovieListType.TopRated.routeName}
+        
+        val categoryList = listOf(
+            Category(MovieListType.Popular,popularMovies),
+            Category(MovieListType.NowPlaying,nowPlayingMovies),
+            Category(MovieListType.Upcoming,upcomingMovies),
+            Category(MovieListType.TopRated,topRatedMovies)
+        )
+        
+        return@async categoryList
     }
 }

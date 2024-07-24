@@ -31,7 +31,14 @@ class SearchFragmentViewModel @Inject constructor(
                 .filter { it.posterPath.isNotEmpty() || it.backdropPath.isNotEmpty() }
             totalPage = data.total_pages
             moviePageSize = movies.size
-            _state.update { movies }
+            if(currentPage < totalPage){
+                _state.update {
+                    when(currentPage){
+                        1 -> movies
+                        else -> _state.value + movies
+                    }
+                }
+            }
             currentPage++
         } catch(_ : Exception){}
     }

@@ -4,10 +4,10 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-07-22T13:14:11.875374Z">
+        <DropdownSelection timestamp="2024-07-24T17:32:51.784953Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="PhysicalDevice" identifier="serial=R5CT8372M1V" />
+              <DeviceId pluginId="LocalEmulator" identifier="path=/Users/okankukul/.android/avd/Telefun.avd" />
             </handle>
           </Target>
         </DropdownSelection>

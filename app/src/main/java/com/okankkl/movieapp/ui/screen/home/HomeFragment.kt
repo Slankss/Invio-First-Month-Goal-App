@@ -10,12 +10,15 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.okankkl.movieapp.databinding.FragmentHomeBinding
+import com.okankkl.movieapp.domain.model.Category
 import com.okankkl.movieapp.domain.model.Movie
+import com.okankkl.movieapp.ui.adapter.CategoryAdapter
 import com.okankkl.movieapp.ui.adapter.MovieListAdapter
 import com.okankkl.movieapp.util.MovieListType
 import com.okankkl.movieapp.util.Result
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -42,78 +45,49 @@ class HomeFragment : Fragment()
         val state = viewModel.state
         
         val navController = findNavController()
-        val popularMoviesAdapter = MovieListAdapter(
+        val categoryAdapter = CategoryAdapter(
             onPosterClick = { movieId ->
-                navigateMovieDetail(navController,movieId)
+                val action = HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment(movieId)
+                navController.navigate(action)
+            },
+            onViewAllClick = { movieListType ->
+                val action = HomeFragmentDirections.actionHomeFragmentToViewAllFragment(movieListType.routeName,
+                    movieListType.titleTextResourceId)
+                navController.navigate(action)
             }
         )
-        val nowPlayingMoviesAdapter = MovieListAdapter(
-            onPosterClick = { movieId ->
-                navigateMovieDetail(navController,movieId)
-            }
-        )
-        val upComingMoviesAdapter = MovieListAdapter(
-            onPosterClick = { movieId ->
-                navigateMovieDetail(navController,movieId)
-            }
-        )
-        val topRatedMoviesAdapter = MovieListAdapter(
-            onPosterClick = { movieId ->
-                navigateMovieDetail(navController,movieId)
-            }
-        )
-        // Create layout managers for each recycler view
-        // And set adapter to each recycler view
-        binding.apply {
-            popularMoviesRecyclerView.layoutManager = LinearLayoutManager(view.context,LinearLayoutManager.HORIZONTAL,false)
-            nowPlayingMoviesRecyclerView.layoutManager = LinearLayoutManager(view.context,LinearLayoutManager.HORIZONTAL,false)
-            upComingMoviesRecyclerView.layoutManager =  LinearLayoutManager(view.context,LinearLayoutManager.HORIZONTAL,false)
-            topRatedMoviesRecyclerView.layoutManager =  LinearLayoutManager(view.context,LinearLayoutManager.HORIZONTAL,false)
-            
-            popularMoviesRecyclerView.adapter = popularMoviesAdapter
-            nowPlayingMoviesRecyclerView.adapter = nowPlayingMoviesAdapter
-            upComingMoviesRecyclerView.adapter = upComingMoviesAdapter
-            topRatedMoviesRecyclerView.adapter = topRatedMoviesAdapter
-            
-            // Navigate view all page
-            viewAllPopularMoviesTxt.setOnClickListener {
-                navigateViewAll(navController,MovieListType.Popular)
-            }
-            viewAllNowPlayingMoviesTxt.setOnClickListener {
-                navigateViewAll(navController,MovieListType.NowPlaying)
-            }
-            viewAllUpComingMoviesTxt.setOnClickListener {
-                navigateViewAll(navController,MovieListType.Upcoming)
-            }
-            viewAllTopRatedMoviesTxt.setOnClickListener {
-                navigateViewAll(navController,MovieListType.TopRated)
-            }
-        }
+        binding.categoryRecyclerView.layoutManager = LinearLayoutManager(view.context,LinearLayoutManager.VERTICAL,false)
+        binding.categoryRecyclerView.adapter = categoryAdapter
         
         // observe state
         scope.launch(Dispatchers.Main) {
             state.collect { movieListState ->
-              when(movieListState){
-                  is Result.Success -> {
-                      binding.loadingProgressBar.visibility = View.GONE
-                      binding.errorMessageTxt.visibility = View.GONE
-                      fillAdapter(movieListState.data,popularMoviesAdapter,MovieListType.Popular)
-                      fillAdapter(movieListState.data,nowPlayingMoviesAdapter,MovieListType.NowPlaying)
-                      fillAdapter(movieListState.data,topRatedMoviesAdapter,MovieListType.TopRated)
-                      fillAdapter(movieListState.data,upComingMoviesAdapter,MovieListType.Upcoming)
-                  }
-                  is Result.Initial -> {
-                      if(movieListState.isLoading){
-                          binding.loadingProgressBar.visibility = View.VISIBLE
-                          binding.errorMessageTxt.visibility = View.GONE
-                      }
-                  }
-                  is Result.Error -> {
-                      binding.loadingProgressBar.visibility = View.GONE
-                      binding.errorMessageTxt.text = movieListState.message
-                      binding.errorMessageTxt.visibility = View.VISIBLE
-                  }
-              }
+                changeViewVisibility(categoryAdapter,movieListState)
+            }
+        }
+    }
+    
+    private fun changeViewVisibility(categoryAdapter: CategoryAdapter,result: Result<List<Category>>){
+        binding.apply {
+            when(result){
+                is Result.Success -> {
+                    categoryAdapter.setData(result.data)
+                    categoryAdapter.notifyItemRangeChanged(0,result.data.size)
+                    
+                    binding.loadingProgressBar.visibility = View.GONE
+                    binding.errorMessageTxt.visibility = View.GONE
+                }
+                is Result.Initial -> {
+                    if(result.isLoading){
+                        binding.loadingProgressBar.visibility = View.VISIBLE
+                        binding.errorMessageTxt.visibility = View.GONE
+                    }
+                }
+                is Result.Error -> {
+                    loadingProgressBar.visibility = View.GONE
+                    errorMessageTxt.text = result.message
+                    errorMessageTxt.visibility = View.VISIBLE
+                }
             }
         }
     }
@@ -132,22 +106,5 @@ class HomeFragment : Fragment()
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-    }
-    
-    private fun fillAdapter(movieList: List<Movie>, adapter: MovieListAdapter, movieListType: MovieListType){
-        val filteredMovies = movieList.filter { it.movieListType == movieListType }
-        adapter.setMovieList(filteredMovies)
-        adapter.notifyItemRangeChanged(0,filteredMovies.size)
-    }
-    
-    private fun navigateMovieDetail(navController: NavController,movieId: Int){
-        val action = HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment(movieId)
-        navController.navigate(action)
-    }
-    
-    private fun navigateViewAll(navController: NavController,movieListType: MovieListType){
-        val action = HomeFragmentDirections.actionHomeFragmentToViewAllFragment(movieListType.routeName,
-            movieListType.titleTextResourceId)
-        navController.navigate(action)
     }
 }

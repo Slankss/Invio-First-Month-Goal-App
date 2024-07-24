@@ -64,6 +64,7 @@ class ShareBottomSheetDialog(val movieTrailerUrl : String) : BottomSheetDialogFr
             val intent = Intent(Intent.ACTION_SEND)
             intent.putExtra(Intent.EXTRA_TEXT, movieTrailerUrl)
             intent.setType("text/plain")
+            startActivity(intent)
         }
         binding.copyLinkBtn.setOnClickListener {
             context?.let {

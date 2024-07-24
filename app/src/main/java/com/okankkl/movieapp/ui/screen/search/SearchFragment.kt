@@ -58,6 +58,7 @@ class SearchFragment : Fragment() {
             searchQuery = binding.movieSearchEditText.text.toString()
             if(searchQuery.isNotEmpty()){
                 // User search new movie, so set current page to 1
+                lastMovieId = 0
                 viewModel.setCurrentPage(1)
                 viewModel.searchMovies(searchQuery)
                 binding.movieSearchEditText.setText("")

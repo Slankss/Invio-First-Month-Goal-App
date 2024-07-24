@@ -1,10 +1,8 @@
 package com.okankkl.movieapp.domain.model
 
-import android.util.Log
 import com.okankkl.movieapp.data.remote.dto.Genre
 import com.okankkl.movieapp.data.remote.dto.Video
 import com.okankkl.movieapp.data.remote.dto.Videos
-import com.okankkl.movieapp.util.Constants
 import com.okankkl.movieapp.util.MovieListType
 import java.util.Locale
 
