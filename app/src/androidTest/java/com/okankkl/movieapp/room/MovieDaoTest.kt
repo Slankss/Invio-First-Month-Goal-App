@@ -1,66 +1,88 @@
 package com.okankkl.movieapp.room
 
-import android.content.Context
-import android.text.TextUtils
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.filters.SmallTest
 import com.okankkl.movieapp.data.local.room.MovieDao
 import com.okankkl.movieapp.data.local.room.MovieDatabase
 import com.okankkl.movieapp.data.local.room.entity.FavouriteEntity
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.cancelAndJoin
-import kotlinx.coroutines.launch
+import com.okankkl.movieapp.data.local.room.entity.MovieEntity
+import com.okankkl.movieapp.domain.model.Movie
+import com.okankkl.movieapp.util.MovieListType
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import kotlin.jvm.Throws
 import org.hamcrest.MatcherAssert.assertThat
-import java.util.concurrent.CountDownLatch
+import org.junit.Rule
 
+@ExperimentalCoroutinesApi
+@SmallTest
 @RunWith(AndroidJUnit4::class)
 class MovieDaoTest {
     
+    // Herşeyi main thraed'de çalıştıracağımızı söyledik
+    @get:Rule
+    val instantTaskExecutorRule = InstantTaskExecutorRule()
+    
     private lateinit var movieDao: MovieDao
-    private lateinit var db : MovieDatabase
-
+    private lateinit var database: MovieDatabase
+    
+    // Create database and dao
     @Before
-    fun createDb(){
-        val context = ApplicationProvider.getApplicationContext<Context>()
-        db = Room.inMemoryDatabaseBuilder(
-            context,MovieDatabase::class.java
+    fun setup(){
+        // geçici database
+        database = Room.inMemoryDatabaseBuilder(
+            ApplicationProvider.getApplicationContext(),
+            MovieDatabase::class.java
         ).allowMainThreadQueries().build()
-        movieDao = db.dao()
+        
+        movieDao = database.dao()
     }
     
     @After
-    fun closeDb(){
-        db.close()
+    fun closeDatabase(){
+        database.close()
     }
     
     @Test
-    @Throws(Exception::class)
-    fun addMovieToFavourites() = runBlocking{
-        val favourite = FavouriteEntity(0,"posterPath","backdropPath","lord of the rings")
+    fun insertFavouriteMovie() = runBlocking {
+        val favourite = FavouriteEntity(1,"null","null","The Lord of The Rings")
         movieDao.addFavourite(favourite)
         
-        val latch = CountDownLatch(1)
-        val job = async(Dispatchers.IO) {
-            val favourites = movieDao.getFavourites()
-            // isMovieInFavorites returns 0 if movie is not in favourites
-            val result = movieDao.isMovieInFavourites(100) > 0
-            
-            assert(result)
-            latch.countDown()
-        }
-        latch.await()
-        // Wait for the job to complete and cancel it
-        job.cancelAndJoin()
+        val favouriteList = movieDao.getFavourites()
+        // if it is not null return favourite,
+        val result = favouriteList.find { it.id == favourite.id} != null
+        assert(result)
     }
     
-  
+    @Test
+    fun deleteFavouriteMovie() = runBlocking {
+        val favourite = FavouriteEntity(1,"null","null","The Lord of The Rings")
+        movieDao.addFavourite(favourite)
+        movieDao.deleteFavourite(favourite.id)
+        
+        val favouriteList = movieDao.getFavourites()
+        // if it is not find if it is null
+        val result = favouriteList.find { it.id == favourite.id } == null
+        assert(result)
+    }
     
+    @Test
+    fun getMovies() = runBlocking{
+        val movie1 = MovieEntity(1,100,"null","null","The Lord of The Rings",MovieListType.Popular.routeName)
+        val movie2 = MovieEntity(2,101,"null","null","Deadpool and Wolverine",MovieListType.NowPlaying.routeName)
+        val movie3 = MovieEntity(3,102,"null","null","The Lord of The Rings",MovieListType.Popular.routeName)
+    
+        val movieList = listOf(movie1,movie2,movie3)
+        movieDao.addMovies(movieList)
+        
+        val movieListFromDb = movieDao.getMovies()
+        val result = movieListFromDb.size == 3
+        assert(result)
+    }
 }
