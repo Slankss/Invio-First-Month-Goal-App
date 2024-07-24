@@ -18,6 +18,7 @@ class SplashFragment : Fragment()
 {
     private var _binding : FragmentSplashBinding? = null
     private val binding get() = _binding!!
+    var animation : AnimatorSet? = null
     
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -32,23 +33,28 @@ class SplashFragment : Fragment()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {
         super.onViewCreated(view, savedInstanceState)
-        val scale = AnimatorInflater.loadAnimator(view.context,R.animator.splash_animation) as AnimatorSet
-        scale.setTarget(binding.imgLogo)
-        scale.start()
-        scale.doOnEnd {
-            val action = SplashFragmentDirections.actionSplashFragmentToHomeFragment()
-            findNavController().navigate(
-                directions = action,
-                navOptions = NavOptions.Builder()
-                    .setPopUpTo(R.id.splashFragment,true)
-                    .build()
-            )
+        animation = AnimatorInflater.loadAnimator(view.context,R.animator.splash_animation) as AnimatorSet
+        animation?.setTarget(binding.imgLogo)
+    }
+    
+    override fun onResume() {
+        super.onResume()
+        animation?.apply {
+            start()
+            doOnEnd {
+                val action = SplashFragmentDirections.actionSplashFragmentToHomeFragment()
+                findNavController().navigate(
+                    directions = action,
+                    navOptions = NavOptions.Builder()
+                        .setPopUpTo(R.id.splashFragment,true)
+                        .build()
+                )
+            }
         }
     }
     
-    override fun onDestroy()
-    {
-        super.onDestroy()
-        _binding = null
+    override fun onPause() {
+        super.onPause()
+        animation?.cancel()
     }
 }
