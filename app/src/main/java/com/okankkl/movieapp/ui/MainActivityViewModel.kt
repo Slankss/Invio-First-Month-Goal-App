@@ -2,19 +2,20 @@ package com.okankkl.movieapp.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.okankkl.movieapp.domain.repository.MovieRepository
 import com.okankkl.movieapp.domain.repository.PreferenceRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
-    private val preferenceRepository: PreferenceRepository
+    private val preferenceRepository: PreferenceRepository,
+    private val movieRepository: MovieRepository
 ): ViewModel()
 {
-    fun clearUpdateTime(){
-        viewModelScope.launch {
-            preferenceRepository.saveMovieUpdateTime("")
-        }
+    fun clearUpdateTime() = viewModelScope.launch {
+        preferenceRepository.saveMovieUpdateTime("")
     }
 }

@@ -45,7 +45,7 @@
                 android:background="@drawable/outlined_button_background"
                 android:text="@string/share_bottom_sheet_dialog_send_link_with_whatsapp_text"/>
             <Button
-                android:id="@+id/sendLinkWithInstragramBtn"
+                android:id="@+id/sendLinkWithOtherAppsBtn"
                 android:layout_marginStart="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

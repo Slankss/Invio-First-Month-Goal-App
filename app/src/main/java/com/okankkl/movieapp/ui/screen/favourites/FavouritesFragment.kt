@@ -78,10 +78,12 @@ class FavouritesFragment : Fragment()
                         favouritesAdapter.setData(it.data)
                         favouritesAdapter.notifyDataSetChanged()
                     }
-                    is Result.Loading -> {
+                    is Result.Initial -> {
                         binding.apply {
-                            loadingProgressBar.visibility = View.VISIBLE
-                            errorMessageTxt.visibility = View.GONE
+                            if(it.isLoading){
+                                loadingProgressBar.visibility = View.VISIBLE
+                                errorMessageTxt.visibility = View.GONE
+                            }
                         }
                     }
                     is Result.Error -> {
@@ -97,6 +99,7 @@ class FavouritesFragment : Fragment()
             }
         }
     }
+    
     
    private fun alertDialog(onPositiveButtonClick:()-> Unit) = AlertDialog.Builder(requireContext())
         .setMessage(getString(R.string.delete_alert_dialog_title))

@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.okankkl.movieapp.R
@@ -76,8 +75,10 @@ class MovieDetailFragment : Fragment()
                         getSimilarMoviesData()
                         createShareBottomSheetDialog(movie)
                     }
-                    is Result.Loading -> {
-                        binding.loadingProgressBar.visibility = View.VISIBLE
+                    is Result.Initial -> {
+                        if(movieDetailState.isLoading){
+                            binding.loadingProgressBar.visibility = View.VISIBLE
+                        }
                     }
                     is Result.Error-> {
                         binding.loadingProgressBar.visibility = View.GONE
@@ -86,6 +87,11 @@ class MovieDetailFragment : Fragment()
                 }
             }
         }
+    }
+    
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.clearState()
     }
     
     private fun getSimilarMoviesData(){

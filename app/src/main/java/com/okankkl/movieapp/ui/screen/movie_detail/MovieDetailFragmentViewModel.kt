@@ -19,7 +19,7 @@ class MovieDetailFragmentViewModel @Inject constructor(
     private val movieRepository: MovieRepository
 ) : ViewModel()
 {
-    private var _state = MutableStateFlow<Result<Movie>>(Result.Loading())
+    private var _state = MutableStateFlow<Result<Movie>>(Result.Initial())
     var state = _state.asStateFlow()
     
     private var _similarMovies = MutableStateFlow<List<Movie>>(emptyList())
@@ -27,7 +27,7 @@ class MovieDetailFragmentViewModel @Inject constructor(
     
     fun getMovieDetail(movieId: Int){
         viewModelScope.launch(Dispatchers.IO) {
-            _state.update { Result.Loading(isLoading = true) }
+            _state.update { Result.Initial(isLoading = true) }
             try{
                 val data = movieRepository.getMovieDetail(movieId)
                 data.isMovieInFavourite = movieRepository.isMovieInFavourites(movieId)
@@ -56,5 +56,8 @@ class MovieDetailFragmentViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             movieRepository.deleteFavourite(movieId)
         }
+    }
+    fun clearState() {
+        _state.update { Result.Initial() }
     }
 }

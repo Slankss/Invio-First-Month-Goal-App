@@ -1,6 +1,7 @@
 package com.okankkl.movieapp.ui.screen.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -102,9 +103,11 @@ class HomeFragment : Fragment()
                       fillAdapter(movieListState.data,topRatedMoviesAdapter,MovieListType.TopRated)
                       fillAdapter(movieListState.data,upComingMoviesAdapter,MovieListType.Upcoming)
                   }
-                  is Result.Loading -> {
-                      binding.loadingProgressBar.visibility = View.VISIBLE
-                      binding.errorMessageTxt.visibility = View.GONE
+                  is Result.Initial -> {
+                      if(movieListState.isLoading){
+                          binding.loadingProgressBar.visibility = View.VISIBLE
+                          binding.errorMessageTxt.visibility = View.GONE
+                      }
                   }
                   is Result.Error -> {
                       binding.loadingProgressBar.visibility = View.GONE
@@ -124,18 +127,12 @@ class HomeFragment : Fragment()
     
     override fun onPause() {
         super.onPause()
-        scope.launch(Dispatchers.IO) {
-            viewModel.clearMoviesFromRoom()
-            viewModel.addMoviesToRoom()
-        }
+        viewModel.clearState()
     }
     
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-        scope.launch(Dispatchers.IO) {
-            viewModel.clearMoviesFromRoom()
-        }
     }
     
     private fun fillAdapter(movieList: List<Movie>, adapter: MovieListAdapter, movieListType: MovieListType){

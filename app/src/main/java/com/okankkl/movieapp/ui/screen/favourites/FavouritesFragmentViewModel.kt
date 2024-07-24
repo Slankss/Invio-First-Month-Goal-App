@@ -18,13 +18,13 @@ class FavouritesFragmentViewModel @Inject constructor(
     private val movieRepository: MovieRepository
 ) : ViewModel()
 {
-    private var _state = MutableStateFlow<Result<List<FavouriteEntity>>>(Result.Loading())
+    private var _state = MutableStateFlow<Result<List<FavouriteEntity>>>(Result.Initial())
     val state = _state.asStateFlow()
     
     suspend fun getFavouritesList(){
         viewModelScope.launch(Dispatchers.IO) {
         try {
-            _state.update { Result.Loading() }
+            _state.update { Result.Initial(isLoading = true) }
             val data = movieRepository.getFavouritesList()
             
             if(data.isEmpty()){
@@ -44,4 +44,9 @@ class FavouritesFragmentViewModel @Inject constructor(
             getFavouritesList()
         }
     }
+    
+    fun clearState(){
+        _state.update { Result.Initial() }
+    }
+
 }

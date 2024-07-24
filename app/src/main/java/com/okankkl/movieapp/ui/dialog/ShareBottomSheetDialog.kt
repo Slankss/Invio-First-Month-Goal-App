@@ -1,5 +1,6 @@
 package com.okankkl.movieapp.ui.dialog
 import android.app.Dialog
+import android.content.ActivityNotFoundException
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Intent
@@ -51,18 +52,18 @@ class ShareBottomSheetDialog(val movieTrailerUrl : String) : BottomSheetDialogFr
             intent.setType("text/plain")
             intent.setPackage("com.whatsapp")
             startActivity(intent)
+            try {
+                startActivity(intent)
+            } catch(exception : ActivityNotFoundException){
+                val errorMessage = getString(R.string.whatsapp_not_installed)
+                Toast.makeText(context,errorMessage,Toast.LENGTH_SHORT).show()
+            }
         }
-        binding.sendLinkWithInstragramBtn.setOnClickListener {
+        binding.sendLinkWithOtherAppsBtn.setOnClickListener {
             // Implicit Intent
             val intent = Intent(Intent.ACTION_SEND)
             intent.putExtra(Intent.EXTRA_TEXT, movieTrailerUrl)
             intent.setType("text/plain")
-            try {
-                startActivity(intent)
-            } catch(exception : android.content.ActivityNotFoundException){
-                val errorMessage = getString(R.string.whatsapp_not_installed)
-                Toast.makeText(context,errorMessage,Toast.LENGTH_SHORT).show()
-            }
         }
         binding.copyLinkBtn.setOnClickListener {
             context?.let {
