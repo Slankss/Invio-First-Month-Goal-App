@@ -10,8 +10,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
-    private val preferenceRepository: PreferenceRepository,
-    private val movieRepository: MovieRepository
+    private val preferenceRepository: PreferenceRepository
 ): ViewModel()
 {
     fun clearUpdateTime() = viewModelScope.launch {

@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">Movie App</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello World</string>
     <string name="movie_list_type_upcoming">Up coming</string>
     <string name="movie_list_type_popular">Popular</string>
     <string name="movie_list_type_now_playing">Now Playing</string>
@@ -22,7 +21,6 @@
     <string name="minute">minute</string>
 
     <string name="share_button_text">Share</string>
-    <string name="add_watch_list_button_text">create watch list</string>
     <string name="share_modal_sheet_dialog_header">Share movie trailer link</string>
     <string name="share_bottom_sheet_dialog_copy_link_text">Copy link</string>
     <string name="share_bottom_sheet_dialog_send_link_with_whatsapp_text" translatable="false">Whatsapp</string>
@@ -31,16 +29,15 @@
     <string name="whatsapp_not_installed">Whatsapp not installed</string>
     <string name="add_favourites_toast_message">Movie added favourites</string>
     <string name="delete_favourites_toast_message">Movie deleted favourites</string>
-    <string name="add_watch_list_header">Add Watch List</string>
-    <string name="create_watch_list_dialog_hint">Watch list name</string>
-    <string name="new_watch_list">New</string>
-    <string name="create_watch_list_header">Create Watch List</string>
     <string name="search_movie_hint">Which movie would you like to search?</string>
     <string name="favourites_header">Favourites</string>
-    <string name="watch_list_header">Watch List</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="delete_alert_dialog_title">Are you sure delete content?</string>
-    <string name="current_watch_list">Watchlists that include</string>
     <string name="there_is_no_movie">There is no movie</string>
+    <string name="movie_poster_content_description">Movie poster image</string>
+    <string name="back">Back</string>
+    <string name="search_movie">Search Movie</string>
+    <string name="icon">Icon</string>
+    <string name="splash_image_content_description">Splash Image</string>
 </resources>

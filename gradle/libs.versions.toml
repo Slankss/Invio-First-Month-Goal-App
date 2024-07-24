@@ -31,7 +31,6 @@ androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "j
 truth = { group = "com.google.truth", name = "truth", version = "1.1.4"}
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 android-arch-core = { group = "androidx.arch.core", name = "core-testing",version = "2.2.0"}
-org-hamcrest = { group = "org.hamcrest", name = "hamcrest", version = "2.2"}
 
 # Navigation
 androidx-navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref="navVersion"}

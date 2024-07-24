@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Movie App</string>
+    <string name="app_name">Film Uygulaması</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Merhaba dünya</string>
     <string name="movie_list_type_upcoming">Yakında Çıkacak</string>
     <string name="movie_list_type_popular">Popüler</string>
     <string name="movie_list_type_now_playing">Vizyonda</string>
@@ -23,7 +22,6 @@
     <string name="minute">dakika</string>
 
     <string name="share_button_text">Paylaş</string>
-    <string name="add_watch_list_button_text">izleme listesi oluştur</string>
     <string name="share_modal_sheet_dialog_header">Filmin fragman bağlantısını paylaş</string>
     <string name="share_bottom_sheet_dialog_copy_link_text">Bağlantıyı kopyala</string>
     <string name="share_bottom_sheet_dialog_send_with_other_apps">Diğer uygulamalar</string>
@@ -31,17 +29,16 @@
     <string name="whatsapp_not_installed">Whatsapp yüklü değil</string>
     <string name="delete_favourites_toast_message">Film favorilerden kaldırıldı</string>
     <string name="add_favourites_toast_message">Film favorilere eklendi</string>
-    <string name="add_watch_list_header">İzleme listesine ekle</string>
-    <string name="create_watch_list_dialog_hint">İzleme listesi adı</string>
-    <string name="new_watch_list">Yeni</string>
-    <string name="create_watch_list_header">İzleme listesi oluştur</string>
     <string name="search_movie_hint">Hangi filmi aramak istiyorsunuz?</string>
     <string name="favourites_header">Favoriler</string>
-    <string name="watch_list_header">İzleme Listesi</string>
     <string name="yes">Evet</string>
     <string name="no">Hayır</string>
     <string name="delete_alert_dialog_title">İçeriği silmek istediğinize emin misiniz?</string>
-    <string name="current_watch_list">Yer aldığı izleme listeleri</string>
     <string name="there_is_no_movie">Gösterilecek hiç film yok</string>
+    <string name="movie_poster_content_description">Film posterinin resmi</string>
+    <string name="back">Geri</string>
+    <string name="search_movie">Film Ara</string>
+    <string name="icon">İkon</string>
+    <string name="splash_image_content_description">Açılış Görseli</string>
 
 </resources>

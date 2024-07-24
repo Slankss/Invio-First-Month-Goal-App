@@ -8,7 +8,6 @@
     <color name="bg_color">#FFFFFF</color>
     <color name="bg_color_dark">#2F2D2E</color>
     <color name="movie_detail_icons_color">#999AC6</color>
-    <color name="movie_detail_icons_color_dark">#999AC6</color>
     <color name="top_bar_bg_color">#ED6A5E</color>
     <color name="poster_placeholder_color">#999AC6</color>
     <color name="content_color">@color/black</color>

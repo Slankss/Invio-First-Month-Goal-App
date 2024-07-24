@@ -12,6 +12,7 @@
             android:layout_width="125dp"
             android:layout_height="175dp"
             android:scaleType="centerCrop"
+            android:contentDescription="@string/movie_poster_content_description"
             android:src="@drawable/ic_launcher_background" />
 </androidx.cardview.widget.CardView>
 

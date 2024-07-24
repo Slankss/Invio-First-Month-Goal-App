@@ -1,7 +1,6 @@
 package com.okankkl.movieapp.ui.screen.viewall
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -69,7 +68,6 @@ class ViewAllFragment : Fragment()
             },
             onLoad = { id ->
                 movieTypeRouteName?.let {
-                    Log.d("MovieListAdapter", "onLoad geldi")
                     viewModel.loadMovies(it)
                     lastMovieId = id
                 }

@@ -5,8 +5,7 @@
     android:layout_height="match_parent"
     android:paddingTop="20dp"
     android:orientation="vertical"
-    android:background="@color/share_bottom_sheet_dialog_bg_color"
-    style="@style/Theme.MovieApp.ShareBottomSheetDialogStyle">
+    android:background="@color/share_bottom_sheet_dialog_bg_color">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,12 +17,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
+            style="?android:attr/buttonBarStyle"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <Button
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_marginStart="10dp"
                 android:id="@+id/copyLinkBtn"
                 android:layout_width="wrap_content"
@@ -33,9 +35,11 @@
                 android:textColor="@color/black"
                 android:drawableEnd="@drawable/ic_copy"
                 android:textSize="12sp"
-                android:text="@string/share_bottom_sheet_dialog_copy_link_text"/>
+                android:text="@string/share_bottom_sheet_dialog_copy_link_text" />
+
             <Button
                 android:id="@+id/sendLinkWithWhatsappBtn"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_marginStart="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -44,9 +48,11 @@
                 android:textSize="12sp"
                 android:drawableEnd="@drawable/ic_whatsapp"
                 android:background="@drawable/outlined_button_background"
-                android:text="@string/share_bottom_sheet_dialog_send_link_with_whatsapp_text"/>
+                android:text="@string/share_bottom_sheet_dialog_send_link_with_whatsapp_text" />
+
             <Button
                 android:id="@+id/sendLinkWithOtherAppsBtn"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_marginStart="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

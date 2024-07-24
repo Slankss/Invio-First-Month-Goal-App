@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
             android:layout_marginStart="10dp"
+            android:contentDescription="@string/back"
             android:src="@drawable/ic_back"/>
         <TextView
             android:id="@+id/movieTypeTxt"
@@ -29,9 +30,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:paddingStart="20dp"
-            android:layout_gravity="center"
-            android:text="Popular"/>
+            android:paddingHorizontal="20dp"
+            android:layout_gravity="center" />
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/moviesRecyclerView"
