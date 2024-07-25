@@ -9,6 +9,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.okankkl.movieapp.R
+import com.okankkl.movieapp.data.extensions.getImagePath
 import com.okankkl.movieapp.data.local.room.entity.FavouriteEntity
 
 class FavouritesAdapter(
@@ -37,10 +38,12 @@ class FavouritesAdapter(
         val favourite = favouritesList[position]
         holder.movieTitleTxt.text = favourite.title
         
+        val movieImage = favourite.getImagePath()
+        
         // Load poster image
         Glide
             .with(holder.itemView)
-            .load(favourite.posterPath)
+            .load(movieImage)
             .centerCrop()
             .placeholder(R.drawable.poster_placeholder)
             .into(holder.moviePosterImage)

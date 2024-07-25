@@ -1,9 +1,10 @@
 package com.okankkl.movieapp.data.mappers
 
+import com.okankkl.movieapp.data.extensions.getMovieType
 import com.okankkl.movieapp.data.local.room.entity.MovieEntity
 import com.okankkl.movieapp.data.remote.dto.MovieDetailDto
 import com.okankkl.movieapp.data.remote.dto.MovieDto
-import com.okankkl.movieapp.domain.model.Movie
+import com.okankkl.movieapp.data.model.Movie
 import com.okankkl.movieapp.util.Constants.NOW_PLAYING
 import com.okankkl.movieapp.util.Constants.POPULAR
 import com.okankkl.movieapp.util.Constants.UPCOMING
@@ -45,14 +46,3 @@ fun MovieDetailDto.toMovie() : Movie = Movie(
     runtime = runtime ?: 0,
     videos = videos
 )
-
-
-
-private fun getMovieType(movieListTypeString: String) : MovieListType {
-    return when(movieListTypeString){
-        POPULAR -> MovieListType.Popular
-        NOW_PLAYING -> MovieListType.NowPlaying
-        UPCOMING -> MovieListType.Upcoming
-        else -> MovieListType.TopRated
-    }
-}

@@ -3,7 +3,7 @@ package com.okankkl.movieapp.ui.screen.viewall
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.okankkl.movieapp.data.mappers.toMovie
-import com.okankkl.movieapp.domain.repository.MovieRepository
+import com.okankkl.movieapp.data.repository.MovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -36,13 +36,12 @@ class ViewAllFragmentViewModel @Inject constructor(
                 _state.update {
                     state.value.copy(
                         movies = movies,
-                        totalPage = data.totalPages ?: 0,
                         pageSize = movies.size,
                         currentPage = state.value.currentPage + 1
                     )
                 }
-            } else if(!state.value.isCurrentPageLessThenTotalPage()){
-                val recentMovies = _state.value.movies ?: emptyList()
+            } else{
+                val recentMovies = state.value.movies ?: emptyList()
                 _state.update{
                     state.value.copy(
                         movies = recentMovies + movies,
@@ -51,7 +50,8 @@ class ViewAllFragmentViewModel @Inject constructor(
                     )
                 }
             }
-            
+        } else if(state.value.movies.isNullOrEmpty()) {
+            _state.update { ViewAllState(errorMessage = (result as Result.Error).message) }
         }
     }
     

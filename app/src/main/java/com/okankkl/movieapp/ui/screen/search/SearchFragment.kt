@@ -37,17 +37,17 @@ class SearchFragment : Fragment() {
         val state = viewModel.state
         var searchQuery  = ""
         
-        var lastMovieId = 0
+        var lastMovieIndex = 0
         val adapter = MovieListAdapter(
             layoutType = LayoutType.Grid,
             onPosterClick = { movieId ->
                 val action = SearchFragmentDirections.actionSearchFragmentToMovieDetailFragment(movieId)
                 findNavController().navigate(action)
             },
-            onLoad = { id ->
+            onLoad = { position ->
                 // if total page size is not end,load more movies about search query
-                lastMovieId = id
-                viewModel.searchMovies(searchQuery)
+                lastMovieIndex = position
+                viewModel.loadMovies(searchQuery)
             }
         )
         val recyclerView = binding?.searchingMoviesRecyclerview
@@ -60,10 +60,9 @@ class SearchFragment : Fragment() {
                 searchQuery = binding?.movieSearchEditText?.text.toString()
                 if(searchQuery.isNotEmpty()) {
                     // User search new movie, so set current page to 1
-                    lastMovieId = 0
-                    viewModel.setCurrentPage(1)
+                    lastMovieIndex = 0
                     viewModel.searchMovies(searchQuery)
-                    binding?.movieSearchEditText?.setText("")
+                    movieSearchEditText.setText("")
                 }
             }
             
@@ -77,7 +76,11 @@ class SearchFragment : Fragment() {
                         loadingProgressBar.visibility = View.GONE
                         errorMessageTxt.visibility = View.GONE
                         adapter.setMovieList(it.movies!!)
-                        adapter.notifyItemRangeChanged(lastMovieId,it.pageSize)
+                        if(lastMovieIndex == 0){
+                            adapter.notifyDataSetChanged()
+                        } else {
+                            adapter.notifyItemRangeChanged(lastMovieIndex,it.pageSize)
+                        }
                     }
                     if(it.errorMessage.isNotEmpty()){
                         loadingProgressBar.visibility = View.GONE
@@ -86,9 +89,7 @@ class SearchFragment : Fragment() {
                     }
                 }
             }
-            
         }
-        
     }
     
     override fun onDestroyView() {

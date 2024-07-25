@@ -2,7 +2,7 @@ package com.okankkl.movieapp.ui.screen.favourites
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.okankkl.movieapp.domain.repository.MovieRepository
+import com.okankkl.movieapp.data.repository.MovieRepository
 import com.okankkl.movieapp.util.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

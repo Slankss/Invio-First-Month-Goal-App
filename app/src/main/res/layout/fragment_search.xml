@@ -54,6 +54,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/searchingMoviesRecyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_gravity="fill" />
         <androidx.core.widget.ContentLoadingProgressBar
             android:id="@+id/loadingProgressBar"
             android:layout_width="wrap_content"
@@ -68,14 +75,6 @@
             android:textSize="28sp"
             android:text="@string/no_data_error_message"
             android:layout_gravity="center" />
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/searchingMoviesRecyclerview"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="0dp"
-            android:layout_marginEnd="0dp"
-            android:layout_gravity="center" />
-
     </FrameLayout>
 
 

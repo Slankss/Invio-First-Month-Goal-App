@@ -11,8 +11,8 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.okankkl.movieapp.databinding.FragmentHomeBinding
-import com.okankkl.movieapp.domain.model.Category
-import com.okankkl.movieapp.domain.model.Movie
+import com.okankkl.movieapp.data.model.Category
+import com.okankkl.movieapp.data.model.Movie
 import com.okankkl.movieapp.ui.adapter.CategoryAdapter
 import com.okankkl.movieapp.ui.adapter.MovieListAdapter
 import com.okankkl.movieapp.util.MovieListType
@@ -42,6 +42,7 @@ class HomeFragment : Fragment()
     
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.loadMovies()
         val state = viewModel.state
         
         val categoryAdapter = CategoryAdapter(
@@ -82,12 +83,6 @@ class HomeFragment : Fragment()
                 }
             }
         }
-    }
-    
-    override fun onResume() {
-        super.onResume()
-        val viewModel: HomeFragmentViewModel by viewModels()
-        viewModel.loadMovies()
     }
     
     override fun onPause() {

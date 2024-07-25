@@ -7,7 +7,7 @@ import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.okankkl.movieapp.R
-import com.okankkl.movieapp.domain.model.Category
+import com.okankkl.movieapp.data.model.Category
 import com.okankkl.movieapp.util.LayoutType
 import com.okankkl.movieapp.util.MovieListType
 

@@ -6,6 +6,8 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.Preferences
+import com.okankkl.movieapp.util.Constants.DATA_STORE_NAME
+import com.okankkl.movieapp.util.Constants.UPDATE_TIME_PREFERENCES_KEY
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -13,8 +15,8 @@ class AppPreference(private val context: Context)
 {
     
     companion object {
-        private val Context.dataStore: DataStore<Preferences>by preferencesDataStore(name = "app_preference")
-        val MOVIE_UPDATE_TIME = stringPreferencesKey("movie_last_update_time")
+        private val Context.dataStore: DataStore<Preferences>by preferencesDataStore(name = DATA_STORE_NAME)
+        val MOVIE_UPDATE_TIME = stringPreferencesKey(UPDATE_TIME_PREFERENCES_KEY)
     }
     
     val getMovieUpdateTime : Flow<String?> = context.dataStore.data

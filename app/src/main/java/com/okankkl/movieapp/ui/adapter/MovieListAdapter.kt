@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.okankkl.movieapp.R
 import com.okankkl.movieapp.data.extensions.getImagePath
-import com.okankkl.movieapp.domain.model.Movie
+import com.okankkl.movieapp.data.model.Movie
 import com.okankkl.movieapp.util.LayoutType
 
 class MovieListAdapter(

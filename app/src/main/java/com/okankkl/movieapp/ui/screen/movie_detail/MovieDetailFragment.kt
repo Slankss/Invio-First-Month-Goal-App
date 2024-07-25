@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.okankkl.movieapp.R
 import com.okankkl.movieapp.databinding.FragmentMovieDetailBinding
-import com.okankkl.movieapp.domain.model.Movie
+import com.okankkl.movieapp.data.model.Movie
 import com.okankkl.movieapp.ui.adapter.MovieListAdapter
 import com.okankkl.movieapp.ui.dialog.ShareBottomSheetDialog
 import com.okankkl.movieapp.util.Constants

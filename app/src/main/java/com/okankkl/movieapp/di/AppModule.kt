@@ -7,8 +7,8 @@ import com.okankkl.movieapp.data.local.room.MovieDatabase
 import com.okankkl.movieapp.data.remote.MovieApi
 import com.okankkl.movieapp.data.repository.MovieRepositoryImp
 import com.okankkl.movieapp.data.repository.PreferenceRepositoryImp
-import com.okankkl.movieapp.domain.repository.MovieRepository
-import com.okankkl.movieapp.domain.repository.PreferenceRepository
+import com.okankkl.movieapp.data.repository.MovieRepository
+import com.okankkl.movieapp.data.repository.PreferenceRepository
 import com.okankkl.movieapp.util.Constants
 import dagger.Module
 import dagger.Provides

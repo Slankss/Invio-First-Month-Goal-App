@@ -1,6 +1,4 @@
-package com.okankkl.movieapp.domain.repository
-
-import java.time.LocalDateTime
+package com.okankkl.movieapp.data.repository
 
 interface PreferenceRepository
 {

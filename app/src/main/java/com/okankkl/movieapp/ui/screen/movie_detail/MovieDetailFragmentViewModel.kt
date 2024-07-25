@@ -3,9 +3,8 @@ package com.okankkl.movieapp.ui.screen.movie_detail
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.okankkl.movieapp.data.local.room.entity.FavouriteEntity
-import com.okankkl.movieapp.domain.model.Movie
-import com.okankkl.movieapp.domain.repository.MovieRepository
-import com.okankkl.movieapp.ui.screen.home.HomeState
+import com.okankkl.movieapp.data.model.Movie
+import com.okankkl.movieapp.data.repository.MovieRepository
 import com.okankkl.movieapp.util.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

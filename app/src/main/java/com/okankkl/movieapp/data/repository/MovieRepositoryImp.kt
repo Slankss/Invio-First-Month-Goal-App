@@ -5,8 +5,7 @@ import com.okankkl.movieapp.data.mappers.toMovie
 import com.okankkl.movieapp.data.mappers.toMovieEntity
 import com.okankkl.movieapp.data.remote.MovieApi
 import com.okankkl.movieapp.data.remote.dto.MovieResponseDto
-import com.okankkl.movieapp.domain.model.Movie
-import com.okankkl.movieapp.domain.repository.MovieRepository
+import com.okankkl.movieapp.data.model.Movie
 import com.okankkl.movieapp.util.MovieListType
 import retrofit2.HttpException
 import javax.inject.Inject

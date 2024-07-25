@@ -1,11 +1,10 @@
-package com.okankkl.movieapp.domain.repository
+package com.okankkl.movieapp.data.repository
 
 import com.okankkl.movieapp.data.local.room.entity.FavouriteEntity
 import com.okankkl.movieapp.data.remote.dto.MovieResponseDto
-import com.okankkl.movieapp.domain.model.Movie
+import com.okankkl.movieapp.data.model.Movie
 import com.okankkl.movieapp.util.MovieListType
 import com.okankkl.movieapp.util.Result
-import retrofit2.Response
 
 interface MovieRepository
 {

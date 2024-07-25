@@ -20,4 +20,7 @@ object Constants
     const val GET_MOVIE_DETAIL_ROUTE = "movie/{movieId}"
     const val GET_SIMILAR_MOVIES_ROUTE = "movie/{movieId}/similar"
     const val SEARCH_MOVIES_ROUTE = "search/movie"
+    
+    const val UPDATE_TIME_PREFERENCES_KEY = "movie_last_update_time"
+    const val DATA_STORE_NAME = "app_preference"
 }

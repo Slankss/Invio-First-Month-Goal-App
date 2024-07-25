@@ -1,7 +1,9 @@
 package com.okankkl.movieapp.data.extensions
 
+import com.okankkl.movieapp.data.local.room.entity.FavouriteEntity
+import com.okankkl.movieapp.data.local.room.entity.MovieEntity
 import com.okankkl.movieapp.data.remote.dto.MovieDto
-import com.okankkl.movieapp.domain.model.Movie
+import com.okankkl.movieapp.data.model.Movie
 import com.okankkl.movieapp.util.Constants
 import com.okankkl.movieapp.util.Constants.NOW_PLAYING
 import com.okankkl.movieapp.util.Constants.POPULAR
@@ -15,8 +17,15 @@ fun Movie.getImagePath() : String  {
         false -> "${Constants.IMAGE_BASE_URL}$backdropPath"
     }
 }
+fun FavouriteEntity.getImagePath() : String  {
+    // I control one of them is not empty in repository
+    return when(posterPath.isNotEmpty()){
+        true -> "${Constants.IMAGE_BASE_URL}$posterPath"
+        false -> "${Constants.IMAGE_BASE_URL}$backdropPath"
+    }
+}
 
-fun MovieDto.getMovieType(movieListTypeString: String) : MovieListType {
+fun MovieEntity.getMovieType(movieListTypeString: String) : MovieListType {
     return when(movieListTypeString){
         POPULAR -> MovieListType.Popular
         NOW_PLAYING -> MovieListType.NowPlaying

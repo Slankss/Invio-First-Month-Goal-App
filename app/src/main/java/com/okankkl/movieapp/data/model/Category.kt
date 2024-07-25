@@ -1,4 +1,4 @@
-package com.okankkl.movieapp.domain.model
+package com.okankkl.movieapp.data.model
 
 import com.okankkl.movieapp.util.MovieListType
 

@@ -9,7 +9,7 @@ import com.okankkl.movieapp.data.local.room.MovieDao
 import com.okankkl.movieapp.data.local.room.MovieDatabase
 import com.okankkl.movieapp.data.local.room.entity.FavouriteEntity
 import com.okankkl.movieapp.data.local.room.entity.MovieEntity
-import com.okankkl.movieapp.domain.model.Movie
+import com.okankkl.movieapp.data.model.Movie
 import com.okankkl.movieapp.util.MovieListType
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
