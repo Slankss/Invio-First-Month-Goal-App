@@ -1,25 +1,29 @@
 package com.okankkl.movieapp.util
 
 import com.okankkl.movieapp.R
+import com.okankkl.movieapp.util.Constants.NOW_PLAYING
+import com.okankkl.movieapp.util.Constants.POPULAR
+import com.okankkl.movieapp.util.Constants.TOP_RATED
+import com.okankkl.movieapp.util.Constants.UPCOMING
 
 enum class MovieListType(
     var routeName: String,
     val titleTextResourceId: Int
 ){
     Popular(
-        routeName = "popular",
+        routeName = POPULAR,
         titleTextResourceId = R.string.movie_list_type_popular
     ),
     Upcoming(
-        routeName = "upcoming",
+        routeName = UPCOMING,
         titleTextResourceId = R.string.movie_list_type_upcoming
     ),
     NowPlaying(
-        routeName = "now_playing",
+        routeName = NOW_PLAYING,
         titleTextResourceId = R.string.movie_list_type_now_playing
     ),
     TopRated(
-        routeName = "top_rated",
+        routeName = TOP_RATED,
         titleTextResourceId = R.string.movie_list_type_top_rated
     )
 }

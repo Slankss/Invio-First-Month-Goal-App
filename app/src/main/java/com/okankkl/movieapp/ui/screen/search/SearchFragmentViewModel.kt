@@ -2,7 +2,6 @@ package com.okankkl.movieapp.ui.screen.search
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.okankkl.movieapp.data.mappers.toMovie
-import com.okankkl.movieapp.domain.model.Movie
 import com.okankkl.movieapp.domain.repository.MovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -11,39 +10,47 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import com.okankkl.movieapp.util.Result
 
 @HiltViewModel
 class SearchFragmentViewModel @Inject constructor(
     private val movieRepository: MovieRepository
 ) : ViewModel()
 {
-    private var _state = MutableStateFlow<List<Movie>>(emptyList())
+    private var _state = MutableStateFlow(SearchState())
     val state = _state.asStateFlow()
-    private var currentPage = 1
-    private var totalPage = 0
-    var moviePageSize = 20
     
     fun searchMovies(searchQuery: String) = viewModelScope.launch(Dispatchers.IO) {
-        try {
-            val data = movieRepository.searchMovies(searchQuery,currentPage)
-            val movies = data.results
+       _state.update { SearchState(isLoading = true) }
+        
+        val result = movieRepository.searchMovies(searchQuery,state.value.currentPage)
+        
+        if(result is Result.Success){
+            // I guaranteed that result.data.results is not null
+            // because I controlled results in repository
+            val movies = result.data.results!!
                 .map { it.toMovie() }
                 .filter { it.posterPath.isNotEmpty() || it.backdropPath.isNotEmpty() }
-            totalPage = data.total_pages
-            moviePageSize = movies.size
-            if(currentPage < totalPage){
+            
+            if(state.value.currentPage == 1){
+                _state.update { SearchState(movies) }
+            } else {
+                val recentMovies = state.value.movies ?: emptyList()
                 _state.update {
-                    when(currentPage){
-                        1 -> movies
-                        else -> _state.value + movies
-                    }
+                    state.value.copy(
+                        movies = recentMovies + movies,
+                        currentPage = state.value.currentPage + 1
+                    )
                 }
             }
-            currentPage++
-        } catch(_ : Exception){}
+        } else {
+            if(state.value.movies.isNullOrEmpty()){
+                _state.update { SearchState(errorMessage = (result as Result.Error).message) }
+            } // if there is data in state there is no need to show error message
+        }
     }
     
     fun setCurrentPage(pageNumber: Int){
-        currentPage = pageNumber
+        _state.update { state.value.copy(currentPage = pageNumber) }
     }
 }

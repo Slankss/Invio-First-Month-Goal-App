@@ -51,7 +51,6 @@ class ShareBottomSheetDialog(val movieTrailerUrl : String) : BottomSheetDialogFr
             intent.putExtra(Intent.EXTRA_TEXT, movieTrailerUrl)
             intent.setType("text/plain")
             intent.setPackage("com.whatsapp")
-            startActivity(intent)
             try {
                 startActivity(intent)
             } catch(exception : ActivityNotFoundException){
@@ -64,7 +63,12 @@ class ShareBottomSheetDialog(val movieTrailerUrl : String) : BottomSheetDialogFr
             val intent = Intent(Intent.ACTION_SEND)
             intent.putExtra(Intent.EXTRA_TEXT, movieTrailerUrl)
             intent.setType("text/plain")
-            startActivity(intent)
+            try {
+                startActivity(intent)
+            }catch(e: Exception){
+                Toast.makeText(context,e.localizedMessage,Toast.LENGTH_SHORT).show()
+            }
+            
         }
         binding.copyLinkBtn.setOnClickListener {
             context?.let {

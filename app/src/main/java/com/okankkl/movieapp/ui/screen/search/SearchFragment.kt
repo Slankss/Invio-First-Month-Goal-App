@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.okankkl.movieapp.databinding.FragmentSearchBinding
@@ -13,21 +14,21 @@ import com.okankkl.movieapp.util.LayoutType
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SearchFragment : Fragment() {
     private var _binding : FragmentSearchBinding? = null
-    val binding get() = _binding!!
+    val binding get() = _binding
     private val viewModel : SearchFragmentViewModel by viewModels()
-    private var scope = CoroutineScope(Dispatchers.Main)
     
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         _binding = FragmentSearchBinding.inflate(inflater,container,false)
-        val view = binding.root
+        val view = binding?.root
         return view
     }
     
@@ -49,32 +50,49 @@ class SearchFragment : Fragment() {
                 viewModel.searchMovies(searchQuery)
             }
         )
-        val recyclerView = binding.searchingMoviesRecyclerview
+        val recyclerView = binding?.searchingMoviesRecyclerview
         val layoutManager = GridLayoutManager(requireContext(),3,GridLayoutManager.VERTICAL,false)
-        recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = adapter
+        recyclerView?.layoutManager = layoutManager
+        recyclerView?.adapter = adapter
         
-        binding.movieSearchBtn.setOnClickListener{
-            searchQuery = binding.movieSearchEditText.text.toString()
-            if(searchQuery.isNotEmpty()){
-                // User search new movie, so set current page to 1
-                lastMovieId = 0
-                viewModel.setCurrentPage(1)
-                viewModel.searchMovies(searchQuery)
-                binding.movieSearchEditText.setText("")
+        binding?.apply {
+            movieSearchBtn.setOnClickListener {
+                searchQuery = binding?.movieSearchEditText?.text.toString()
+                if(searchQuery.isNotEmpty()) {
+                    // User search new movie, so set current page to 1
+                    lastMovieId = 0
+                    viewModel.setCurrentPage(1)
+                    viewModel.searchMovies(searchQuery)
+                    binding?.movieSearchEditText?.setText("")
+                }
             }
+            
+            lifecycleScope.launch {
+                state.collect{
+                    if(it.isLoading){
+                        loadingProgressBar.visibility = View.VISIBLE
+                        errorMessageTxt.visibility = View.GONE
+                    }
+                    if(it.movies != null){
+                        loadingProgressBar.visibility = View.GONE
+                        errorMessageTxt.visibility = View.GONE
+                        adapter.setMovieList(it.movies!!)
+                        adapter.notifyItemRangeChanged(lastMovieId,it.pageSize)
+                    }
+                    if(it.errorMessage.isNotEmpty()){
+                        loadingProgressBar.visibility = View.GONE
+                        errorMessageTxt.visibility = View.VISIBLE
+                        errorMessageTxt.text = it.errorMessage
+                    }
+                }
+            }
+            
         }
         
-        scope.launch {
-            state.collect { movies ->
-                adapter.setMovieList(movies)
-                adapter.notifyItemRangeChanged(lastMovieId,viewModel.moviePageSize)
-            }
-        }
     }
     
-    override fun onDestroy() {
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
-        super.onDestroy()
     }
 }

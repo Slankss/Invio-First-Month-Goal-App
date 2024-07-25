@@ -4,20 +4,21 @@ import com.okankkl.movieapp.data.local.room.entity.MovieEntity
 import com.okankkl.movieapp.data.remote.dto.MovieDetailDto
 import com.okankkl.movieapp.data.remote.dto.MovieDto
 import com.okankkl.movieapp.domain.model.Movie
-import com.okankkl.movieapp.util.Constants
+import com.okankkl.movieapp.util.Constants.NOW_PLAYING
+import com.okankkl.movieapp.util.Constants.POPULAR
+import com.okankkl.movieapp.util.Constants.UPCOMING
 import com.okankkl.movieapp.util.MovieListType
-import kotlin.contracts.Returns
 
 fun MovieDto.toMovie(movieListType: MovieListType? = null) : Movie = Movie(
     id = id,
-    title = title,
-    posterPath = imagePath(poster_path),
-    backdropPath = imagePath(backdrop_path),
+    title = title ?: "",
+    posterPath = posterPath ?: "",
+    backdropPath = backdropPath ?: "",
     movieListType = movieListType
 )
 
 fun Movie.toMovieEntity() : MovieEntity = MovieEntity(
-    movieId = id,
+    movieId = id ?: 0,
     title = title,
     posterPath = posterPath,
     backdropPath = backdropPath,
@@ -26,36 +27,32 @@ fun Movie.toMovieEntity() : MovieEntity = MovieEntity(
 
 fun MovieEntity.toMovie() : Movie = Movie(
     id = movieId,
-    title = title,
-    posterPath = posterPath,
-    backdropPath = backdropPath,
+    title = title ?: "",
+    posterPath = posterPath ?: "",
+    backdropPath = backdropPath ?: "",
     movieListType = getMovieType(movieListType)
 )
 
 fun MovieDetailDto.toMovie() : Movie = Movie(
     id = id,
-    title = title,
-    posterPath = imagePath(poster_path),
-    backdropPath = imagePath(backdrop_path),
-    overview = overview,
-    releaseDate = release_date,
-    voteAverage = vote_average,
+    title = title ?: "",
+    posterPath = posterPath ?: "",
+    backdropPath = backdropPath ?: "",
+    overview = overview ?: "",
+    releaseDate = releaseDate ?: "",
+    voteAverage = voteAverage ?: 0.0,
     genres = genres,
-    runtime = runtime,
+    runtime = runtime ?: 0,
     videos = videos
 )
 
-private fun imagePath(path : String?) : String  {
-    if(path.isNullOrEmpty())
-        return ""
-    return "${Constants.IMAGE_BASE_URL}$path"
-}
+
 
 private fun getMovieType(movieListTypeString: String) : MovieListType {
     return when(movieListTypeString){
-        "popular" -> MovieListType.Popular
-        "now_playing" -> MovieListType.NowPlaying
-        "upcoming" -> MovieListType.Upcoming
+        POPULAR -> MovieListType.Popular
+        NOW_PLAYING -> MovieListType.NowPlaying
+        UPCOMING -> MovieListType.Upcoming
         else -> MovieListType.TopRated
     }
 }

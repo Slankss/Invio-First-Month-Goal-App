@@ -8,21 +8,42 @@ import com.okankkl.movieapp.data.remote.dto.MovieResponseDto
 import com.okankkl.movieapp.domain.model.Movie
 import com.okankkl.movieapp.domain.repository.MovieRepository
 import com.okankkl.movieapp.util.MovieListType
+import retrofit2.HttpException
 import javax.inject.Inject
+import com.okankkl.movieapp.util.Result
 
 class MovieRepositoryImp @Inject constructor(
         private val movieApi: MovieApi, private val movieDao: MovieDao
 )
     : MovieRepository
 {
-    override suspend fun getMovieListFromApi(movieListType: MovieListType, page: Int): List<Movie> {
-        return movieApi.getMovies(movieListType.routeName,page).results.map {
-            it.toMovie(movieListType = movieListType)
+    override suspend fun getMovieListFromApi(movieListType: MovieListType, page: Int): Result<List<Movie>> {
+        return try {
+            val response = movieApi.getMovies(movieListType.routeName,page)
+            if(response.results.isNullOrEmpty()){
+                Result.Error("There is no data")
+            } else {
+                val movies = response.results
+                    .map { it.toMovie(movieListType) }
+                    .filter { it.posterPath.isNotEmpty() || it.backdropPath.isNotEmpty() }
+                Result.Success(movies)
+            }
+        } catch(e : HttpException){
+            Result.Error(e.localizedMessage ?: "Error")
         }
     }
     
-    override suspend fun getMovieListFromRoom(): List<Movie> {
-       return movieDao.getMovies().map { it.toMovie() }
+    override suspend fun getMovieListFromRoom(): Result<List<Movie>> {
+       return try{
+           val movies = movieDao.getMovies().map { it.toMovie() }
+           if(movies.isEmpty()){
+               Result.Error("There is no data")
+           } else {
+               Result.Success(movies)
+           }
+       } catch(e: Exception){
+           Result.Error(e.localizedMessage ?: "Error")
+       }
     }
     
     override suspend fun addMovieListToRoom(movieList: List<Movie>) {
@@ -35,19 +56,42 @@ class MovieRepositoryImp @Inject constructor(
         movieDao.clearMovies()
     }
     
-    override suspend fun getMovieDetail(movieId: Int): Movie {
-        return movieApi.getMovieDetail(movieId).toMovie()
+    override suspend fun getMovieDetail(movieId: Int): Result<Movie> {
+        return try {
+            val movie = movieApi.getMovieDetail(movieId).toMovie()
+            Result.Success(movie)
+        } catch(e: HttpException){
+            Result.Error(e.localizedMessage ?: "Error")
+        }
     }
     
-    override suspend fun getSimilarMovies(movieId: Int): List<Movie> {
-        return movieApi.getSimilarMovies(movieId).results
-            .map { it.toMovie() }
-            .filter { it.posterPath.isNotEmpty() || it.backdropPath.isNotEmpty() }
+    override suspend fun getSimilarMovies(movieId: Int): Result<List<Movie>> {
+        return try {
+            val similarMovies = movieApi.getSimilarMovies(movieId).results
+            if(similarMovies.isNullOrEmpty()){
+                Result.Error("There is no data")
+            } else {
+                val filteredSimilarMovies = similarMovies
+                    .filter { !it.posterPath.isNullOrEmpty() || !it.backdropPath.isNullOrEmpty()}
+                    .map { it.toMovie() }
+                Result.Success(filteredSimilarMovies)
+            }
+        } catch(e : HttpException){
+            Result.Error(e.localizedMessage ?: "Error")
+        }
     }
     
-    override suspend fun getFavouritesList(): List<FavouriteEntity>
-    {
-        return movieDao.getFavourites()
+    override suspend fun getFavouritesList(): Result<List<FavouriteEntity>> {
+        return try {
+            val favourites = movieDao.getFavourites()
+            if(favourites.isEmpty()){
+                Result.Error("There is no data")
+            } else {
+                Result.Success(favourites)
+            }
+        } catch(e : Exception){
+            Result.Error(e.localizedMessage ?: "Error")
+        }
     }
     
     override suspend fun addFavourite(favouriteEntity: FavouriteEntity) {
@@ -62,11 +106,31 @@ class MovieRepositoryImp @Inject constructor(
         return movieDao.isMovieInFavourites(movieId) == 1
     }
     
-    override suspend fun searchMovies(searchQuery: String,page: Int) : MovieResponseDto {
-        return movieApi.searchMovie(searchQuery,page)
+    override suspend fun searchMovies(searchQuery: String,page: Int) : Result<MovieResponseDto> {
+        return try {
+            val response = movieApi.searchMovie(searchQuery,page)
+            
+            if(response.results.isNullOrEmpty()){
+                Result.Error("There is no data")
+            } else {
+                Result.Success(response)
+            }
+        } catch(e : HttpException){
+            Result.Error(e.localizedMessage ?: "Error")
+        }
     }
     
-    override suspend fun loadMovies(movieListType: String, page: Int): MovieResponseDto {
-        return movieApi.getMovies(movieListType,page)
+    override suspend fun loadMovies(movieListType: String, page: Int): Result<MovieResponseDto> {
+        return try {
+            val response = movieApi.getMovies(movieListType,page)
+            
+            if(response.results.isNullOrEmpty()){
+                Result.Error("There is no data")
+            } else {
+                Result.Success(response)
+            }
+        } catch(e : HttpException){
+            Result.Error(e.localizedMessage ?: "Error")
+        }
     }
 }

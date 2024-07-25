@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,17 +27,16 @@ import kotlinx.coroutines.launch
 class HomeFragment : Fragment()
 {
     private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
-    private val scope = CoroutineScope(Dispatchers.Main)
+    private val binding get() = _binding
     private val viewModel: HomeFragmentViewModel by viewModels()
     
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentHomeBinding.inflate(inflater)
-        val view = binding.root
+    ): View? {
+        _binding = FragmentHomeBinding.inflate(inflater,container,false)
+        val view = binding?.root
         return view
     }
     
@@ -44,49 +44,41 @@ class HomeFragment : Fragment()
         super.onViewCreated(view, savedInstanceState)
         val state = viewModel.state
         
-        val navController = findNavController()
         val categoryAdapter = CategoryAdapter(
             onPosterClick = { movieId ->
                 val action = HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment(movieId)
-                navController.navigate(action)
+                findNavController().navigate(action)
             },
             onViewAllClick = { movieListType ->
                 val action = HomeFragmentDirections.actionHomeFragmentToViewAllFragment(movieListType.routeName,
                     movieListType.titleTextResourceId)
-                navController.navigate(action)
+                findNavController().navigate(action)
             }
         )
-        binding.categoryRecyclerView.layoutManager = LinearLayoutManager(view.context,LinearLayoutManager.VERTICAL,false)
-        binding.categoryRecyclerView.adapter = categoryAdapter
+        binding?.categoryRecyclerView?.layoutManager = LinearLayoutManager(view.context,LinearLayoutManager.VERTICAL,false)
+        binding?.categoryRecyclerView?.adapter = categoryAdapter
         
         // observe state
-        scope.launch(Dispatchers.Main) {
-            state.collect { movieListState ->
-                changeViewVisibility(categoryAdapter,movieListState)
-            }
-        }
-    }
-    
-    private fun changeViewVisibility(categoryAdapter: CategoryAdapter,result: Result<List<Category>>){
-        binding.apply {
-            when(result){
-                is Result.Success -> {
-                    categoryAdapter.setData(result.data)
-                    categoryAdapter.notifyItemRangeChanged(0,result.data.size)
-                    
-                    binding.loadingProgressBar.visibility = View.GONE
-                    binding.errorMessageTxt.visibility = View.GONE
-                }
-                is Result.Initial -> {
-                    if(result.isLoading){
-                        binding.loadingProgressBar.visibility = View.VISIBLE
-                        binding.errorMessageTxt.visibility = View.GONE
+        binding?.apply {
+            lifecycleScope.launch {
+                state.collect {
+                    if(it.isLoading){
+                        loadingProgressBar.visibility = View.VISIBLE
+                        errorMessageTxt.visibility = View.GONE
+                        errorMessageTxt.text = it.errorMessage
                     }
-                }
-                is Result.Error -> {
-                    loadingProgressBar.visibility = View.GONE
-                    errorMessageTxt.text = result.message
-                    errorMessageTxt.visibility = View.VISIBLE
+                    if(it.categoryList != null){
+                        categoryAdapter.setData(it.categoryList)
+                        categoryAdapter.notifyItemRangeChanged(0,it.categoryList.size)
+                    
+                        loadingProgressBar.visibility = View.GONE
+                        errorMessageTxt.visibility = View.GONE
+                    }
+                    if(it.errorMessage.isNotEmpty()){
+                        loadingProgressBar.visibility = View.GONE
+                        errorMessageTxt.text = it.errorMessage
+                        errorMessageTxt.visibility = View.VISIBLE
+                    }
                 }
             }
         }
@@ -103,8 +95,9 @@ class HomeFragment : Fragment()
         viewModel.clearState()
     }
     
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView()
+    {
+        super.onDestroyView()
         _binding = null
     }
 }

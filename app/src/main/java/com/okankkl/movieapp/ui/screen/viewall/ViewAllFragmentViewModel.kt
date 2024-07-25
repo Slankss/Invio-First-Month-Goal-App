@@ -1,10 +1,8 @@
 package com.okankkl.movieapp.ui.screen.viewall
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.okankkl.movieapp.data.mappers.toMovie
-import com.okankkl.movieapp.domain.model.Movie
 import com.okankkl.movieapp.domain.repository.MovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -13,37 +11,48 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import com.okankkl.movieapp.util.Result
 
 @HiltViewModel
 class ViewAllFragmentViewModel @Inject constructor(
     private val movieRepository: MovieRepository
 ): ViewModel()
 {
-    private var _state = MutableStateFlow<List<Movie>>(emptyList())
+    private var _state = MutableStateFlow(ViewAllState())
     var state = _state.asStateFlow()
-    var currentPage = 1 // pagination starts 1
-    var totalPage = 0 // get first page data and set totalPage
-    var moviePageSize = 20 // get each page data size and set moviePageSize
     
     fun loadMovies(movieListTypeRouteName : String) = viewModelScope.launch(Dispatchers.IO) {
-        try {
-            val data = movieRepository.loadMovies(movieListTypeRouteName,currentPage)
-            val movies = data.results
+        _state.update { state.value.copy(isLoading = true) }
+        val result = movieRepository.loadMovies(movieListTypeRouteName,state.value.currentPage)
+        if(result is Result.Success){
+            val data = result.data
+            // I guaranteed that data.results is not null
+            // because I controlled results in repository
+            val movies = data.results!!
                 .map { it.toMovie() }
                 .filter { it.posterPath.isNotEmpty() || it.backdropPath.isNotEmpty() }
-            if(currentPage == 1){
-                moviePageSize = movies.size
-                totalPage = data.total_pages
-                _state.update { movies }
-            } else if(currentPage < totalPage){
-                moviePageSize = movies.size
-                _state.update { _state.value + movies }
+                
+            if(state.value.currentPage == 1){
+                _state.update {
+                    state.value.copy(
+                        movies = movies,
+                        totalPage = data.totalPages ?: 0,
+                        pageSize = movies.size,
+                        currentPage = state.value.currentPage + 1
+                    )
+                }
+            } else if(!state.value.isCurrentPageLessThenTotalPage()){
+                val recentMovies = _state.value.movies ?: emptyList()
+                _state.update{
+                    state.value.copy(
+                        movies = recentMovies + movies,
+                        pageSize = movies.size,
+                        currentPage = state.value.currentPage + 1
+                    )
+                }
             }
-            currentPage++
-        } catch(_ : Exception){}
+            
+        }
     }
     
-    fun clearState(){
-        _state.update { emptyList() }
-    }
 }

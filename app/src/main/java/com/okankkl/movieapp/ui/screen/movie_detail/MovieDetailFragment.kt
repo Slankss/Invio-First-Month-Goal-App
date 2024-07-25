@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.okankkl.movieapp.R
@@ -28,10 +29,9 @@ import kotlinx.coroutines.launch
 class MovieDetailFragment : Fragment()
 {
     private var _binding : FragmentMovieDetailBinding? = null
-    val binding get() = _binding!!
+    val binding get() = _binding
     var movieId : Int? = null
     private val viewModel : MovieDetailFragmentViewModel by viewModels()
-    private val scope = CoroutineScope(Dispatchers.Main)
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,41 +48,40 @@ class MovieDetailFragment : Fragment()
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         _binding = FragmentMovieDetailBinding.inflate(inflater)
-        val view = binding.root
+        val view = binding?.root
         return view
     }
     
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
-    {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val state = viewModel.state
-        val navController = findNavController()
         
-        binding.backBtn.setOnClickListener {
-            navController.popBackStack()
+        binding?.backBtn?.setOnClickListener {
+            findNavController().popBackStack()
         }
         
         // Observe state
-        scope.launch {
-            state.collect{ movieDetailState ->
-                when(movieDetailState){
-                    is Result.Success -> {
-                        val movie = movieDetailState.data
-                        binding.loadingProgressBar.visibility = View.GONE
-                        fillData(movie)
+        binding?.apply {
+            lifecycleScope.launch {
+                state.collect{
+                    if(it.movie != null){
+                        fillData(it.movie!!)
+                        loadingProgressBar.visibility = View.GONE
+                        errorMessageTxt.visibility = View.GONE
+                        createShareBottomSheetDialog(it.movie!!)
+                    }
+                    if(it.errorMessage.isNotEmpty()){
+                        loadingProgressBar.visibility = View.GONE
+                        errorMessageTxt.text = it.errorMessage
+                    }
+                    if(it.isLoading){
+                        loadingProgressBar.visibility = View.VISIBLE
+                        errorMessageTxt.visibility = View.GONE
+                    }
+                    if(it.similarMovies != null){
                         getSimilarMoviesData()
-                        createShareBottomSheetDialog(movie)
-                    }
-                    is Result.Initial -> {
-                        if(movieDetailState.isLoading){
-                            binding.loadingProgressBar.visibility = View.VISIBLE
-                        }
-                    }
-                    is Result.Error-> {
-                        binding.loadingProgressBar.visibility = View.GONE
-                        binding.errorMessageTxt.text = movieDetailState.message
                     }
                 }
             }
@@ -95,10 +94,10 @@ class MovieDetailFragment : Fragment()
     }
     
     private fun getSimilarMoviesData(){
-        scope.launch(Dispatchers.Main) {
+        lifecycleScope.launch(Dispatchers.Main) {
             val similarMovies = viewModel.similarMovies.first()
             if(similarMovies.isNotEmpty()){
-                binding.similarMoviesTxt.visibility = View.VISIBLE
+                binding?.similarMoviesTxt?.visibility = View.VISIBLE
             }
             val similarContentsAdapter = MovieListAdapter(
                 onPosterClick = { movieId ->
@@ -107,18 +106,18 @@ class MovieDetailFragment : Fragment()
                 }
             )
             val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            val similarContentsRecyclerView = binding.similarContentsRecyclerView
-            similarContentsRecyclerView.layoutManager = linearLayoutManager
-            similarContentsRecyclerView.adapter = similarContentsAdapter
+            val similarContentsRecyclerView = binding?.similarContentsRecyclerView
+            similarContentsRecyclerView?.layoutManager = linearLayoutManager
+            similarContentsRecyclerView?.adapter = similarContentsAdapter
             similarContentsAdapter.setMovieList(similarMovies)
             similarContentsAdapter.notifyDataSetChanged()
         }
     }
     
     private fun fillData(movie: Movie){
-        binding.apply {
+        binding?.apply {
             // fill data to the FlexBoxLayout
-            movie.genres.forEach { genre ->
+            movie.genres?.forEach { genre ->
                 val genreTextView = TextView(context)
                 genreTextView.text = genre.name
                 genresFlexboxLayout.addView(genreTextView)
@@ -142,18 +141,22 @@ class MovieDetailFragment : Fragment()
             favouriteCheckbox.isChecked = movie.isMovieInFavourite
             favouriteCheckbox.setOnCheckedChangeListener { _, isChecked ->
                 if(isChecked){
-                    viewModel.addFavorite(movie.id,movie.title,movie.posterPath,movie.backdropPath)
-                    Toast.makeText(context,getString(R.string.add_favourites_toast_message),Toast.LENGTH_SHORT).show()
+                    movie.id?.let{ id ->
+                        viewModel.addFavorite(id,movie.title,movie.posterPath,movie.backdropPath)
+                        Toast.makeText(context,getString(R.string.add_favourites_toast_message),Toast.LENGTH_SHORT).show()
+                    }
                 } else {
-                    viewModel.deleteFavourite(movie.id)
-                    Toast.makeText(context,getString(R.string.delete_favourites_toast_message),Toast.LENGTH_SHORT).show()
+                    movie.id?.let { id ->
+                        viewModel.deleteFavourite(id)
+                        Toast.makeText(context,getString(R.string.delete_favourites_toast_message),Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         }
     }
     
     private fun createShareBottomSheetDialog(movie: Movie){
-        binding.shareBtn.setOnClickListener {
+        binding?.shareBtn?.setOnClickListener {
         val movieTrailerUrl = "${Constants.YOUTUBE_VIDEO_URL}${movie.getTrailerVideoKey()}"
         val shareBottomSheetDialog = ShareBottomSheetDialog(movieTrailerUrl)
         activity?.supportFragmentManager?.let { view ->
@@ -163,13 +166,13 @@ class MovieDetailFragment : Fragment()
     }
     
     private fun loadMovieTrailer(videoKey: String){
-        val youtubePlayerView = binding.youtubePlayerView
-        lifecycle.addObserver(youtubePlayerView)
-        
-        youtubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener(){
-            override fun onReady(youTubePlayer: YouTubePlayer) {
-                youTubePlayer.loadVideo(videoKey,0f)
-            }
-        })
+        binding?.apply {
+            lifecycle.addObserver(youtubePlayerView)
+            youtubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener(){
+                override fun onReady(youTubePlayer: YouTubePlayer) {
+                    youTubePlayer.loadVideo(videoKey,0f)
+                }
+            })
+        }
     }
 }

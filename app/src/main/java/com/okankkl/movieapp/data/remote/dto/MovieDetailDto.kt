@@ -1,18 +1,25 @@
 package com.okankkl.movieapp.data.remote.dto
 
+import com.google.gson.annotations.SerializedName
+
 data class MovieDetailDto(
-        val backdrop_path: String?,
-        val genres: List<Genre>,
-        val id: Int,
-        val overview: String,
-        val popularity: Double,
-        val poster_path: String?,
-        val release_date: String,
-        val revenue: Int,
-        val runtime: Int,
-        val title: String,
-        val video: Boolean,
+        @SerializedName("backdrop_path")
+        val backdropPath: String?,
+        val genres: List<Genre>?,
+        val id: Int?,
+        val overview: String?,
+        val popularity: Double?,
+        @SerializedName("poster_path")
+        val posterPath: String?,
+        @SerializedName("release_path")
+        val releaseDate: String?,
+        val revenue: Int?,
+        val runtime: Int?,
+        val title: String?,
+        val video: Boolean?,
         val videos: Videos?,
-        val vote_average: Double,
-        val vote_count: Int
+        @SerializedName("vote_average")
+        val voteAverage: Double?,
+        @SerializedName("vote_count")
+        val voteCount: Int?
 )

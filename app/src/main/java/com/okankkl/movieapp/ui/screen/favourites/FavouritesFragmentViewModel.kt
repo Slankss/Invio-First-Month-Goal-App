@@ -2,7 +2,6 @@ package com.okankkl.movieapp.ui.screen.favourites
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.okankkl.movieapp.data.local.room.entity.FavouriteEntity
 import com.okankkl.movieapp.domain.repository.MovieRepository
 import com.okankkl.movieapp.util.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,21 +17,19 @@ class FavouritesFragmentViewModel @Inject constructor(
     private val movieRepository: MovieRepository
 ) : ViewModel()
 {
-    private var _state = MutableStateFlow<Result<List<FavouriteEntity>>>(Result.Initial())
+    private var _state = MutableStateFlow(FavouritesState())
     val state = _state.asStateFlow()
     
     fun getFavouritesList() = viewModelScope.launch(Dispatchers.IO) {
-        try {
-           _state.update { Result.Initial(isLoading = true) }
-            val data = movieRepository.getFavouritesList()
-            
-            if(data.isEmpty()){
-                _state.update { Result.Error("There is no data") }
-            } else {
-                _state.update { Result.Success(data = data) }
+        _state.update { FavouritesState(isLoading = true) }
+        val result = movieRepository.getFavouritesList()
+        
+        if(result is Result.Success) {
+            _state.update { FavouritesState(result.data) }
+        } else {
+            _state.update {
+                FavouritesState(errorMessage = (result as Result.Error).message)
             }
-        } catch(_ : Exception){
-            _state.update { Result.Error("Error") }
         }
     }
     
@@ -42,7 +39,7 @@ class FavouritesFragmentViewModel @Inject constructor(
     }
     
     fun clearState(){
-        _state.update { Result.Initial() }
+        _state.update { FavouritesState() }
     }
 
 }

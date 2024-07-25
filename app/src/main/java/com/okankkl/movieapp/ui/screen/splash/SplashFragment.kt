@@ -17,22 +17,22 @@ import dagger.hilt.android.AndroidEntryPoint
 class SplashFragment : Fragment()
 {
     private var _binding : FragmentSplashBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding
     var animation : AnimatorSet? = null
     
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         _binding = FragmentSplashBinding.inflate(inflater,container,false)
-        val view = binding.root
+        val view = binding?.root
         return view
     }
     
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         animation = AnimatorInflater.loadAnimator(view.context,R.animator.splash_animation) as AnimatorSet
-        animation?.setTarget(binding.imgLogo)
+        animation?.setTarget(binding?.imgLogo)
     }
     
     override fun onResume() {
@@ -54,5 +54,10 @@ class SplashFragment : Fragment()
     override fun onPause() {
         super.onPause()
         animation?.cancel()
+    }
+    
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

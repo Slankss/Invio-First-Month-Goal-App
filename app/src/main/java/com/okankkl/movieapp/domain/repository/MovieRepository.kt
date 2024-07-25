@@ -4,23 +4,24 @@ import com.okankkl.movieapp.data.local.room.entity.FavouriteEntity
 import com.okankkl.movieapp.data.remote.dto.MovieResponseDto
 import com.okankkl.movieapp.domain.model.Movie
 import com.okankkl.movieapp.util.MovieListType
-import kotlinx.coroutines.flow.Flow
+import com.okankkl.movieapp.util.Result
+import retrofit2.Response
 
 interface MovieRepository
 {
-    suspend fun getMovieListFromApi(movieListType: MovieListType, page : Int) : List<Movie>
+    suspend fun getMovieListFromApi(movieListType: MovieListType, page : Int) : Result<List<Movie>>
     
-    suspend fun getMovieListFromRoom() : List<Movie>
+    suspend fun getMovieListFromRoom() : Result<List<Movie>>
     
     suspend fun addMovieListToRoom(movieList: List<Movie>)
     
     suspend fun clearMovieListFromRoom()
     
-    suspend fun getMovieDetail(movieId: Int) : Movie
+    suspend fun getMovieDetail(movieId: Int) : Result<Movie>
     
-    suspend fun getSimilarMovies(movieId: Int) : List<Movie>
+    suspend fun getSimilarMovies(movieId: Int) : Result<List<Movie>>
     
-    suspend fun getFavouritesList() : List<FavouriteEntity>
+    suspend fun getFavouritesList() : Result<List<FavouriteEntity>>
     
     suspend fun addFavourite(favouriteEntity: FavouriteEntity)
     
@@ -28,9 +29,9 @@ interface MovieRepository
     
     suspend fun isMovieInFavourites(movieId: Int) : Boolean
     
-    suspend fun searchMovies(searchQuery: String,page: Int) : MovieResponseDto
+    suspend fun searchMovies(searchQuery: String,page: Int) : Result<MovieResponseDto>
     
-    suspend fun loadMovies(movieListType: String, page: Int) : MovieResponseDto
+    suspend fun loadMovies(movieListType: String, page: Int) : Result<MovieResponseDto>
     
     
 }

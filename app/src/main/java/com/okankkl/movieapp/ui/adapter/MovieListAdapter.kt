@@ -10,6 +10,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.okankkl.movieapp.R
+import com.okankkl.movieapp.data.extensions.getImagePath
 import com.okankkl.movieapp.domain.model.Movie
 import com.okankkl.movieapp.util.LayoutType
 
@@ -27,24 +28,19 @@ class MovieListAdapter(
         val moviePosterCardView : CardView = itemView.findViewById(R.id.moviePosterCardView)
     }
     
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
-    {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.movie_list_item,parent,false)
         return ViewHolder(itemView)
     }
     
-    override fun onBindViewHolder(holder: ViewHolder, position: Int)
-    {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val movie = movieList[position]
      
         changeMarginAttributes(holder,position)
         
         // if poster path is empty, use backdrop path
-        val movieImage = when(movie.posterPath.isNotEmpty()){
-            true -> movie.posterPath
-            false -> movie.backdropPath
-        }
+        val movieImage = movie.getImagePath()
         // Load poster image
         Glide
             .with(holder.itemView)
@@ -54,7 +50,7 @@ class MovieListAdapter(
             .into(holder.moviePosterImage)
         
         holder.moviePosterImage.setOnClickListener {
-            onPosterClick(movie.id)
+            onPosterClick(movie.id!!)
         }
         
         // if use reach the last item load movies (just viewAll page)
