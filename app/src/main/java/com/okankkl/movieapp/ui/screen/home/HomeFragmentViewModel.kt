@@ -31,8 +31,7 @@ class HomeFragmentViewModel @Inject constructor(
         try {
             // Application is started get data from api,
             // when users in application if change screen and return the home page
-            // then application will get data from room database if updateTime is less than 10 minutes
-            // if updateTime is more than 10 minutes then application will get data from api
+            // get updateTime for get data from where
             val updateTimeStr = preferenceRepository.getMovieUpdateTime()
             val currentDate = LocalDateTime.now()
             if(updateTimeStr.isNullOrEmpty()){
@@ -92,18 +91,15 @@ class HomeFragmentViewModel @Inject constructor(
     
     private fun convertMovieListToCategoryList(movieList: List<Movie>) : Deferred<List<Category>>
         = viewModelScope.async{
-        val popularMovies = movieList.filter { it.movieListType?.routeName == MovieListType.Popular.routeName}
-        val nowPlayingMovies = movieList.filter { it.movieListType?.routeName == MovieListType.NowPlaying.routeName}
-        val upcomingMovies = movieList.filter { it.movieListType?.routeName == MovieListType.Upcoming.routeName}
-        val topRatedMovies = movieList.filter { it.movieListType?.routeName == MovieListType.TopRated.routeName}
+        val movieGroupList = movieList.groupBy { it.movieListType }
         
-        val categoryList = listOf(
-            Category(MovieListType.Popular,popularMovies),
-            Category(MovieListType.NowPlaying,nowPlayingMovies),
-            Category(MovieListType.Upcoming,upcomingMovies),
-            Category(MovieListType.TopRated,topRatedMovies)
-        )
-        
+        var categoryList = listOf<Category>()
+        movieGroupList.forEach {
+            if(it.key != null){
+                val category = Category(it.key!!,it.value)
+                categoryList = categoryList + category
+            }
+        }
         return@async categoryList
     }
 }
