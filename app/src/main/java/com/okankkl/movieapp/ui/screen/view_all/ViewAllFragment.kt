@@ -1,23 +1,22 @@
-package com.okankkl.movieapp.ui.screen.viewall
+package com.okankkl.movieapp.ui.screen.view_all
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.okankkl.movieapp.databinding.FragmentViewAllBinding
 import com.okankkl.movieapp.ui.adapter.MovieListAdapter
+import com.okankkl.movieapp.ui.adapter.item_decoration.SpaceItemDecoration
 import com.okankkl.movieapp.util.Constants.MOVIE_TYPE_ARG
 import com.okankkl.movieapp.util.Constants.MOVIE_TYPE_STRING_ID_ARG
 import com.okankkl.movieapp.util.LayoutType
+import com.okankkl.movieapp.util.calculateSpanCount
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -25,8 +24,8 @@ class ViewAllFragment : Fragment()
 {
     private var _binding : FragmentViewAllBinding? = null
     val binding get() = _binding
-    var movieTypeRouteName : String? = null
-    var movieTypeNameStringId: Int = 0
+    private var movieTypeRouteName : String? = null
+    private var movieTypeNameStringId: Int = 0
     private val viewModel: ViewAllFragmentViewModel by viewModels()
     
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,35 +63,37 @@ class ViewAllFragment : Fragment()
             binding?.movieTypeTxt?.text = text
         }
         
-        var lastMovieId = 0
         val adapter = MovieListAdapter(
             layoutType = LayoutType.Grid,
             onPosterClick = { movieId ->
                 val action = ViewAllFragmentDirections.actionViewAllFragmentToMovieDetailFragment(movieId)
                 findNavController().navigate(action)
             },
-            onLoad = { id ->
+            onLoad = {
                 movieTypeRouteName?.let {
                     viewModel.loadMovies(it)
-                    lastMovieId = id
                 }
             }
         )
+        
+        val spanCount = calculateSpanCount(requireContext(),LayoutType.Grid)
         val recyclerView = binding?.moviesRecyclerView
-        val layoutManager = GridLayoutManager(requireContext(),3,GridLayoutManager.VERTICAL,false)
+        val layoutManager = GridLayoutManager(requireContext(),spanCount)
+        
+        val spaceItemDecoration = SpaceItemDecoration(LayoutType.Grid)
+        recyclerView?.addItemDecoration(spaceItemDecoration)
         recyclerView?.adapter = adapter
         recyclerView?.layoutManager = layoutManager
         
         lifecycleScope.launch {
             state.collect {
-                Log.d("EMINEM","${it.movies}")
                 if(it.movies != null) {
-                    adapter.setMovieList(it.movies!!)
-                    adapter.notifyItemRangeChanged(lastMovieId, it.pageSize)
+                    adapter.submitList(it.movies!!)
                 }
             }
         }
     }
+    
     
     override fun onDestroyView() {
         super.onDestroyView()

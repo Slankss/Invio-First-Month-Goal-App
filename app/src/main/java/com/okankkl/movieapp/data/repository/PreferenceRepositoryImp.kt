@@ -4,10 +4,9 @@ import com.okankkl.movieapp.data.local.dataStore.AppPreference
 import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
-class PreferenceRepositoryImp @Inject constructor(val appPreference: AppPreference) :
+class PreferenceRepositoryImp @Inject constructor(private val appPreference: AppPreference) :
     PreferenceRepository
 {
-    
     override suspend fun getMovieUpdateTime(): String?
     {
         return appPreference.getMovieUpdateTime.first()

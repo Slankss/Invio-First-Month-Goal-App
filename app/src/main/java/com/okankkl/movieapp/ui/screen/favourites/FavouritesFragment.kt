@@ -1,11 +1,11 @@
 package com.okankkl.movieapp.ui.screen.favourites
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -13,11 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.okankkl.movieapp.R
 import com.okankkl.movieapp.databinding.FragmentFavouritesBinding
 import com.okankkl.movieapp.ui.adapter.FavouritesAdapter
-import com.okankkl.movieapp.util.Result
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -66,13 +62,13 @@ class FavouritesFragment : Fragment()
                     if(it.favourites != null){
                         loadingProgressBar.visibility = View.GONE
                         errorMessageTxt.visibility = View.GONE
-                        favouritesAdapter.setData(it.favourites!!)
-                        favouritesAdapter.notifyDataSetChanged()
+                        favouritesAdapter.submitList(it.favourites)
                     }
                     if(it.errorMessage.isNotEmpty()){
                         loadingProgressBar.visibility = View.GONE
                         errorMessageTxt.visibility = View.VISIBLE
                         errorMessageTxt.text = it.errorMessage
+                        favouritesAdapter.submitList(emptyList())
                     }
                 }
             }

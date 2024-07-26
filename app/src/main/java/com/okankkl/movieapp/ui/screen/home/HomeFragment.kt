@@ -1,26 +1,17 @@
 package com.okankkl.movieapp.ui.screen.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.okankkl.movieapp.databinding.FragmentHomeBinding
-import com.okankkl.movieapp.data.model.Category
-import com.okankkl.movieapp.data.model.Movie
 import com.okankkl.movieapp.ui.adapter.CategoryAdapter
-import com.okankkl.movieapp.ui.adapter.MovieListAdapter
-import com.okankkl.movieapp.util.MovieListType
-import com.okankkl.movieapp.util.Result
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -42,7 +33,7 @@ class HomeFragment : Fragment()
     
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.loadMovies()
+        viewModel.getMovies()
         val state = viewModel.state
         
         val categoryAdapter = CategoryAdapter(
@@ -69,8 +60,7 @@ class HomeFragment : Fragment()
                         errorMessageTxt.text = it.errorMessage
                     }
                     if(it.categoryList != null){
-                        categoryAdapter.setData(it.categoryList)
-                        categoryAdapter.notifyItemRangeChanged(0,it.categoryList.size)
+                        categoryAdapter.submitList(it.categoryList)
                     
                         loadingProgressBar.visibility = View.GONE
                         errorMessageTxt.visibility = View.GONE
@@ -85,13 +75,7 @@ class HomeFragment : Fragment()
         }
     }
     
-    override fun onPause() {
-        super.onPause()
-        viewModel.clearState()
-    }
-    
-    override fun onDestroyView()
-    {
+    override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }

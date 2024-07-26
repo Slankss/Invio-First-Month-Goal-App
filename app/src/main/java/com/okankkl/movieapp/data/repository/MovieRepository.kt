@@ -3,14 +3,11 @@ package com.okankkl.movieapp.data.repository
 import com.okankkl.movieapp.data.local.room.entity.FavouriteEntity
 import com.okankkl.movieapp.data.remote.dto.MovieResponseDto
 import com.okankkl.movieapp.data.model.Movie
-import com.okankkl.movieapp.util.MovieListType
 import com.okankkl.movieapp.util.Result
 
 interface MovieRepository
 {
-    suspend fun getMovieListFromApi(movieListType: MovieListType, page : Int) : Result<List<Movie>>
-    
-    suspend fun getMovieListFromRoom() : Result<List<Movie>>
+    suspend fun getMoviesList() : Result<List<Movie>>
     
     suspend fun addMovieListToRoom(movieList: List<Movie>)
     

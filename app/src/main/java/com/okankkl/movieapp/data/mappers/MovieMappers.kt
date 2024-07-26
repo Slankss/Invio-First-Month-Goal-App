@@ -2,12 +2,9 @@ package com.okankkl.movieapp.data.mappers
 
 import com.okankkl.movieapp.data.extensions.getMovieType
 import com.okankkl.movieapp.data.local.room.entity.MovieEntity
+import com.okankkl.movieapp.data.model.Movie
 import com.okankkl.movieapp.data.remote.dto.MovieDetailDto
 import com.okankkl.movieapp.data.remote.dto.MovieDto
-import com.okankkl.movieapp.data.model.Movie
-import com.okankkl.movieapp.util.Constants.NOW_PLAYING
-import com.okankkl.movieapp.util.Constants.POPULAR
-import com.okankkl.movieapp.util.Constants.UPCOMING
 import com.okankkl.movieapp.util.MovieListType
 
 fun MovieDto.toMovie(movieListType: MovieListType? = null) : Movie = Movie(

@@ -1,20 +1,19 @@
 package com.okankkl.movieapp.ui.screen.search
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.okankkl.movieapp.databinding.FragmentSearchBinding
 import com.okankkl.movieapp.ui.adapter.MovieListAdapter
+import com.okankkl.movieapp.ui.adapter.item_decoration.SpaceItemDecoration
 import com.okankkl.movieapp.util.LayoutType
+import com.okankkl.movieapp.util.calculateSpanCount
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -37,21 +36,23 @@ class SearchFragment : Fragment() {
         val state = viewModel.state
         var searchQuery  = ""
         
-        var lastMovieIndex = 0
         val adapter = MovieListAdapter(
             layoutType = LayoutType.Grid,
             onPosterClick = { movieId ->
                 val action = SearchFragmentDirections.actionSearchFragmentToMovieDetailFragment(movieId)
                 findNavController().navigate(action)
             },
-            onLoad = { position ->
+            onLoad = {
                 // if total page size is not end,load more movies about search query
-                lastMovieIndex = position
                 viewModel.loadMovies(searchQuery)
             }
         )
+        val spanCount = calculateSpanCount(requireContext(),LayoutType.Grid)
         val recyclerView = binding?.searchingMoviesRecyclerview
-        val layoutManager = GridLayoutManager(requireContext(),3,GridLayoutManager.VERTICAL,false)
+        val layoutManager = GridLayoutManager(requireContext(),spanCount)
+        
+        val spaceItemDecoration = SpaceItemDecoration(LayoutType.Grid)
+        recyclerView?.addItemDecoration(spaceItemDecoration)
         recyclerView?.layoutManager = layoutManager
         recyclerView?.adapter = adapter
         
@@ -60,9 +61,8 @@ class SearchFragment : Fragment() {
                 searchQuery = binding?.movieSearchEditText?.text.toString()
                 if(searchQuery.isNotEmpty()) {
                     // User search new movie, so set current page to 1
-                    lastMovieIndex = 0
                     viewModel.searchMovies(searchQuery)
-                    movieSearchEditText.setText("")
+                    movieSearchEditText.text.clear()
                 }
             }
             
@@ -75,12 +75,7 @@ class SearchFragment : Fragment() {
                     if(it.movies != null){
                         loadingProgressBar.visibility = View.GONE
                         errorMessageTxt.visibility = View.GONE
-                        adapter.setMovieList(it.movies!!)
-                        if(lastMovieIndex == 0){
-                            adapter.notifyDataSetChanged()
-                        } else {
-                            adapter.notifyItemRangeChanged(lastMovieIndex,it.pageSize)
-                        }
+                        adapter.submitList(it.movies!!)
                     }
                     if(it.errorMessage.isNotEmpty()){
                         loadingProgressBar.visibility = View.GONE

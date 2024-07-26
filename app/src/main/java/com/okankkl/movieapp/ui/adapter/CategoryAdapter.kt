@@ -1,63 +1,70 @@
 package com.okankkl.movieapp.ui.adapter
 
-import android.view.View
+import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.appcompat.view.menu.MenuView.ItemView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.okankkl.movieapp.R
 import com.okankkl.movieapp.data.model.Category
+import com.okankkl.movieapp.databinding.CategoryListItemBinding
+import com.okankkl.movieapp.ui.adapter.item_decoration.SpaceItemDecoration
 import com.okankkl.movieapp.util.LayoutType
 import com.okankkl.movieapp.util.MovieListType
 
 class CategoryAdapter(
         var onPosterClick: (Int) -> Unit,var onViewAllClick:(MovieListType) -> Unit
-    ) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>()
+    ) : ListAdapter<Category,CategoryAdapter.ViewHolder>(CategoryDiffCallBack())
 {
-    private var categoryList = listOf<Category>()
     
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val categoryRecyclerView : RecyclerView = itemView.findViewById(R.id.categoryRecyclerView)
-        val categoryHeader : TextView = itemView.findViewById(R.id.categoryHeaderTxt)
-        var viewAll : TextView = itemView.findViewById(R.id.viewallTxt)
-    }
-    
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
-    {
-        val itemView = View.inflate(parent.context, R.layout.category_list_item,null)
-        return ViewHolder(itemView)
-    }
-    
-    override fun onBindViewHolder(holder: CategoryAdapter.ViewHolder, position: Int)
-    {
-        val category = categoryList[position]
-        holder.categoryHeader.text = holder.itemView.context.getText(category.listType.titleTextResourceId)
-        
-        // Create layout manager for each recycler view
-        
-        val layoutManager = LinearLayoutManager(holder.itemView.context, LinearLayoutManager.HORIZONTAL,false)
-        val adapter = MovieListAdapter(
-            layoutType = LayoutType.HorizontalLinear,
-            onPosterClick = { movieId ->
-               onPosterClick(movieId)
+    class ViewHolder(private val binding: CategoryListItemBinding)
+        : RecyclerView.ViewHolder(binding.root){
+        fun bind(
+                category: Category,
+                onPosterClick: (Int) -> Unit,
+                onViewAllClick: (MovieListType) -> Unit
+        ){
+            with(binding){
+                categoryHeaderTxt.text = itemView.context.getText(category.listType.titleTextResourceId)
+                
+                val layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL,false)
+                val adapter = MovieListAdapter(
+                    layoutType = LayoutType.HorizontalLinear,
+                    onPosterClick = { movieId ->
+                        onPosterClick(movieId)
+                    }
+                )
+                val spaceItemDecoration = SpaceItemDecoration(LayoutType.HorizontalLinear)
+                categoryRecyclerView.addItemDecoration(spaceItemDecoration)
+                categoryRecyclerView.layoutManager = layoutManager
+                categoryRecyclerView.adapter = adapter
+                adapter.submitList(category.movieList)
+                
+                viewAllTxt.setOnClickListener {
+                    onViewAllClick(category.listType)
+                }
             }
-        )
-        holder.categoryRecyclerView.layoutManager = layoutManager
-        holder.categoryRecyclerView.adapter = adapter
-        adapter.setMovieList(category.movieList)
-        
-        holder.viewAll.setOnClickListener {
-            onViewAllClick(category.listType)
         }
     }
     
-    override fun getItemCount(): Int
-    {
-        return categoryList.size
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val binding = CategoryListItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        return ViewHolder(binding)
     }
     
-    fun setData(categories: List<Category>){
-        categoryList = categories
+    override fun onBindViewHolder(holder: ViewHolder, position: Int)
+    {
+        val category = getItem(position)
+        holder.bind(category,onPosterClick,onViewAllClick)
+    }
+}
+
+class CategoryDiffCallBack : DiffUtil.ItemCallback<Category>(){
+    override fun areItemsTheSame(oldItem: Category, newItem: Category): Boolean {
+        return oldItem.listType == newItem.listType
+    }
+    
+    override fun areContentsTheSame(oldItem: Category, newItem: Category): Boolean {
+        return oldItem == newItem
     }
 }

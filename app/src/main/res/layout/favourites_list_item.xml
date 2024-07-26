@@ -18,8 +18,8 @@
 
         <ImageView
             android:id="@+id/moviePosterImg"
-            android:layout_width="125dp"
-            android:layout_height="175dp"
+            android:layout_width="@dimen/horizontal_layout_poster_width"
+            android:layout_height="@dimen/horizontal_layout_poster_height"
             android:scaleType="centerCrop"
             android:contentDescription="@string/movie_poster_content_description"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -36,7 +36,6 @@
             app:layout_constraintStart_toEndOf="@+id/moviePosterImg"
             android:layout_marginHorizontal="10dp"
             android:textAlignment="center"
-            android:textSize="18sp"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView

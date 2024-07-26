@@ -57,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        android:textSize="28sp"
+        android:textSize="@dimen/error_message_text_size"
         android:text="@string/no_data_error_message"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -103,8 +103,8 @@
                         android:layout_height="wrap_content">
                         <ImageView
                             android:id="@+id/timeImg"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
+                            android:layout_width="@dimen/small_icon_size"
+                            android:layout_height="@dimen/small_icon_size"
                             android:contentDescription="@string/icon"
                             android:scaleType="centerCrop"
                             android:src="@drawable/ic_time"
@@ -122,8 +122,8 @@
                             app:layout_constraintTop_toTopOf="@+id/timeImg" />
                         <ImageView
                             android:id="@+id/calendarImg"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
+                            android:layout_width="@dimen/small_icon_size"
+                            android:layout_height="@dimen/small_icon_size"
                             android:contentDescription="@string/icon"
                             android:scaleType="centerCrop"
                             android:src="@drawable/ic_calendar"

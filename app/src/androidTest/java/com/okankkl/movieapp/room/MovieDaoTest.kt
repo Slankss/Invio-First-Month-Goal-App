@@ -9,23 +9,21 @@ import com.okankkl.movieapp.data.local.room.MovieDao
 import com.okankkl.movieapp.data.local.room.MovieDatabase
 import com.okankkl.movieapp.data.local.room.entity.FavouriteEntity
 import com.okankkl.movieapp.data.local.room.entity.MovieEntity
-import com.okankkl.movieapp.data.model.Movie
 import com.okankkl.movieapp.util.MovieListType
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.hamcrest.MatcherAssert.assertThat
-import org.junit.Rule
 
 @ExperimentalCoroutinesApi
 @SmallTest
 @RunWith(AndroidJUnit4::class)
 class MovieDaoTest {
     
-    // Herşeyi main thraed'de çalıştıracağımızı söyledik
+    // Allow main thread execution
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
     
@@ -35,7 +33,7 @@ class MovieDaoTest {
     // Create database and dao
     @Before
     fun setup(){
-        // geçici database
+        //  Create a inMemoryDatabase
         database = Room.inMemoryDatabaseBuilder(
             ApplicationProvider.getApplicationContext(),
             MovieDatabase::class.java

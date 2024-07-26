@@ -1,28 +1,27 @@
 package com.okankkl.movieapp.ui.screen.movie_detail
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.okankkl.movieapp.R
-import com.okankkl.movieapp.databinding.FragmentMovieDetailBinding
 import com.okankkl.movieapp.data.model.Movie
+import com.okankkl.movieapp.databinding.FragmentMovieDetailBinding
 import com.okankkl.movieapp.ui.adapter.MovieListAdapter
+import com.okankkl.movieapp.ui.adapter.item_decoration.SpaceItemDecoration
 import com.okankkl.movieapp.ui.dialog.ShareBottomSheetDialog
 import com.okankkl.movieapp.util.Constants
-import com.okankkl.movieapp.util.Result
+import com.okankkl.movieapp.util.LayoutType
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -38,10 +37,6 @@ class MovieDetailFragment : Fragment()
         // When fragment created then get movie details if movieId is not wrong
         arguments?.let {
             movieId = it.getInt(Constants.MOVIE_ID_ARG)
-            if(movieId != -1){
-                viewModel.getMovieDetail(movieId!!)
-                viewModel.getSimilarMovies(movieId!!)
-            }
         }
     }
     
@@ -58,8 +53,12 @@ class MovieDetailFragment : Fragment()
         super.onViewCreated(view, savedInstanceState)
         val state = viewModel.state
         
+        if(movieId != -1){
+            viewModel.getMovieDetail(movieId!!)
+        }
+        
         binding?.backBtn?.setOnClickListener {
-            findNavController().popBackStack()
+            findNavController().popBackStack(R.id.homeFragment,false)
         }
         
         // Observe state
@@ -67,7 +66,7 @@ class MovieDetailFragment : Fragment()
             lifecycleScope.launch {
                 state.collect{
                     if(it.movie != null){
-                        fillData(it.movie!!)
+                        fillData(it.movie!!,it.isFavourite)
                         loadingProgressBar.visibility = View.GONE
                         errorMessageTxt.visibility = View.GONE
                         createShareBottomSheetDialog(it.movie!!)
@@ -81,21 +80,16 @@ class MovieDetailFragment : Fragment()
                         errorMessageTxt.visibility = View.GONE
                     }
                     if(it.similarMovies != null){
-                        getSimilarMoviesData()
+                        getSimilarMoviesData(it.similarMovies!!)
                     }
                 }
             }
         }
     }
     
-    override fun onDestroy() {
-        super.onDestroy()
-        viewModel.clearState()
-    }
-    
-    private fun getSimilarMoviesData(){
+    private fun getSimilarMoviesData(similarMovies : List<Movie>){
         lifecycleScope.launch(Dispatchers.Main) {
-            val similarMovies = viewModel.similarMovies.first()
+            
             if(similarMovies.isNotEmpty()){
                 binding?.similarMoviesTxt?.visibility = View.VISIBLE
             }
@@ -105,16 +99,18 @@ class MovieDetailFragment : Fragment()
                     findNavController().navigate(action)
                 }
             )
+            val spaceItemDecoration = SpaceItemDecoration(LayoutType.HorizontalLinear)
             val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             val similarContentsRecyclerView = binding?.similarContentsRecyclerView
+            similarContentsRecyclerView?.addItemDecoration(spaceItemDecoration)
             similarContentsRecyclerView?.layoutManager = linearLayoutManager
             similarContentsRecyclerView?.adapter = similarContentsAdapter
-            similarContentsAdapter.setMovieList(similarMovies)
-            similarContentsAdapter.notifyDataSetChanged()
+            
+            similarContentsAdapter.submitList(similarMovies)
         }
     }
     
-    private fun fillData(movie: Movie){
+    private fun fillData(movie: Movie,isFavourite :Boolean){
         binding?.apply {
             // fill data to the FlexBoxLayout
             movie.genres?.forEach { genre ->
@@ -138,7 +134,7 @@ class MovieDetailFragment : Fragment()
                 loadMovieTrailer(trailerVideoKey)
             }
             // If movie is already in favourites then set favourite checkbox to checked
-            favouriteCheckbox.isChecked = movie.isMovieInFavourite
+            favouriteCheckbox.isChecked = isFavourite
             favouriteCheckbox.setOnCheckedChangeListener { _, isChecked ->
                 if(isChecked){
                     movie.id?.let{ id ->

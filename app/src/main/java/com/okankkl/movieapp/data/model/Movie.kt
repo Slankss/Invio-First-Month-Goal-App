@@ -17,8 +17,7 @@ data class Movie(
     var voteAverage : Double = 0.0,
     var genres : List<Genre>? = null,
     var runtime : Int = 0,
-    var videos : Videos? = null,
-    var isMovieInFavourite : Boolean = false,
+    var videos : Videos? = null
 ){
     fun getTrailerVideoKey() : String? {
         if(videos!!.results != null){

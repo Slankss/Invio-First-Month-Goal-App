@@ -18,7 +18,7 @@ class SplashFragment : Fragment()
 {
     private var _binding : FragmentSplashBinding? = null
     private val binding get() = _binding
-    var animation : AnimatorSet? = null
+    private var animation : AnimatorSet? = null
     
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,

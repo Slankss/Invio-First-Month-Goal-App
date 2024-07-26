@@ -2,7 +2,6 @@ package com.okankkl.movieapp.data.extensions
 
 import com.okankkl.movieapp.data.local.room.entity.FavouriteEntity
 import com.okankkl.movieapp.data.local.room.entity.MovieEntity
-import com.okankkl.movieapp.data.remote.dto.MovieDto
 import com.okankkl.movieapp.data.model.Movie
 import com.okankkl.movieapp.util.Constants
 import com.okankkl.movieapp.util.Constants.NOW_PLAYING

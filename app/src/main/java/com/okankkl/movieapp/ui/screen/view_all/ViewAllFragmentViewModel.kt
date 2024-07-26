@@ -1,4 +1,4 @@
-package com.okankkl.movieapp.ui.screen.viewall
+package com.okankkl.movieapp.ui.screen.view_all
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -26,9 +26,7 @@ class ViewAllFragmentViewModel @Inject constructor(
         val result = movieRepository.loadMovies(movieListTypeRouteName,state.value.currentPage)
         if(result is Result.Success){
             val data = result.data
-            // I guaranteed that data.results is not null
-            // because I controlled results in repository
-            val movies = data.results!!
+            val movies = data.results
                 .map { it.toMovie() }
                 .filter { it.posterPath.isNotEmpty() || it.backdropPath.isNotEmpty() }
                 

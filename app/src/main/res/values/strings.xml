@@ -25,7 +25,6 @@
     <string name="share_bottom_sheet_dialog_copy_link_text">Copy link</string>
     <string name="share_bottom_sheet_dialog_send_link_with_whatsapp_text" translatable="false">Whatsapp</string>
     <string name="share_bottom_sheet_dialog_send_with_other_apps">Other apps</string>
-    <string name="copy_link_toast_message">Movie trailer link copied to clipboard</string>
     <string name="whatsapp_not_installed">Whatsapp not installed</string>
     <string name="add_favourites_toast_message">Movie added favourites</string>
     <string name="delete_favourites_toast_message">Movie deleted favourites</string>

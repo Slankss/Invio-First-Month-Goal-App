@@ -1,4 +1,4 @@
-package com.okankkl.movieapp.ui.screen.viewall
+package com.okankkl.movieapp.ui.screen.view_all
 
 import com.okankkl.movieapp.data.model.Movie
 

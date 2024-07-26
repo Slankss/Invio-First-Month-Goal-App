@@ -3,7 +3,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.okankkl.movieapp.data.mappers.toMovie
 import com.okankkl.movieapp.data.repository.MovieRepository
-import com.okankkl.movieapp.ui.screen.viewall.ViewAllState
+import com.okankkl.movieapp.util.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import com.okankkl.movieapp.util.Result
 
 @HiltViewModel
 class SearchFragmentViewModel @Inject constructor(
@@ -33,7 +32,7 @@ class SearchFragmentViewModel @Inject constructor(
         if(result is Result.Success){
             // I guaranteed that result.data.results is not null
             // because I controlled results in repository
-            val movies = result.data.results!!
+            val movies = result.data.results
                 .map { it.toMovie() }
                 .filter { it.posterPath.isNotEmpty() || it.backdropPath.isNotEmpty() }
             

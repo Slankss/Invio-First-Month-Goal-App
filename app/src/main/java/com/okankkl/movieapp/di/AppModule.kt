@@ -1,6 +1,9 @@
 package com.okankkl.movieapp.di
 
 import android.content.Context
+import com.okankkl.movieapp.data.data_source.DataStoreManager
+import com.okankkl.movieapp.data.data_source.LocalDataSource
+import com.okankkl.movieapp.data.data_source.RemoteDataSource
 import com.okankkl.movieapp.data.local.dataStore.AppPreference
 import com.okankkl.movieapp.data.local.room.MovieDao
 import com.okankkl.movieapp.data.local.room.MovieDatabase
@@ -40,20 +43,36 @@ class AppModule
             .getDatabase(context)
             .dao()
     }
-    
-    @Singleton
-    @Provides
-    fun provideMovieRepository(movieApi: MovieApi,movieDao: MovieDao) : MovieRepository
-    = MovieRepositoryImp(movieApi,movieDao)
-    
     @Singleton
     @Provides
     fun provideAppPreference(@ApplicationContext context: Context) : AppPreference
-     = AppPreference(context)
+            = AppPreference(context)
     
     @Singleton
     @Provides
-    fun providePreferenceRepository(appPreference: AppPreference) : PreferenceRepository
-        = PreferenceRepositoryImp(appPreference)
+    fun provideDataStoreManager(appPreference: AppPreference) : DataStoreManager
+            = DataStoreManager(appPreference)
+    
+    @Singleton
+    @Provides
+    fun provideLocalDataSource(movieDao: MovieDao) : LocalDataSource
+            = LocalDataSource(movieDao)
+    
+    @Singleton
+    @Provides
+    fun provideRemoteDataSource(movieApi: MovieApi) : RemoteDataSource
+            = RemoteDataSource(movieApi)
+    
+    @Singleton
+    @Provides
+    fun provideMovieRepository(dataStoreManager: DataStoreManager,localDataSource: LocalDataSource,
+                               remoteDataSource: RemoteDataSource) : MovieRepository
+    = MovieRepositoryImp(dataStoreManager,localDataSource,remoteDataSource)
+    
+    @Singleton
+    @Provides
+    fun provideAppPreferenceRepository(appPreference: AppPreference) : PreferenceRepository{
+        return PreferenceRepositoryImp(appPreference)
+    }
     
 }

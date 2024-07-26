@@ -66,7 +66,7 @@
     </fragment>
     <fragment
         android:id="@+id/viewAllFragment"
-        android:name="com.okankkl.movieapp.ui.screen.viewall.ViewAllFragment"
+        android:name="com.okankkl.movieapp.ui.screen.view_all.ViewAllFragment"
         android:label="fragment_view_all"
         tools:layout="@layout/fragment_view_all" >
         <argument

@@ -6,5 +6,6 @@ data class MovieDetailState(
         var movie : Movie? = null,
         var isLoading : Boolean = false,
         var errorMessage : String = "",
-        var similarMovies : List<Movie>? = null
+        var similarMovies : List<Movie>? = null,
+        var isFavourite : Boolean = false
 )

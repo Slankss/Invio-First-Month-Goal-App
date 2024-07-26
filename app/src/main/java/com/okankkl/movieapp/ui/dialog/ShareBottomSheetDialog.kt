@@ -16,7 +16,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.okankkl.movieapp.R
 import com.okankkl.movieapp.databinding.ShareMovieBottomSheetDialogBinding
 
-class ShareBottomSheetDialog(val movieTrailerUrl : String) : BottomSheetDialogFragment()
+class ShareBottomSheetDialog(private val movieTrailerUrl : String) : BottomSheetDialogFragment()
 {
     private lateinit var binding: ShareMovieBottomSheetDialogBinding
     override fun onCreateView(

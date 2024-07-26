@@ -12,14 +12,13 @@
         <TextView
             android:id="@+id/categoryHeaderTxt"
             style="@style/Theme.MovieApp.HeaderTextView"
-            android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
         <TextView
-            android:id="@+id/viewallTxt"
+            android:id="@+id/viewAllTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
