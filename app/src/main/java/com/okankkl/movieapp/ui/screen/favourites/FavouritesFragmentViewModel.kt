@@ -38,8 +38,4 @@ class FavouritesFragmentViewModel @Inject constructor(
         getFavouritesList()
     }
     
-    fun clearState(){
-        _state.update { FavouritesState() }
-    }
-
 }

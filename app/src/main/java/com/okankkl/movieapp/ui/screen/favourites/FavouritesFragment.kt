@@ -87,11 +87,6 @@ class FavouritesFragment : Fragment()
         .create()
         .show()
     
-    override fun onPause() {
-        super.onPause()
-        viewModel.clearState()
-    }
-    
     override fun onResume() {
         super.onResume()
         viewModel.getFavouritesList()
